@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_xxlarge">
+
+    <!--Main Title-->
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        android:layout_gravity="center"
+        android:padding="@dimen/dp_large"
+        android:textSize="@dimen/sp_xxlarge"/>
+
+    <!--Buttons-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statsButton"
+            android:text="Stats"
+            android:textSize="@dimen/sp_medium"
+            android:layout_marginRight="@dimen/dp_xlarge"/>
+
+         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startGameButton"
+            android:text="Start Game"
+            android:textSize="@dimen/sp_medium"
+            android:layout_marginRight="@dimen/dp_xlarge"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="@dimen/sp_medium"/>
+
+    </LinearLayout>
+</LinearLayout>
