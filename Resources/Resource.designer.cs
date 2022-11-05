@@ -4377,7 +4377,7 @@ namespace MathGame
 			public const int design_text_input_password_icon = 2131427372;
 			
 			// aapt resource value: 0x7F0B002D
-			public const int main_screen = 2131427373;
+			public const int main_view = 2131427373;
 			
 			// aapt resource value: 0x7F0B002E
 			public const int mtrl_layout_snackbar = 2131427374;
@@ -4413,7 +4413,7 @@ namespace MathGame
 			public const int select_dialog_singlechoice_material = 2131427384;
 			
 			// aapt resource value: 0x7F0B0039
-			public const int settings_screen = 2131427385;
+			public const int settings_view = 2131427385;
 			
 			// aapt resource value: 0x7F0B003A
 			public const int support_simple_spinner_dropdown_item = 2131427386;
