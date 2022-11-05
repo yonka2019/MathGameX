@@ -4574,7 +4574,7 @@ namespace MathGame
 			public const int hide_bottom_view_on_scroll_behavior = 2131558439;
 			
 			// aapt resource value: 0x7F0D0028
-			public const int main_title = 2131558440;
+			public const int main_main_title = 2131558440;
 			
 			// aapt resource value: 0x7F0D0029
 			public const int mtrl_chip_close_icon_content_description = 2131558441;
@@ -4598,7 +4598,10 @@ namespace MathGame
 			public const int search_menu_title = 2131558447;
 			
 			// aapt resource value: 0x7F0D0030
-			public const int status_bar_notification_info_overflow = 2131558448;
+			public const int settings_main_title = 2131558448;
+			
+			// aapt resource value: 0x7F0D0031
+			public const int status_bar_notification_info_overflow = 2131558449;
 			
 			static String()
 			{

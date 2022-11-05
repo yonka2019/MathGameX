@@ -12,7 +12,7 @@
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_title"
+        android:text="@string/main_main_title"
         android:layout_gravity="center"
         android:padding="@dimen/dp_large"
         android:textSize="@dimen/sp_xxlarge"/>
