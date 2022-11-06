@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MathGame</string>
     <string name="action_settings">Settings</string>
+
+	<!--Main screen-->
 	<string name="main_main_title">Math Game</string>
+	
+	<!--Settings screen-->
 	<string name="settings_main_title">Settings</string>
 </resources>

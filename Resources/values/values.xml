@@ -6,7 +6,6 @@
 	<dimen name="dp_xlarge">16dp</dimen>
 	<dimen name="dp_xxlarge">20dp</dimen>
 	
-	
 		<!--text sizes-->
 	<dimen name="sp_small">12sp</dimen>
 	<dimen name="sp_medium">14sp</dimen>
