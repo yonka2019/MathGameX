@@ -80,7 +80,6 @@
                 android:text="[✕] Multiply"
                 android:layout_marginRight="@dimen/dp_xxlarge"
                 android:textSize="@dimen/sp_large"/>
-
         </TableRow>
 
         <!--[4] [÷]-->
