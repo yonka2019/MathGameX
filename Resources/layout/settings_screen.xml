@@ -27,7 +27,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[1] Single-Digit numbers"
+                android:text="@string/settings_single_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"/>
@@ -35,7 +35,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[＋] Plus"
+                android:text="@string/settings_plus"
                 android:layout_marginRight="@dimen/dp_xxlarge"
                 android:textSize="@dimen/sp_large"/>
         </TableRow>
@@ -48,7 +48,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[2] Double-Digit numbers"
+                android:text="@string/settings_double_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"/>
@@ -56,7 +56,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[－] Minus"
+                android:text="@string/settings_minus"
                 android:layout_marginRight="@dimen/dp_xxlarge"
                 android:textSize="@dimen/sp_large"/>
         </TableRow>
@@ -69,7 +69,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[3] Triple-Digit numbers"
+                android:text="@string/settings_triple_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"/>
@@ -77,7 +77,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[✕] Multiply"
+                android:text="@string/settings_multiply"
                 android:layout_marginRight="@dimen/dp_xxlarge"
                 android:textSize="@dimen/sp_large"/>
         </TableRow>
@@ -90,7 +90,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[4] Fourth-Digit numbers"
+                android:text="@string/settings_fourth_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"/>
@@ -98,7 +98,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[÷] Divide"
+                android:text="@string/settings_divide"
                 android:layout_marginRight="@dimen/dp_xxlarge"
                 android:textSize="@dimen/sp_large"/>
         </TableRow>
@@ -106,7 +106,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save and exit"
+            android:text="@string/settings_save_exit"
             android:textSize="@dimen/sp_medium"
             android:layout_marginTop="@dimen/dp_medium"/>
     </TableLayout>

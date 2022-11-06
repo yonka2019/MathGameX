@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/statsButton"
-            android:text="Stats"
+            android:text="@string/main_stats"
             android:textSize="@dimen/sp_medium"
             android:layout_marginRight="@dimen/dp_xlarge"/>
 
@@ -36,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/startGameButton"
-            android:text="Start Game"
+            android:text="@string/main_start_game"
             android:textSize="@dimen/sp_medium"
             android:layout_marginRight="@dimen/dp_xlarge"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/main_settings"
             android:textSize="@dimen/sp_medium"/>
 
     </LinearLayout>

@@ -4,7 +4,23 @@
 
 	<!--Main screen-->
 	<string name="main_main_title">Math Game</string>
+
+	<string name="main_stats">Stats</string>
+	<string name="main_start_game">Start game</string>
+	<string name="main_settings">Settings</string>
 	
 	<!--Settings screen-->
 	<string name="settings_main_title">Settings</string>
+	
+	<string name="settings_single_digit">[1] Single-Digit numbers</string>
+	<string name="settings_double_digit">[2] Double-Digit numbers</string>
+	<string name="settings_triple_digit">[3] Triple-Digit numbers</string>
+	<string name="settings_fourth_digit">[4] Fourth-Digit numbers</string>
+
+	<string name="settings_plus">[＋] Plus</string>
+	<string name="settings_minus">[－] Minus</string>
+	<string name="settings_divide">[÷] Divide</string>
+	<string name="settings_multiply">[✕] Multiply</string>
+
+	<string name="settings_save_exit">Save and exit</string>
 </resources>
