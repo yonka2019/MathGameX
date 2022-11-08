@@ -12,39 +12,43 @@
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_title"
+        android:text="@string/main_main_title"
         android:layout_gravity="center"
         android:padding="@dimen/dp_large"
         android:textSize="@dimen/sp_xxlarge"/>
 
     <!--Buttons-->
     <LinearLayout
+        android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/statsButton"
-            android:text="Stats"
+            android:text="@string/main_stats"
             android:textSize="@dimen/sp_medium"
-            android:layout_marginRight="@dimen/dp_xlarge"/>
+            android:layout_gravity="center"/>
 
          <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/startGameButton"
-            android:text="Start Game"
+            android:text="@string/main_start_game"
             android:textSize="@dimen/sp_medium"
-            android:layout_marginRight="@dimen/dp_xlarge"/>
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp_medium"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textSize="@dimen/sp_medium"/>
+            android:text="@string/main_settings"
+            android:textSize="@dimen/sp_medium"
+            android:id="@+id/settingsButton"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </LinearLayout>
