@@ -17,8 +17,8 @@ namespace MathGame
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.settings_screen);
 
-            // Create your application here
         }
     }
 }
