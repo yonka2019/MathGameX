@@ -20,7 +20,20 @@ namespace MathGame
             SetRefs();
 
             saveExit.Click += SaveExit_Click;
+            RestoreSettings();
+        }
 
+        private void RestoreSettings()
+        {
+            plus.Checked = SettingsManager.Settings["operators"]["plus"];
+            minus.Checked = SettingsManager.Settings["operators"]["minus"];
+            multiply.Checked = SettingsManager.Settings["operators"]["multiply"];
+            divide.Checked = SettingsManager.Settings["operators"]["divide"];
+
+            oneD.Checked = SettingsManager.Settings["digits"]["one"];
+            doubleD.Checked = SettingsManager.Settings["digits"]["double"];
+            tripleD.Checked = SettingsManager.Settings["digits"]["triple"];
+            fourthD.Checked = SettingsManager.Settings["digits"]["fourth"];
         }
 
         private void SaveExit_Click(object sender, EventArgs e)
