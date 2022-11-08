@@ -5,8 +5,5 @@ namespace MathGame
 {
     internal class Game
     {
-        public Game()
-        {
-        }
     }
 }
