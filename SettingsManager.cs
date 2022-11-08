@@ -25,7 +25,7 @@ namespace MathGame
                 { "one", false }, { "double", false }, { "triple", false }, { "fourth", false } };
         }
 
-        public static Dictionary<string, Dictionary<string, bool>> GameSettings
+        public static Dictionary<string, Dictionary<string, bool>> Settings
         {
             get { return gameSettings; }
             set { gameSettings = value; }
