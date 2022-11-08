@@ -17,9 +17,9 @@ namespace MathGame
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.main_screen);
 
-            SetRef();
+            SetContentView(Resource.Layout.main_screen);
+            SetRefs();
 
             Stats.Click += Stats_Click;
             Start.Click += Start_Click;
@@ -33,7 +33,20 @@ namespace MathGame
 
         private void Start_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            if (SettingsManager.ReadyToPlay)
+            {
+                StartActivity(new Intent(this, typeof(GameActivity)));
+            }
+            else
+            {
+                Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
+                builder.SetTitle("Settings Warning");
+                builder.SetMessage("You must set up the settings before starting game");
+                builder.SetPositiveButton("OK", delegate { });
+                builder.SetIcon(Resource.Drawable.warning64);
+                Android.App.AlertDialog dialog = builder.Create();
+                dialog.Show();
+            }
         }
 
         private void Stats_Click(object sender, System.EventArgs e)
@@ -41,18 +54,11 @@ namespace MathGame
             throw new System.NotImplementedException();
         }
 
-        private void SetRef()
+        private void SetRefs()
         {
             Stats = FindViewById<Button>(Resource.Id.statsButton);
             Start = FindViewById<Button>(Resource.Id.startGameButton);
             Settings = FindViewById<Button>(Resource.Id.settingsButton);
-        }
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

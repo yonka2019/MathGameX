@@ -118,7 +118,7 @@
     <AndroidResource Include="Resources\values\values.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\warning64.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\settings_screen.xml">
@@ -130,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\statistics_screen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
