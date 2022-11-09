@@ -3399,10 +3399,7 @@ namespace MathGame
 			public const int tooltip_frame_light = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int warning = 2131165312;
-			
-			// aapt resource value: 0x7F070081
-			public const int warning64 = 2131165313;
+			public const int warning64 = 2131165312;
 			
 			static Drawable()
 			{
