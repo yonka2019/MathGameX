@@ -40,7 +40,7 @@ namespace MathGame
             else
             {
                 Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
-                builder.SetTitle("Settings Warning");
+                builder.SetTitle("Warning");
                 builder.SetMessage("You must set up the settings before starting game");
                 builder.SetPositiveButton("OK", delegate { });
                 builder.SetIcon(Resource.Drawable.warning64);
