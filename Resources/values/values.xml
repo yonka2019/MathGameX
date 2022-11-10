@@ -5,6 +5,9 @@
 	<dimen name="dp_large">12dp</dimen>
 	<dimen name="dp_xlarge">16dp</dimen>
 	<dimen name="dp_xxlarge">20dp</dimen>
+	<dimen name="dp_ularge">75dp</dimen>
+	<dimen name="dp_uxlarge">140dp</dimen>
+	<dimen name="dp_mlarge">165dp</dimen>
 	
 		<!--text sizes-->
 	<dimen name="sp_small">12sp</dimen>
@@ -12,4 +15,5 @@
 	<dimen name="sp_large">18sp</dimen>
 	<dimen name="sp_xlarge">22sp</dimen>
 	<dimen name="sp_xxlarge">26sp</dimen>
+	<dimen name="sp_ularge">30sp</dimen>
 </resources>
