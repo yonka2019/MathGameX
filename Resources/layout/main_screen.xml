@@ -49,6 +49,5 @@
             android:textSize="@dimen/sp_medium"
             android:id="@+id/settingsButton"
             android:layout_gravity="center"/>
-
     </LinearLayout>
 </LinearLayout>
