@@ -4438,40 +4438,43 @@ namespace MathGame
 			public const int mtrl_layout_snackbar_include = 2131427376;
 			
 			// aapt resource value: 0x7F0B0031
-			public const int notification_action = 2131427377;
+			public const int music_select = 2131427377;
 			
 			// aapt resource value: 0x7F0B0032
-			public const int notification_action_tombstone = 2131427378;
+			public const int notification_action = 2131427378;
 			
 			// aapt resource value: 0x7F0B0033
-			public const int notification_template_custom_big = 2131427379;
+			public const int notification_action_tombstone = 2131427379;
 			
 			// aapt resource value: 0x7F0B0034
-			public const int notification_template_icon_group = 2131427380;
+			public const int notification_template_custom_big = 2131427380;
 			
 			// aapt resource value: 0x7F0B0035
-			public const int notification_template_part_chronometer = 2131427381;
+			public const int notification_template_icon_group = 2131427381;
 			
 			// aapt resource value: 0x7F0B0036
-			public const int notification_template_part_time = 2131427382;
+			public const int notification_template_part_chronometer = 2131427382;
 			
 			// aapt resource value: 0x7F0B0037
-			public const int select_dialog_item_material = 2131427383;
+			public const int notification_template_part_time = 2131427383;
 			
 			// aapt resource value: 0x7F0B0038
-			public const int select_dialog_multichoice_material = 2131427384;
+			public const int select_dialog_item_material = 2131427384;
 			
 			// aapt resource value: 0x7F0B0039
-			public const int select_dialog_singlechoice_material = 2131427385;
+			public const int select_dialog_multichoice_material = 2131427385;
 			
 			// aapt resource value: 0x7F0B003A
-			public const int settings_screen = 2131427386;
+			public const int select_dialog_singlechoice_material = 2131427386;
 			
 			// aapt resource value: 0x7F0B003B
-			public const int statistics_screen = 2131427387;
+			public const int settings_screen = 2131427387;
 			
 			// aapt resource value: 0x7F0B003C
-			public const int support_simple_spinner_dropdown_item = 2131427388;
+			public const int statistics_screen = 2131427388;
+			
+			// aapt resource value: 0x7F0B003D
+			public const int support_simple_spinner_dropdown_item = 2131427389;
 			
 			static Layout()
 			{

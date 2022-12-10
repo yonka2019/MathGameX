@@ -1,8 +1,7 @@
 ﻿using Android.App;
-using Android.OS;
-using Android.Runtime;
-using Android.Widget;
 using Android.Content;
+using Android.OS;
+using Android.Widget;
 using AndroidX.AppCompat.App;
 
 namespace MathGame
@@ -10,7 +9,7 @@ namespace MathGame
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Button Stats, Start, Settings;
+        private Button Stats, Start, Settings;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
