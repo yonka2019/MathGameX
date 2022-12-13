@@ -17,7 +17,7 @@
         android:padding="@dimen/dp_large"
         android:textSize="@dimen/sp_xxlarge"/>
 
-    <!--Buttons-->
+    <!--Menu Buttons-->
     <LinearLayout
         android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_width="match_parent"
@@ -49,5 +49,22 @@
             android:textSize="@dimen/sp_medium"
             android:id="@+id/settingsButton"
             android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <!--Additional buttoms (bottom buttons)-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_marginBottom="@dimen/dp_large"
+        android:layout_marginLeft="@dimen/dp_small"
+        android:layout_marginRight="@dimen/dp_small">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setSongButton"
+            android:src="@drawable/musical_32px"/>
     </LinearLayout>
 </LinearLayout>

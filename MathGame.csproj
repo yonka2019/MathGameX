@@ -66,10 +66,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Game.cs" />
+    <Compile Include="Song.cs" />
+    <Compile Include="Adapters\SongAdapter.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="MusicSelectorActivity.cs" />
+    <Compile Include="SongSelectorActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsActivity.cs" />
@@ -136,9 +138,17 @@
     <AndroidResource Include="Resources\drawable\border.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\music_select.xml">
+    <AndroidResource Include="Resources\layout\song_select.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\song_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\musical_32px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

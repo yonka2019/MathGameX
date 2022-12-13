@@ -6,9 +6,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Playing song: "
+        android:text="Playing song:"
         android:textSize="@dimen/sp_xlarge"
         android:gravity="center"
         android:layout_marginTop="@dimen/dp_xxlarge"
         android:id="@+id/csong_tv"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvSong"/>
 </LinearLayout>
