@@ -3,7 +3,9 @@ using System;
 
 namespace MathGame
 {
-    internal class Game
+    internal class IGame
     {
+        protected int GameTimeSeconds { get; set; }  // 0 - infinity
+
     }
 }

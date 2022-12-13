@@ -19,7 +19,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -66,12 +66,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Song.cs" />
-    <Compile Include="Adapters\SongAdapter.cs" />
+    <Compile Include="Music.cs" />
+    <Compile Include="Adapters\MusicAdapter.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="SongSelectorActivity.cs" />
+    <Compile Include="MusicSelectorActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsActivity.cs" />
@@ -138,12 +138,12 @@
     <AndroidResource Include="Resources\drawable\border.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\song_select.xml">
+    <AndroidResource Include="Resources\layout\music_select.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\song_layout.xml">
+    <AndroidResource Include="Resources\layout\music_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

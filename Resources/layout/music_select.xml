@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current playing music:"
+        android:textSize="@dimen/sp_xlarge"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_xxlarge"
+        android:id="@+id/cmusic_tv"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- Select any music below -"
+        android:textSize="@dimen/sp_large"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_xlarge"
+        android:layout_marginTop="@dimen/dp_medium"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvMusic"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        android:text="Back to menu"
+        android:textSize="@dimen/sp_medium"
+        android:id="@+id/backButton"/>
+</LinearLayout>

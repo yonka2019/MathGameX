@@ -65,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setSongButton"
-            android:src="@drawable/musical_32px"/>
+            android:src="@drawable/musical_32px"
+            android:contentDescription="Set song button" />
     </LinearLayout>
 </LinearLayout>

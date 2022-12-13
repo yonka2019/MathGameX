@@ -10,6 +10,7 @@ namespace MathGame
     public class MainActivity : AppCompatActivity
     {
         private Button Stats, Start, Settings;
+        private ImageButton SetSong;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -23,6 +24,12 @@ namespace MathGame
             Stats.Click += Stats_Click;
             Start.Click += Start_Click;
             Settings.Click += Settings_Click;
+            SetSong.Click += SetSong_Click;
+        }
+
+        private void SetSong_Click(object sender, System.EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(MusicSelectorActivity)));
         }
 
         private void Settings_Click(object sender, System.EventArgs e)
@@ -58,6 +65,7 @@ namespace MathGame
             Stats = FindViewById<Button>(Resource.Id.statsButton);
             Start = FindViewById<Button>(Resource.Id.startGameButton);
             Settings = FindViewById<Button>(Resource.Id.settingsButton);
+            SetSong = FindViewById<ImageButton>(Resource.Id.setSongButton);
         }
     }
 }
