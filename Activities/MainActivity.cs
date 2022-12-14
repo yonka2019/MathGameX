@@ -42,14 +42,19 @@ namespace MathGame
 
         }
 
-        private void SetSong_Click(object sender, System.EventArgs e)
+        private void Stats_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(MusicSelectorActivity)));
+            StartActivity(new Intent(this, typeof(StatisticsActivity)));
         }
 
         private void Settings_Click(object sender, System.EventArgs e)
         {
             StartActivity(new Intent(this, typeof(SettingsActivity)));
+        }
+
+        private void SetSong_Click(object sender, System.EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(MusicSelectorActivity)));
         }
 
         private void Start_Click(object sender, System.EventArgs e)
@@ -68,11 +73,6 @@ namespace MathGame
                 Android.App.AlertDialog dialog = builder.Create();
                 dialog.Show();
             }
-        }
-
-        private void Stats_Click(object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         private void SetRefs()

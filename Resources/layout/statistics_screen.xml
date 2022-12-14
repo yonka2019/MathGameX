@@ -4,4 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Statistics"
+        android:layout_gravity="center"
+        android:padding="@dimen/dp_small"
+        android:textSize="@dimen/sp_xxlarge"/>
 </LinearLayout>
