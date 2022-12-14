@@ -14,10 +14,21 @@ namespace MathGame.Activities
     [Activity(Label = "RegisterActivity")]
     public class RegisterActivity : Activity
     {
+        private TextView gotoLogin;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.register_screen);
+
+            gotoLogin = FindViewById<TextView>(Resource.Id.gotoLogin);
+            gotoLogin.Click += GotoLogin_Click;
+
+        }
+
+        private void GotoLogin_Click(object sender, EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(LoginActivity)));
 
         }
     }

@@ -10,7 +10,8 @@ namespace MathGame
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private Button Stats, Start, Settings, Login, Register;
+        private Button Stats, Start, Settings;
+        private TextView Login, Register;
         private ImageButton SetSong;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -80,8 +81,8 @@ namespace MathGame
             Start = FindViewById<Button>(Resource.Id.startGameButton);
             Settings = FindViewById<Button>(Resource.Id.settingsButton);
             SetSong = FindViewById<ImageButton>(Resource.Id.setSongButton);
-            Login = FindViewById<Button>(Resource.Id.mainLoginButton);
-            Register = FindViewById<Button>(Resource.Id.mainRegisterButton);
+            Login = FindViewById<TextView>(Resource.Id.mainLoginButton);
+            Register = FindViewById<TextView>(Resource.Id.mainRegisterButton);
         }
     }
 }

@@ -43,5 +43,7 @@
         android:text="•  Register  •"
         android:gravity="center"
         android:layout_marginTop="@dimen/dp_small"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/sp_large"
+        android:textStyle="bold"
+        android:id="@+id/gotoRegister"/>
 </LinearLayout>
