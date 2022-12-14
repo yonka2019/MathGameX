@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="@dimen/dp_xxlarge">
+    android:paddingTop="@dimen/dp_large">
 
     <!--Main Title-->
     <TextView 
@@ -14,10 +14,56 @@
         android:layout_height="wrap_content"
         android:text="@string/main_main_title"
         android:layout_gravity="center"
-        android:padding="@dimen/dp_large"
+        android:padding="@dimen/dp_small"
         android:textSize="@dimen/sp_xxlarge"/>
 
-    <!--Menu Buttons-->
+    <!--Profile, login, register-->
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/male_user_32px"
+            android:contentDescription="profile image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <!--If logged, here will showed username-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:text="username"
+            android:id="@+id/mainUser"/>
+
+        <!--If logged, login/register buttons will be hiden-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:text="Login"
+            android:textSize="@dimen/sp_large"
+            android:id="@+id/mainLoginButton"
+            android:textStyle="bold"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:text="Register"
+            android:textSize="@dimen/sp_large"
+            android:textStyle="bold"
+            android:id="@+id/mainRegisterButton"/>
+
+     </LinearLayout>
+
+    <!--Menu Buttons--> <!--If user not logged in, he cant play-->
     <LinearLayout
         android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_width="match_parent"
@@ -31,7 +77,8 @@
             android:id="@+id/statsButton"
             android:text="@string/main_stats"
             android:textSize="@dimen/sp_medium"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:enabled="true"/>
 
          <Button
             android:layout_width="match_parent"
@@ -40,7 +87,8 @@
             android:text="@string/main_start_game"
             android:textSize="@dimen/sp_medium"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/dp_medium"/>
+            android:layout_margin="@dimen/dp_medium"
+            android:enabled="true"/>
 
         <Button
             android:layout_width="match_parent"
@@ -48,7 +96,8 @@
             android:text="@string/main_settings"
             android:textSize="@dimen/sp_medium"
             android:id="@+id/settingsButton"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:enabled="true"/>
     </LinearLayout>
 
     <!--Additional buttoms (bottom buttons)-->

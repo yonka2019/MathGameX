@@ -3,13 +3,14 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using MathGame.Activities;
 
 namespace MathGame
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private Button Stats, Start, Settings;
+        private Button Stats, Start, Settings, Login, Register;
         private ImageButton SetSong;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -25,6 +26,19 @@ namespace MathGame
             Start.Click += Start_Click;
             Settings.Click += Settings_Click;
             SetSong.Click += SetSong_Click;
+            Login.Click += Login_Click;
+            Register.Click += Register_Click;
+        }
+
+        private void Register_Click(object sender, System.EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(RegisterActivity)));
+        }
+
+        private void Login_Click(object sender, System.EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(LoginActivity)));
+
         }
 
         private void SetSong_Click(object sender, System.EventArgs e)
@@ -66,6 +80,8 @@ namespace MathGame
             Start = FindViewById<Button>(Resource.Id.startGameButton);
             Settings = FindViewById<Button>(Resource.Id.settingsButton);
             SetSong = FindViewById<ImageButton>(Resource.Id.setSongButton);
+            Login = FindViewById<Button>(Resource.Id.mainLoginButton);
+            Register = FindViewById<Button>(Resource.Id.mainRegisterButton);
         }
     }
 }
