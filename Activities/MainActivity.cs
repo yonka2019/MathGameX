@@ -77,12 +77,12 @@ namespace MathGame
 
         private void SetRefs()
         {
-            Stats = FindViewById<Button>(Resource.Id.statsButton);
-            Start = FindViewById<Button>(Resource.Id.startGameButton);
-            Settings = FindViewById<Button>(Resource.Id.settingsButton);
-            SetSong = FindViewById<ImageButton>(Resource.Id.setSongButton);
-            Login = FindViewById<TextView>(Resource.Id.mainLoginButton);
-            Register = FindViewById<TextView>(Resource.Id.mainRegisterButton);
+            Stats = FindViewById<Button>(Resource.Id.main_statsButton);
+            Start = FindViewById<Button>(Resource.Id.main_startGameButton);
+            Settings = FindViewById<Button>(Resource.Id.main_settingsButton);
+            SetSong = FindViewById<ImageButton>(Resource.Id.main_setSongButton);
+            Login = FindViewById<TextView>(Resource.Id.main_loginButton);
+            Register = FindViewById<TextView>(Resource.Id.main_registerButton);
         }
     }
 }

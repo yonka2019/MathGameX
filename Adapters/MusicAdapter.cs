@@ -35,7 +35,7 @@ namespace MathGame.Adapters
             LayoutInflater layoutInflater = ((MusicSelectorActivity)context).LayoutInflater;
             View view = layoutInflater.Inflate(Resource.Layout.music_layout, parent, false);
 
-            TextView tvSong = view.FindViewById<TextView>(Resource.Id.musicName);
+            TextView tvSong = view.FindViewById<TextView>(Resource.Id.musicl_musicName);
             Music _song = songs[position];
 
             if (_song != null)

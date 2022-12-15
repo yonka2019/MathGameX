@@ -5,7 +5,7 @@
 	<dimen name="dp_large">12dp</dimen>
 	<dimen name="dp_xlarge">16dp</dimen>
 	<dimen name="dp_xxlarge">20dp</dimen>
-	<dimen name="dp_3xlarge">45dp</dimen>
+	<dimen name="dp_3xlarge">60dp</dimen>
 	<dimen name="dp_ularge">75dp</dimen>
 	<dimen name="dp_uxlarge">140dp</dimen>
 	<dimen name="dp_mlarge">165dp</dimen>

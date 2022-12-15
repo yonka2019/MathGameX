@@ -1,14 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using Google.Android.Material.TextField;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MathGame.Activities
 {
@@ -22,7 +16,7 @@ namespace MathGame.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login_screen);
 
-            gotoRegister = FindViewById<TextView>(Resource.Id.gotoRegister);
+            gotoRegister = FindViewById<TextView>(Resource.Id.login_gotoRegister);
             gotoRegister.Click += GotoRegister_Click;
 
         }

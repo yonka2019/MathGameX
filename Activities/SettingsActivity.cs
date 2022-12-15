@@ -58,17 +58,17 @@ namespace MathGame
 
         private void SetRefs()
         {
-            oneD = FindViewById<CheckBox>(Resource.Id.setting_single_digit);
-            doubleD = FindViewById<CheckBox>(Resource.Id.setting_double_digit);
-            tripleD = FindViewById<CheckBox>(Resource.Id.setting_triple_digit);
-            fourthD = FindViewById<CheckBox>(Resource.Id.setting_fourth_digit);
+            oneD = FindViewById<CheckBox>(Resource.Id.setting_singleDigit);
+            doubleD = FindViewById<CheckBox>(Resource.Id.setting_doubleDigit);
+            tripleD = FindViewById<CheckBox>(Resource.Id.setting_tripleDigit);
+            fourthD = FindViewById<CheckBox>(Resource.Id.setting_fourthDigit);
 
             plus = FindViewById<CheckBox>(Resource.Id.setting_plus);
             minus = FindViewById<CheckBox>(Resource.Id.setting_minus);
             multiply = FindViewById<CheckBox>(Resource.Id.setting_multiply);
             divide = FindViewById<CheckBox>(Resource.Id.setting_divide);
 
-            saveExit = FindViewById<Button>(Resource.Id.SaveExitButton);
+            saveExit = FindViewById<Button>(Resource.Id.settings_saveAndExitButton);
         }
     }
 }

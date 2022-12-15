@@ -21,7 +21,7 @@ namespace MathGame.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.register_screen);
 
-            gotoLogin = FindViewById<TextView>(Resource.Id.gotoLogin);
+            gotoLogin = FindViewById<TextView>(Resource.Id.register_gotoLogin);
             gotoLogin.Click += GotoLogin_Click;
 
         }

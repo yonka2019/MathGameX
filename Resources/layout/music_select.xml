@@ -10,7 +10,7 @@
         android:textSize="@dimen/sp_xlarge"
         android:gravity="center"
         android:layout_marginTop="@dimen/dp_xxlarge"
-        android:id="@+id/cmusic_tv"/>
+        android:id="@+id/musics_cmusicTV"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lvMusic"/>
+        android:id="@+id/musics_lvMusic"/>
 
     <Button
         android:layout_width="match_parent"
@@ -32,5 +32,5 @@
         android:layout_height="wrap_content"
         android:text="Back to menu"
         android:textSize="@dimen/sp_medium"
-        android:id="@+id/backButton"/>
+        android:id="@+id/musics_backButton"/>
 </LinearLayout>

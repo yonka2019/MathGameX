@@ -14,12 +14,14 @@ namespace MathGame
     [Activity(Label = "StatisticsActivity")]
     public class StatisticsActivity : Activity
     {
+        private Button backButton;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.statistics_screen);
 
-            // Create your application here
+            backButton = FindViewById<Button>(Resource.Id.stats_backButton)
         }
     }
 }

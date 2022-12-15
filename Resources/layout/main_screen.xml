@@ -39,7 +39,7 @@
             android:visibility="gone"
             android:textStyle="bold"
             android:text="username"
-            android:id="@+id/mainUser"/>
+            android:id="@+id/main_username"/>
 
         <!--If logged, login/register buttons will be hiden-->
         <TextView
@@ -48,7 +48,7 @@
             android:visibility="visible"
             android:text="Login"
             android:textSize="@dimen/sp_large"
-            android:id="@+id/mainLoginButton"
+            android:id="@+id/main_loginButton"
             android:textStyle="bold"
             android:paddingRight="@dimen/dp_medium"/>
 
@@ -59,7 +59,7 @@
             android:text="Register"
             android:textSize="@dimen/sp_large"
             android:textStyle="bold"
-            android:id="@+id/mainRegisterButton"/>
+            android:id="@+id/main_registerButton"/>
 
      </LinearLayout>
 
@@ -74,7 +74,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/statsButton"
+            android:id="@+id/main_statsButton"
             android:text="@string/main_stats"
             android:textSize="@dimen/sp_medium"
             android:layout_gravity="center"
@@ -83,7 +83,7 @@
          <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/startGameButton"
+            android:id="@+id/main_startGameButton"
             android:text="@string/main_start_game"
             android:textSize="@dimen/sp_medium"
             android:layout_gravity="center"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:text="@string/main_settings"
             android:textSize="@dimen/sp_medium"
-            android:id="@+id/settingsButton"
+            android:id="@+id/main_settingsButton"
             android:layout_gravity="center"
             android:enabled="true"/>
     </LinearLayout>
@@ -113,7 +113,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/setSongButton"
+            android:id="@+id/main_setSongButton"
             android:src="@drawable/musical_32px"
             android:contentDescription="Set song button" />
     </LinearLayout>

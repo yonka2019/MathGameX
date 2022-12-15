@@ -15,6 +15,7 @@
         android:textSize="@dimen/sp_xxlarge"/>
 
     <TableLayout
+        android:layout_marginTop="@dimen/dp_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
@@ -31,7 +32,7 @@
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
-                android:id="@+id/stat_playerName"/>
+                android:id="@+id/stats_playerName"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
                 android:layout_column="2"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
-                android:id="@+id/stat_plus"/>
+                android:id="@+id/stats_plus"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="3"
-                android:id="@+id/stat_minus"/>
+                android:id="@+id/stats_minus"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
                 android:layout_column="4"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
-                android:id="@+id/stat_multiply"/>
+                android:id="@+id/stats_multiply"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,14 +68,14 @@
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="5"
-                android:id="@+id/stat_divide"/>
+                android:id="@+id/stats_divide"/>
         </TableRow>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:id="@+id/stat_BackButton"
+            android:id="@+id/stats_backButton"
             android:textSize="@dimen/sp_medium"
             android:layout_marginTop="@dimen/dp_medium"/>
     </TableLayout>

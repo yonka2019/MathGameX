@@ -30,8 +30,8 @@ namespace MathGame
 
             songAdapter = new MusicAdapter(this, SongList);
 
-            lv = FindViewById<ListView>(Resource.Id.lvMusic);
-            back = FindViewById<Button>(Resource.Id.backButton);
+            lv = FindViewById<ListView>(Resource.Id.musics_lvMusic);
+            back = FindViewById<Button>(Resource.Id.musics_backButton);
 
             back.Click += Back_Click;
             lv.Adapter = songAdapter;

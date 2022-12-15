@@ -8,7 +8,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/userTB">
+        android:id="@+id/register_userTB">
         <EditText
             android:inputType="textEmailAddress"
             android:hint="Username"
@@ -21,7 +21,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/passTB">
+        android:id="@+id/register_passTB">
         <EditText
             android:inputType="textPassword"
             android:hint="Password"
@@ -34,7 +34,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/confPassTB">
+        android:id="@+id/register_confPassTB">
         <EditText
             android:inputType="textPassword"
             android:hint="Confirm password"
@@ -48,7 +48,7 @@
         android:text="Register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/loginButtom"/>
+        android:id="@+id/register_registerButton"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -58,5 +58,5 @@
         android:layout_marginTop="@dimen/dp_small"
         android:textStyle="bold"
         android:textSize="@dimen/sp_large"
-        android:id="@+id/gotoLogin"/>
+        android:id="@+id/register_gotoLogin"/>
 </LinearLayout>
