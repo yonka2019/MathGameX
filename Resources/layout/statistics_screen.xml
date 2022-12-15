@@ -16,7 +16,7 @@
 
     <TableLayout
         android:layout_marginTop="@dimen/dp_large"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         
         <!--Titles-->
@@ -25,50 +25,119 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Player Name"
+                android:gravity="center"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
+                android:textStyle="bold"
                 android:id="@+id/stats_playerName"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="+"
                 android:layout_column="2"
+                android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
+                android:textStyle="bold"
                 android:id="@+id/stats_plus"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:text="-"
+                android:gravity="center"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="3"
+                android:textStyle="bold"
+                android:padding="@dimen/dp_small"
                 android:id="@+id/stats_minus"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:text="✕"
                 android:layout_column="4"
+                android:gravity="center"
                 android:textSize="@dimen/sp_large"
+                android:textStyle="bold"
+                android:padding="@dimen/dp_small"
                 android:layout_marginRight="@dimen/dp_3xlarge"
                 android:id="@+id/stats_multiply"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:text="÷"
+                android:gravity="center"
+                android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
                 android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="5"
+                android:textStyle="bold"
                 android:id="@+id/stats_divide"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="***"
+                android:layout_column="1"
+                android:padding="@dimen/dp_small"
+                android:gravity="center"
+                android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"/>
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:layout_column="2"
+                android:padding="@dimen/dp_small"
+                android:gravity="center"
+                android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"/>
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:layout_column="3"
+                android:padding="@dimen/dp_small"
+                android:gravity="center"
+                android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"/>
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:layout_column="4"
+                android:padding="@dimen/dp_small"
+                android:gravity="center"
+                android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"/>
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:layout_column="5"
+                android:padding="@dimen/dp_small"
+                android:gravity="center"
+                android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"/>
         </TableRow>
 
         <Button
