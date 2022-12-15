@@ -21,7 +21,13 @@ namespace MathGame
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.statistics_screen);
 
-            backButton = FindViewById<Button>(Resource.Id.stats_backButton)
+            backButton = FindViewById<Button>(Resource.Id.stats_backButton);
+            backButton.Click += BackButton_Click;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(MainActivity)));
         }
     }
 }
