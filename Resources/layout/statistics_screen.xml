@@ -18,11 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
-        <!--Player name-->
+        <!--Titles-->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,7 +30,8 @@
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
-                android:id="@+id/s_playerName"/>
+                android:layout_marginRight="@dimen/dp_3xlarge"
+                android:id="@+id/stat_playerName"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,107 +39,42 @@
                 android:text="+"
                 android:layout_column="2"
                 android:textSize="@dimen/sp_large"
-                android:id="@+id/setting_b"/>
+                android:layout_marginRight="@dimen/dp_3xlarge"
+                android:id="@+id/stat_plus"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:text="-"
                 android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="3"
-                android:id="@+id/setting_a"/>
+                android:id="@+id/stat_minus"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:text="✕"
                 android:layout_column="4"
                 android:textSize="@dimen/sp_large"
-                android:id="@+id/setting_plus"/>
+                android:layout_marginRight="@dimen/dp_3xlarge"
+                android:id="@+id/stat_multiply"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:text="÷"
                 android:textSize="@dimen/sp_large"
+                android:layout_marginRight="@dimen/dp_3xlarge"
                 android:layout_column="5"
-                android:id="@+id/setting_plus"/>
-        </TableRow>
-
-        <!--[2] [－]-->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_double_digit"
-                android:layout_column="1"
-                android:padding="@dimen/dp_small"
-                android:id="@+id/setting_double_digit"
-                android:textSize="@dimen/sp_large"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_minus"
-                android:id="@+id/setting_minus"
-                android:layout_marginRight="@dimen/dp_xxlarge"
-                android:textSize="@dimen/sp_large"/>
-        </TableRow>
-
-        <!--[3] [✕]-->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-         
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_triple_digit"
-                android:layout_column="1"
-                android:padding="@dimen/dp_small"
-                android:id="@+id/setting_triple_digit"
-                android:textSize="@dimen/sp_large"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_multiply"
-                android:id="@+id/setting_multiply"
-                android:layout_marginRight="@dimen/dp_xxlarge"
-                android:textSize="@dimen/sp_large"/>
-        </TableRow>
-
-        <!--[4] [÷]-->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_fourth_digit"
-                android:layout_column="1"
-                android:id="@+id/setting_fourth_digit"
-                android:padding="@dimen/dp_small"
-                android:textSize="@dimen/sp_large"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_divide"
-                android:id="@+id/setting_divide"
-                android:layout_marginRight="@dimen/dp_xxlarge"
-                android:textSize="@dimen/sp_large"/>
+                android:id="@+id/stat_divide"/>
         </TableRow>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_save_exit"
-            android:id="@+id/SaveExitButton"
+            android:text="Back"
+            android:id="@+id/stat_BackButton"
             android:textSize="@dimen/sp_medium"
             android:layout_marginTop="@dimen/dp_medium"/>
     </TableLayout>
