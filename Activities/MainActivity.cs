@@ -7,7 +7,9 @@ using MathGame.Activities;
 
 namespace MathGame
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", 
+        Theme = "@style/AppTheme.Splash",
+        Icon = "@mipmap/ic_launcher")]
     public class MainActivity : AppCompatActivity
     {
         private Button Stats, Start, Settings;
