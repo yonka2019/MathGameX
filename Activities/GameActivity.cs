@@ -19,6 +19,7 @@ namespace MathGame
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_screen);
             // Create your application here
+            // count down on screen 3 seconds before start
         }
     }
 }

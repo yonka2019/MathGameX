@@ -19,6 +19,7 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.game_selection);
             SetRefs();
 
             infinity.Click += Infinity_Click;
