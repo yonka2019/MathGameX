@@ -41,7 +41,6 @@ namespace MathGame
         private void Login_Click(object sender, System.EventArgs e)
         {
             StartActivity(new Intent(this, typeof(LoginActivity)));
-
         }
 
         private void Stats_Click(object sender, System.EventArgs e)
@@ -63,18 +62,26 @@ namespace MathGame
         {
             if (SettingsManager.ReadyToPlay)
             {
-                StartActivity(new Intent(this, typeof(GameActivity)));
+                StartActivity(new Intent(this, typeof(GameSelectionActivity)));
             }
             else
             {
-                Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
-                builder.SetTitle("Warning");
-                builder.SetMessage("You must set up the settings before starting game");
-                builder.SetPositiveButton("OK", delegate { });
-                builder.SetIcon(Resource.Drawable.warning64);
-                Android.App.AlertDialog dialog = builder.Create();
-                dialog.Show();
+                ShowAlertDialog("Warning", "You must set up the settings before starting game", Resource.Drawable.warning64);
             }
+        }
+        
+        /// <summary>
+        /// Shortcuter to show alert dialog in THIS context
+        /// </summary>
+        private void ShowAlertDialog(string title, string message, int iconId)
+        {
+            Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
+            builder.SetTitle(title);
+            builder.SetMessage(message);
+            builder.SetPositiveButton("OK", delegate { });
+            builder.SetIcon(iconId);
+            Android.App.AlertDialog dialog = builder.Create();
+            dialog.Show();
         }
 
         private void SetRefs()

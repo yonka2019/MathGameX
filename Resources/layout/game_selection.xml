@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "utf-8"?> 
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android" 
+    android:orientation = "vertical" 
+    android:layout_width = "match_parent" 
+    android:layout_height = "match_parent" 
+    android:minWidth = "25px" 
+    android:minHeight = "25px"
+    android:paddingTop="@dimen/dp_ularge"> 
+
+    <!--Main Title-->
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Game Selection -"
+        android:layout_gravity="center"
+        android:padding="@dimen/dp_small"
+        android:textSize="@dimen/sp_xxlarge"
+        android:layout_marginBottom="@dimen/dp_3xlarge"/>
+
+   <Button 
+      android:id = "@+id/gSelection_infinity"
+      android:layout_width = "match_parent" 
+      android:layout_margin = "10dp"
+      android:layout_height = "wrap_content" 
+      android:text = "Inifnity Game"/> 
+
+   <Button 
+      android:id = "@+id/gSelection_level" 
+      android:layout_width = "match_parent" 
+      android:layout_margin = "10dp" 
+      android:layout_height = "wrap_content" 
+      android:text = "Level Game"/> 
+
+   <Button 
+      android:id = "@+id/gSelection_online" 
+      android:layout_width = "match_parent" 
+      android:layout_margin = "10dp" 
+      android:layout_height = "wrap_content" 
+      android:text="Online Game"/> 
+</LinearLayout>
