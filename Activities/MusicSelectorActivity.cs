@@ -34,7 +34,7 @@ namespace MathGame
 
             songAdapter = new MusicAdapter(this, SongList);
 
-            back.Click += Back_Click;
+            back.Click += Back_Click; 
             lv.Adapter = songAdapter;
             lv.OnItemClickListener = this;
         }
