@@ -24,12 +24,35 @@
       android:layout_height = "wrap_content" 
       android:text = "Inifnity Game"/> 
 
-   <Button 
-      android:id = "@+id/gSelection_level" 
-      android:layout_width = "match_parent" 
-      android:layout_margin = "10dp" 
-      android:layout_height = "wrap_content" 
-      android:text = "Level Game"/> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/dp_medium"
+    android:layout_marginBottom="@dimen/dp_medium">
+
+    <Button
+        android:id = "@+id/gSelection_easy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Easy"/>
+
+    <Button
+        android:id = "@+id/gSelection_medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Medium"/>
+
+    <Button
+        android:id = "@+id/gSelection_hard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Hard"/>
+</LinearLayout>
+
 
    <Button 
       android:id = "@+id/gSelection_online" 

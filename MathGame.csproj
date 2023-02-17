@@ -84,6 +84,7 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Models\SettingsManager.cs" />
     <Compile Include="Activities\StatisticsActivity.cs" />
+    <Compile Include="Services\MusicService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\calculator_animation.json" />

@@ -11,31 +11,39 @@ namespace MathGame
     [Activity(Label = "MusicSelectorActivity")]
     public class MusicSelectorActivity : Activity, AdapterView.IOnItemClickListener
     {
-        public static List<Music> SongList { get; set; }
+        public static List<Song> SongList { get; set; }
 
         private MusicAdapter songAdapter;
         private Button back;
         private ListView lv;
-
+        private SeekBar sb;
+        private ISharedPreferences sp;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.music_select);
 
-            Music song1 = new Music("Song1");
-            Music song2 = new Music("Song2");
-            Music song3 = new Music("Song3");
-            SongList = new List<Music> { song1, song2, song3 };
+            SetRefs();
+
+            Song song1 = new Song("Song1");
+            Song song2 = new Song("Song2");
+            Song song3 = new Song("Song3");
+
+            SongList = new List<Song> { song1, song2, song3 };
 
             songAdapter = new MusicAdapter(this, SongList);
-
-            lv = FindViewById<ListView>(Resource.Id.musics_lvMusic);
-            back = FindViewById<Button>(Resource.Id.musics_backButton);
 
             back.Click += Back_Click;
             lv.Adapter = songAdapter;
             lv.OnItemClickListener = this;
+        }
+
+        private void SetRefs()
+        {
+            lv = FindViewById<ListView>(Resource.Id.music_lvMusic);
+            back = FindViewById<Button>(Resource.Id.music_backButton);
+            sb = FindViewById<SeekBar>(Resource.Id.music_seekbar);
         }
 
         private void Back_Click(object sender, System.EventArgs e)
@@ -45,7 +53,7 @@ namespace MathGame
 
         public void OnItemClick(AdapterView parent, View view, int position, long id)
         {
-            Music selectedSong = SongList[position];
+            Song selectedSong = SongList[position];
             Toast.MakeText(this, $"Selected: {selectedSong.Name}", ToastLength.Short).Show();
         }
     }

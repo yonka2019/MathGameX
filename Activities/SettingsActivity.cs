@@ -17,6 +17,7 @@ namespace MathGame
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.settings_screen);
+
             SetRefs();
 
             saveExit.Click += SaveExit_Click;

@@ -1,12 +1,14 @@
 ﻿namespace MathGame
 {
-    public class Music
+    public class Song
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
+        public int File { get; private set; }
 
-        public Music(string name)
+        public Song(string name, int file)
         {
             Name = name;
+            File = file;
         }
     }
 }

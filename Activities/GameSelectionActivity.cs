@@ -14,12 +14,13 @@ namespace MathGame.Activities
     [Activity(Label = "GameSelectionActivity")]
     public class GameSelectionActivity : Activity
     {
-        private Button infinity, level, online;
+        private Button infinity, easy, medium, hard, online;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_selection);
+
             SetRefs();
 
             infinity.Click += Infinity_Click;
@@ -33,7 +34,9 @@ namespace MathGame.Activities
         private void SetRefs()
         {
             infinity = FindViewById<Button>(Resource.Id.gSelection_infinity);
-            level = FindViewById<Button>(Resource.Id.gSelection_level);
+            easy = FindViewById<Button>(Resource.Id.gSelection_easy);
+            medium = FindViewById<Button>(Resource.Id.gSelection_medium);
+            hard = FindViewById<Button>(Resource.Id.gSelection_hard);
             online = FindViewById<Button>(Resource.Id.gSelection_online);
         }
     }
