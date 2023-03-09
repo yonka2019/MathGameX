@@ -16,7 +16,7 @@ namespace MathGame
 
         }
 
-        private int Set
+        private MathQuestion
 
     }
 }

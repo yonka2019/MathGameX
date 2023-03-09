@@ -72,6 +72,11 @@
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\FirebaseData.cs" />
     <Compile Include="Models\GameDifficulty.cs" />
+    <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
+    <Compile Include="Models\MathQuestions\BaseQuestion.cs" />
+    <Compile Include="Models\MathQuestions\DivisionQuestion.cs" />
+    <Compile Include="Models\MathQuestions\MultiplicationQuestion.cs" />
+    <Compile Include="Models\MathQuestions\SubstractionQuestion.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Adapters\SongAdapter.cs" />
     <Compile Include="Models\Game.cs" />
