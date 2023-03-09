@@ -26,10 +26,10 @@ namespace MathGame
 
         private void RestoreSettings()
         {
-            plus.Checked = SettingsManager.Settings["operators"]["plus"];
-            minus.Checked = SettingsManager.Settings["operators"]["minus"];
-            multiply.Checked = SettingsManager.Settings["operators"]["multiply"];
-            divide.Checked = SettingsManager.Settings["operators"]["divide"];
+            plus.Checked = SettingsManager.Settings["operators"]["+"];
+            minus.Checked = SettingsManager.Settings["operators"]["-"];
+            multiply.Checked = SettingsManager.Settings["operators"]["*"];
+            divide.Checked = SettingsManager.Settings["operators"]["/"];
 
             oneD.Checked = SettingsManager.Settings["digits"]["one"];
             doubleD.Checked = SettingsManager.Settings["digits"]["double"];
@@ -42,10 +42,10 @@ namespace MathGame
             // save all settings into the dictionary
 
             // operators settings
-            SettingsManager.Settings["operators"]["plus"] = plus.Checked;
-            SettingsManager.Settings["operators"]["minus"] = minus.Checked;
-            SettingsManager.Settings["operators"]["multiply"] = multiply.Checked;
-            SettingsManager.Settings["operators"]["divide"] = divide.Checked;
+            SettingsManager.Settings["operators"]["+"] = plus.Checked;
+            SettingsManager.Settings["operators"]["-"] = minus.Checked;
+            SettingsManager.Settings["operators"]["*"] = multiply.Checked;
+            SettingsManager.Settings["operators"]["/"] = divide.Checked;
 
             // digits settings
             SettingsManager.Settings["digits"]["one"] = oneD.Checked;

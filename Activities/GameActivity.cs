@@ -14,12 +14,14 @@ namespace MathGame
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
     {
+        private Game game = new Game();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_screen);
-            // Create your application here
             // count down on screen 3 seconds before start
+
+
         }
     }
 }

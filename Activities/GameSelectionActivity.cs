@@ -1,19 +1,16 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using MathGame.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MathGame.Activities
 {
     [Activity(Label = "GameSelectionActivity")]
     public class GameSelectionActivity : Activity
     {
+        internal static GameDifficulty gameDifficulty;
         private Button infinity, easy, medium, hard, online;
 
         protected override void OnCreate(Bundle savedInstanceState)

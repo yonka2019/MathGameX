@@ -17,10 +17,10 @@ namespace MathGame
         /// </summary>
         private static Dictionary<string, Dictionary<string, bool>> gameSettings = new Dictionary<string, Dictionary<string, bool>>();
 
-        static SettingsManager() // initialize dictionaries
+        static SettingsManager()  // initialize dictionaries
         {
             gameSettings["operators"] = new Dictionary<string, bool> {
-                { "plus", false }, { "minus", false }, { "multiply", false }, { "divide", false } };
+                { "+", false }, { "-", false }, { "*", false }, { "/", false } };
 
             gameSettings["digits"] = new Dictionary<string, bool> {
                 { "one", false }, { "double", false }, { "triple", false }, { "fourth", false } };

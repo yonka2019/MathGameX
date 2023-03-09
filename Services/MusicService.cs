@@ -16,17 +16,18 @@ namespace MathGame.Services
         public override void OnCreate()
         {
             base.OnCreate();
-            sp = GetSharedPreferences("MusicSP", FileCreationMode.Private);
+            sp = GetSharedPreferences("Music", FileCreationMode.Private);
 
-            mp = MediaPlayer.Create(this, MusicSettings.musicFiles[sp.GetString("song", "")]);
+            mp = MediaPlayer.Create(this, sp.GetInt("SongFile", 0));
+
             mp.Looping = true;
-            int volume = sp.GetInt("volume", 40);
+            int volume = sp.GetInt("Volume", 40);
             mp.SetVolume((float)volume / 100, (float)volume / 100);
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
-            int position = sp.GetInt("position", 0);
+            int position = sp.GetInt("Position", 0);
             mp.SeekTo(position);
             mp.Start();
             return base.OnStartCommand(intent, flags, startId);
@@ -35,7 +36,7 @@ namespace MathGame.Services
         public override void OnDestroy()
         {
             ISharedPreferencesEditor editor = sp.Edit();
-            editor.PutInt("position", mp.CurrentPosition);
+            editor.PutInt("Position", mp.CurrentPosition);  // save position status
             editor.Commit();
 
             mp.Stop();

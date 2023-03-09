@@ -14,7 +14,7 @@ namespace MathGame
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.1.0.5")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.0.93")]
 	public partial class Resource
 	{
 		
@@ -10870,7 +10870,13 @@ namespace MathGame
 		{
 			
 			// aapt resource value: 0x7F0F0000
-			public const int firebase_common_keep = 2131689472;
+			public const int another_one_bites_the_dust = 2131689472;
+			
+			// aapt resource value: 0x7F0F0001
+			public const int firebase_common_keep = 2131689473;
+			
+			// aapt resource value: 0x7F0F0002
+			public const int my_song = 2131689474;
 			
 			static Raw()
 			{

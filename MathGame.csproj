@@ -69,13 +69,12 @@
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\FirebaseData.cs" />
     <Compile Include="Models\GameDifficulty.cs" />
-    <Compile Include="Models\InfinityGame.cs" />
-    <Compile Include="Models\LevelGame.cs" />
-    <Compile Include="Models\Music.cs" />
-    <Compile Include="Adapters\MusicAdapter.cs" />
-    <Compile Include="Models\BasicGame.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Adapters\SongAdapter.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Activities\GameActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\MusicSelectorActivity.cs" />
@@ -96,6 +95,8 @@
     <AndroidResource Include="Resources\layout\main_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Raw\another_one_bites_the_dust.mp3" />
+    <AndroidResource Include="Resources\Raw\my_song.mp3" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
