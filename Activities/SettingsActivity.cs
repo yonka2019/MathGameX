@@ -21,20 +21,20 @@ namespace MathGame
             SetRefs();
 
             saveExit.Click += SaveExit_Click;
-            RestoreSettings();
+            RestoreSettingsView();
         }
 
-        private void RestoreSettings()
+        private void RestoreSettingsView()
         {
-            plus.Checked = SettingsManager.Settings["operators"]["+"];
-            minus.Checked = SettingsManager.Settings["operators"]["-"];
-            multiply.Checked = SettingsManager.Settings["operators"]["*"];
-            divide.Checked = SettingsManager.Settings["operators"]["/"];
+            plus.Checked = SettingsManager.Settings["operators"]['+'];
+            minus.Checked = SettingsManager.Settings["operators"]['-'];
+            multiply.Checked = SettingsManager.Settings["operators"]['*'];
+            divide.Checked = SettingsManager.Settings["operators"]['/'];
 
-            oneD.Checked = SettingsManager.Settings["digits"]["one"];
-            doubleD.Checked = SettingsManager.Settings["digits"]["double"];
-            tripleD.Checked = SettingsManager.Settings["digits"]["triple"];
-            fourthD.Checked = SettingsManager.Settings["digits"]["fourth"];
+            oneD.Checked = SettingsManager.Settings["digits"]['o'];
+            doubleD.Checked = SettingsManager.Settings["digits"]['d'];
+            tripleD.Checked = SettingsManager.Settings["digits"]['t'];
+            fourthD.Checked = SettingsManager.Settings["digits"]['f'];
         }
 
         private void SaveExit_Click(object sender, EventArgs e)
@@ -42,16 +42,16 @@ namespace MathGame
             // save all settings into the dictionary
 
             // operators settings
-            SettingsManager.Settings["operators"]["+"] = plus.Checked;
-            SettingsManager.Settings["operators"]["-"] = minus.Checked;
-            SettingsManager.Settings["operators"]["*"] = multiply.Checked;
-            SettingsManager.Settings["operators"]["/"] = divide.Checked;
+            SettingsManager.Settings["operators"]['+'] = plus.Checked;
+            SettingsManager.Settings["operators"]['-'] = minus.Checked;
+            SettingsManager.Settings["operators"]['*'] = multiply.Checked;
+            SettingsManager.Settings["operators"]['/'] = divide.Checked;
 
             // digits settings
-            SettingsManager.Settings["digits"]["one"] = oneD.Checked;
-            SettingsManager.Settings["digits"]["double"] = doubleD.Checked;
-            SettingsManager.Settings["digits"]["triple"] = tripleD.Checked;
-            SettingsManager.Settings["digits"]["fourth"] = fourthD.Checked;
+            SettingsManager.Settings["digits"]['o'] = oneD.Checked;
+            SettingsManager.Settings["digits"]['d'] = doubleD.Checked;
+            SettingsManager.Settings["digits"]['t'] = tripleD.Checked;
+            SettingsManager.Settings["digits"]['f'] = fourthD.Checked;
 
             // back to main screen
             StartActivity(new Intent(this, typeof(MainActivity)));

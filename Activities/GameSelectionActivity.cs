@@ -2,7 +2,6 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MathGame.Models;
 using System;
 
 namespace MathGame.Activities
@@ -10,7 +9,6 @@ namespace MathGame.Activities
     [Activity(Label = "GameSelectionActivity")]
     public class GameSelectionActivity : Activity
     {
-        internal static GameDifficulty gameDifficulty;
         private Button infinity, easy, medium, hard, online;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -21,11 +19,50 @@ namespace MathGame.Activities
             SetRefs();
 
             infinity.Click += Infinity_Click;
+            easy.Click += Easy_Click;
+            medium.Click += Medium_Click;
+            hard.Click += Hard_Click;
+            online.Click += Online_Click;
+        }
+
+        private void Online_Click(object sender, EventArgs e)
+        {
+            Intent gameActivity = new Intent(this, typeof(GameActivity));
+            gameActivity.PutExtra("mode", "online");
+
+            StartActivity(gameActivity);
+        }
+
+        private void Hard_Click(object sender, EventArgs e)
+        {
+            Intent gameActivity = new Intent(this, typeof(GameActivity));
+            gameActivity.PutExtra("mode", "3");
+
+            StartActivity(gameActivity);
+        }
+
+        private void Medium_Click(object sender, EventArgs e)
+        {
+            Intent gameActivity = new Intent(this, typeof(GameActivity));
+            gameActivity.PutExtra("mode", "2");
+
+            StartActivity(gameActivity);
+        }
+
+        private void Easy_Click(object sender, EventArgs e)
+        {
+            Intent gameActivity = new Intent(this, typeof(GameActivity));
+            gameActivity.PutExtra("mode", "1");
+
+            StartActivity(gameActivity);
         }
 
         private void Infinity_Click(object sender, EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(GameActivity)));
+            Intent gameActivity = new Intent(this, typeof(GameActivity));
+            gameActivity.PutExtra("mode", "0");
+
+            StartActivity(gameActivity);
         }
 
         private void SetRefs()

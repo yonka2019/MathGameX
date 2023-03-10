@@ -15,18 +15,18 @@ namespace MathGame
         /// 
         /// Example: gameSettings["operators"]["minus"] = true;
         /// </summary>
-        private static Dictionary<string, Dictionary<string, bool>> gameSettings = new Dictionary<string, Dictionary<string, bool>>();
+        private static Dictionary<string, Dictionary<char, bool>> gameSettings = new Dictionary<string, Dictionary<char, bool>>();
 
         static SettingsManager()  // initialize dictionaries
         {
-            gameSettings["operators"] = new Dictionary<string, bool> {
-                { "+", false }, { "-", false }, { "*", false }, { "/", false } };
+            gameSettings["operators"] = new Dictionary<char, bool> {
+                { '+', false }, { '-', false }, { '*', false }, { '/', false } };
 
-            gameSettings["digits"] = new Dictionary<string, bool> {
-                { "one", false }, { "double", false }, { "triple", false }, { "fourth", false } };
+            gameSettings["digits"] = new Dictionary<char, bool> {
+                { 'o', false }, { 'd', false }, { 't', false }, { 'f', false } };  // one, double, triple, fourth
         }
 
-        public static Dictionary<string, Dictionary<string, bool>> Settings
+        public static Dictionary<string, Dictionary<char, bool>> Settings
         {
             get { return gameSettings; }
             set { gameSettings = value; }

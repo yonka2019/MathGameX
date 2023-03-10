@@ -69,7 +69,6 @@
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
-    <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\FirebaseData.cs" />
     <Compile Include="Models\GameDifficulty.cs" />
     <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
@@ -244,6 +243,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\game_selection.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\close_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\done_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hourglass_35px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

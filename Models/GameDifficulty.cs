@@ -2,9 +2,9 @@
 {
     internal enum GameDifficulty
     {
+        Infinity = 0,
         Easy,
-        Medium,
+        Medium ,
         Hard,
-        Infinity
     }
 }
