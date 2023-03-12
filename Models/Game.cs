@@ -9,12 +9,12 @@ namespace MathGame
     {
         private readonly List<BaseQuestion> QuestionTypes = new List<BaseQuestion>();
 
-        private readonly GameDifficulty difficulty;
+        private readonly GameMode difficulty;
 
         public int AnswerTime { get; private set; }
 
 
-        public Game(GameDifficulty gd)
+        public Game(GameMode gd)
         {
             difficulty = gd;
             SetOperatorsSettings();
@@ -40,10 +40,10 @@ namespace MathGame
         {
             return difficulty switch
             {
-                GameDifficulty.Infinity => 0,
-                GameDifficulty.Easy => 15,
-                GameDifficulty.Medium => 10,
-                GameDifficulty.Hard => 5,
+                GameMode.Infinity => 0,
+                GameMode.Easy => 15,
+                GameMode.Medium => 10,
+                GameMode.Hard => 5,
                 _ => 0,
             };
         }

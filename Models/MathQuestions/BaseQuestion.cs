@@ -20,7 +20,21 @@ namespace MathGame.Models.MathQuestions
         public abstract void GenerateQuestion();
         protected abstract char GetOperator();
 
-        public string GetQuestionText()
+        /// <summary>
+        /// return new randomized question (already ready to be shown up)
+        /// </summary>
+        /// <returns></returns>
+        public string GetRandomQuestion()
+        {
+            GenerateQuestion();
+            return ToString();
+        }
+
+        /// <summary>
+        /// return current question
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
         {
             return $"{Operand1} {GetOperator()} {Operand2}";
         }

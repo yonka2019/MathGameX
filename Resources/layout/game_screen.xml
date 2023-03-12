@@ -7,7 +7,8 @@
     <Button
         android:layout_width="@dimen/dp_4xlarge"
         android:layout_height="@dimen/dp_4xlarge"
-        android:drawableBottom="@drawable/logout_33px"/>
+        android:drawableBottom="@drawable/logout_33px"
+        android:id="@+id/leaveButton"/>
 
     <!--Image + Timer-->
     <LinearLayout
@@ -31,7 +32,8 @@
             android:layout_gravity="center"
             android:textSize="@dimen/sp_ularge"
             android:textStyle="bold"
-            android:text="00:03"/>
+            android:text="00:03"
+            android:id="@+id/TimerText"/>
     </LinearLayout>
 
     <!--Exercise-->
@@ -42,7 +44,7 @@
         android:layout_marginBottom="@dimen/dp_large"
         android:textSize="@dimen/sp_ularge"
         android:gravity="center"
-        android:id="@+id/questionTextView"
+        android:id="@+id/questionText"
         android:textAlignment="center"
         android:textStyle="bold"
         android:text="- - -"/>
@@ -50,7 +52,7 @@
     <!--Input answer (disabled before 3 sec countdown)-->
     <EditText
         android:layout_width="@dimen/dp_2ularge"
-        android:id="@+id/inputAnswerButton"
+        android:id="@+id/inputAnswer"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="@dimen/sp_xlarge"
@@ -64,7 +66,8 @@
         android:text="Input"
         android:layout_gravity="center"
         android:enabled="false"
-        android:layout_marginTop="@dimen/dp_large"/>
+        android:layout_marginTop="@dimen/dp_large"
+        android:id="@+id/SubmitButton"/>
 
     <!--Skip button (disabled before 3 sec countdown)-->
     <Button
@@ -73,7 +76,8 @@
         android:text="Skip"
         android:layout_gravity="center"
         android:enabled="false"
-        android:layout_marginTop="@dimen/dp_small"/>
+        android:layout_marginTop="@dimen/dp_small"
+        android:id="@+id/skipButton"/>
 
     <!--Correct/wrong answers statistic counter-->
     <LinearLayout
@@ -103,7 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="@dimen/sp_xlarge"/>
+                android:textSize="@dimen/sp_xlarge"
+                android:id="@+id/correctAnswers"/>
         </LinearLayout>
 
         <!--Image + wrong answers counter-->
@@ -125,7 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="@dimen/sp_xlarge"/>
+                android:textSize="@dimen/sp_xlarge"
+                android:id="@+id/wrongAnswers"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

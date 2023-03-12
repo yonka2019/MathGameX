@@ -17,18 +17,13 @@ namespace MathGame.Activities
             SetContentView(Resource.Layout.game_selection);
 
             SetRefs();
-
-            infinity.Click += Infinity_Click;
-            easy.Click += Easy_Click;
-            medium.Click += Medium_Click;
-            hard.Click += Hard_Click;
-            online.Click += Online_Click;
+            SetEvents();
         }
 
         private void Online_Click(object sender, EventArgs e)
         {
             Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "online");
+            gameActivity.PutExtra("mode", "4");
 
             StartActivity(gameActivity);
         }
@@ -36,7 +31,7 @@ namespace MathGame.Activities
         private void Hard_Click(object sender, EventArgs e)
         {
             Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "3");
+            gameActivity.PutExtra("mode", 3);
 
             StartActivity(gameActivity);
         }
@@ -44,7 +39,7 @@ namespace MathGame.Activities
         private void Medium_Click(object sender, EventArgs e)
         {
             Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "2");
+            gameActivity.PutExtra("mode", 2);
 
             StartActivity(gameActivity);
         }
@@ -52,7 +47,7 @@ namespace MathGame.Activities
         private void Easy_Click(object sender, EventArgs e)
         {
             Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "1");
+            gameActivity.PutExtra("mode", 1);
 
             StartActivity(gameActivity);
         }
@@ -60,7 +55,7 @@ namespace MathGame.Activities
         private void Infinity_Click(object sender, EventArgs e)
         {
             Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "0");
+            gameActivity.PutExtra("mode", 0);
 
             StartActivity(gameActivity);
         }
@@ -72,6 +67,15 @@ namespace MathGame.Activities
             medium = FindViewById<Button>(Resource.Id.gSelection_medium);
             hard = FindViewById<Button>(Resource.Id.gSelection_hard);
             online = FindViewById<Button>(Resource.Id.gSelection_online);
+        }
+
+        private void SetEvents()
+        {
+            infinity.Click += Infinity_Click;
+            easy.Click += Easy_Click;
+            medium.Click += Medium_Click;
+            hard.Click += Hard_Click;
+            online.Click += Online_Click;
         }
     }
 }
