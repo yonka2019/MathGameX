@@ -11,6 +11,8 @@ namespace MathGame
 
         private readonly GameMode difficulty;
 
+        public BaseQuestion CurrentQuestion { get; private set; }
+
         public int AnswerTime { get; private set; }
 
 
@@ -21,10 +23,16 @@ namespace MathGame
             AnswerTime = GetAnswerTime();
         }
 
+        /// <summary>
+        /// Returns randomized question type [ - | + | * | / ] (according the setted settings)
+        /// </summary>
+        /// <returns>randomized question object</returns>
         public BaseQuestion GetRandomQuestionType()
         {
             int randomQuestionType = new Random().Next(0, QuestionTypes.Count);
-            return QuestionTypes[randomQuestionType];
+            CurrentQuestion = QuestionTypes[randomQuestionType];
+
+            return CurrentQuestion;
         }
 
         private void SetOperatorsSettings()
@@ -40,7 +48,7 @@ namespace MathGame
         {
             return difficulty switch
             {
-                GameMode.Infinity => 0,
+                GameMode.Infinity => 60,
                 GameMode.Easy => 15,
                 GameMode.Medium => 10,
                 GameMode.Hard => 5,

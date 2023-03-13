@@ -1,10 +1,10 @@
 ﻿using Android.Animation;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MathGame.Models;
 using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +13,8 @@ namespace MathGame
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
     {
+        NumberFormatInfo numberFormat;
+
         private Button submitButton, skipButton, leaveButton;
         private EditText answerInput;
         private TextView timer, question, correctAnswers, wrongAnswers;
@@ -31,7 +33,9 @@ namespace MathGame
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_screen);
-            // count down on screen 3 seconds before start
+
+
+           numberFormat = CultureInfo.CurrentCulture.NumberFormat;
 
             SetRefs();
             SetEvents();
@@ -40,11 +44,11 @@ namespace MathGame
 
             currentGame = new Game(selectDifficulty);
 
-            await StartCountdown(3, default);
+            await StartCountdown(3, default);  // 3 seconds countdown before starting game
 
-            ButtonsEnable(true);
+            ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
 
-            await StartGame();
+            await StartGame();  // starting game
         }
 
         private async Task StartGame()
@@ -53,7 +57,9 @@ namespace MathGame
 
             while (gameRunning)
             {
-                question.Text = currentGame.GetRandomQuestionType().GetRandomQuestion();
+                answerInput.Text = "";  // clean edit text box
+
+                question.Text = currentGame.GetRandomQuestionType().GenerateQuestion().ToString();
 
                 RunAnimation(question, AnimationType.TranslationY, 750, 300f, 0f);
 
@@ -62,9 +68,10 @@ namespace MathGame
                 try
                 {
                     await StartCountdown(currentGame.AnswerTime, cts.Token);
+                    submitButton.PerformClick();  // time passed - simulate submission
 
                 }
-                catch (TaskCanceledException)
+                catch (TaskCanceledException)  // SUBMIT / SKIP button pressed -> continue to next question (answer already checked)
                 {
                     continue;
                 }
@@ -91,7 +98,6 @@ namespace MathGame
             skipButton.Enabled = isEnabled;
             answerInput.Enabled = isEnabled;
         }
-
 
         private void SetRefs()
         {
@@ -123,14 +129,37 @@ namespace MathGame
 
         private void SkipButton_Click(object sender, EventArgs e)
         {
+            WrongAnswer();
             cts.Cancel();
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
+            // if the cultureinfo setted that the decimal separator is '.' or ',', replace current separator to the right one (to prevent exception in double.Parse(XX))
+            answerInput.Text = answerInput.Text.Replace(',', numberFormat.NumberDecimalSeparator[0]).Replace('.', numberFormat.NumberDecimalSeparator[0]);
+
+
+            if (answerInput.Text == "")  // no input
+                WrongAnswer();  // count as wrong answer
+
+            else if (currentGame.CurrentQuestion.CheckAnswer(double.Parse(answerInput.Text)))
+                CorrectAnswer();
+
+            else
+                WrongAnswer();
+
             cts.Cancel();
         }
 
+        private void CorrectAnswer()
+        {
+            correctAnswers.Text = (int.Parse(correctAnswers.Text) + 1).ToString();
+        }
+
+        private void WrongAnswer()
+        {
+            wrongAnswers.Text = (int.Parse(wrongAnswers.Text) + 1).ToString();
+        }
 
         private async Task StartCountdown(int seconds, CancellationToken ct)
         {

@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_mlarge"
+        android:layout_marginTop="@dimen/dp_2ularge"
         android:layout_marginBottom="@dimen/dp_large"
         android:textSize="@dimen/sp_ularge"
         android:gravity="center"
@@ -49,15 +49,32 @@
         android:textStyle="bold"
         android:text="- - -"/>
 
-    <!--Input answer (disabled before 3 sec countdown)-->
-    <EditText
-        android:layout_width="@dimen/dp_2ularge"
-        android:id="@+id/inputAnswer"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="@dimen/sp_xlarge"
-        android:enabled="false"
-        android:inputType="number"/>
+        android:orientation="horizontal">
+
+        <!--Negative the answer (disabled before 3 sec countdown)-->
+        <Button
+            android:layout_width="@dimen/dp_35xlarge"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_small"
+            android:layout_toLeftOf="@id/inputAnswer"
+            android:id="@+id/makeNegativeAnswer"
+            android:text="-"
+            android:textStyle="bold"/>
+
+        <!--Input answer (disabled before 3 sec countdown)-->
+        <EditText
+            android:layout_width="@dimen/dp_2ularge" 
+            android:id="@+id/inputAnswer"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/sp_xlarge"
+            android:enabled="false"
+            android:layout_centerHorizontal="true"
+            android:inputType="numberDecimal"/>
+    </RelativeLayout>
 
     <!--Input (submit) button (disabled before 3 sec countdown)-->
     <Button

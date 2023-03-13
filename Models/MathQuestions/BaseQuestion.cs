@@ -17,18 +17,13 @@ namespace MathGame.Models.MathQuestions
             SetDigitSettings();
         }
 
-        public abstract void GenerateQuestion();
-        protected abstract char GetOperator();
-
         /// <summary>
-        /// return new randomized question (already ready to be shown up)
+        /// Generates random question and returns his type (which could be used with ToString in order to get question text)
         /// </summary>
         /// <returns></returns>
-        public string GetRandomQuestion()
-        {
-            GenerateQuestion();
-            return ToString();
-        }
+        public abstract BaseQuestion GenerateQuestion();
+
+        protected abstract char GetOperator();
 
         /// <summary>
         /// return current question
