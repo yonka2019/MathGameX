@@ -14,14 +14,29 @@ namespace MathGame
     public class MusicSelectorActivity : Activity, AdapterView.IOnItemClickListener
     {
         public static List<Song> SongList { get; set; }
+        public static Intent MusicServiceIntent { get; private set; }
 
         private SongAdapter songAdapter;
         private Button back;
         private ListView lv;
         private SeekBar sb;
-        private Intent musicService;
         private ISharedPreferences sp;
-        private bool musicPlaying;
+
+        private bool _musicPlaying;
+
+        private bool musicPlaying
+        {
+            get => _musicPlaying;
+            set
+            {
+                _musicPlaying = value;
+
+                // save into SP
+                ISharedPreferencesEditor editor = sp.Edit();
+                editor.PutBoolean("Playing", _musicPlaying);
+                editor.Commit();
+            }
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,7 +49,9 @@ namespace MathGame
 
             musicPlaying = sp.GetBoolean("Playing", false);
 
-            musicService = new Intent(this, typeof(MusicService));
+            sb.Progress = sp.GetInt("Volume", 40);  // restore volume setting
+
+            MusicServiceIntent = new Intent(this, typeof(MusicService));
 
             Song song1 = new Song("OFF", default);
             Song song2 = new Song("another", Resource.Raw.another_one_bites_the_dust);
@@ -70,17 +87,15 @@ namespace MathGame
             if (selectedSong.Name == "OFF")
             {
                 musicPlaying = false;
-
-                StopService(musicService);
+                StopService(MusicServiceIntent);
             }
             else
             {
                 if (musicPlaying)  // if already playing - stop
-                    StopService(musicService);
+                    StopService(MusicServiceIntent);
 
                 musicPlaying = true;
-                StartService(musicService);
-
+                StartService(MusicServiceIntent);
             }
         }
 
@@ -92,12 +107,7 @@ namespace MathGame
                 editor.PutInt("Volume", e.Progress);
                 editor.Commit();
 
-                if (musicPlaying)
-                {
-                    StopService(musicService);
-                    StartService(musicService);
-                }
-
+                MusicService.SetVolume(e.Progress);
             }
         }
 
@@ -119,15 +129,5 @@ namespace MathGame
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        protected override void OnDestroy()
-        {
-            ISharedPreferencesEditor editor = sp.Edit();
-            editor.PutBoolean("Playing", false);
-            editor.Commit();
-
-            base.OnDestroy();
-        }
-
     }
 }

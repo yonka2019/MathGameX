@@ -1,5 +1,6 @@
 ﻿using Android.Animation;
 using Android.App;
+using Android.Media;
 using Android.OS;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -15,11 +16,16 @@ namespace MathGame
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
     {
+        // if EASY / MEDIUM / HARD mode selected - there is limited questions number [SHOULD BE UPDATED ALSO IN layout/game_screen.xml [questionProgressBar : max value]
+        private const byte QUESTIONS_NUMBER = 10;
+
         private NumberFormatInfo numberFormat;
+        private MediaPlayer mediaPlayer;
 
         private Button submitButton, skipButton, leaveButton, negativeAnswerButton;
         private EditText answerInput;
         private TextView timer, question, correctAnswers, wrongAnswers;
+        private ProgressBar questionProgressBar;
 
         private Game currentGame;
 
@@ -37,14 +43,19 @@ namespace MathGame
             SetContentView(Resource.Layout.game_screen);
 
             numberFormat = CultureInfo.CurrentCulture.NumberFormat;
+            mediaPlayer = new MediaPlayer();  // create media player object (which will play sound when correct or wrong answer given)
 
             SetRefs();
             SetEvents();
 
-            Models.GameMode selectDifficulty = (Models.GameMode)base.Intent.GetIntExtra("mode", 0);
+            Models.GameMode selectedDifficulty = (Models.GameMode)base.Intent.GetIntExtra("mode", 0);
 
-            currentGame = new Game(selectDifficulty);
+            if (selectedDifficulty == Models.GameMode.Infinity)  // if infinity mdoe enabled - hide the progress bar
+                questionProgressBar.Visibility = Android.Views.ViewStates.Invisible;
 
+            currentGame = new Game(selectedDifficulty);
+
+            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.three_ticks);
             await StartCountdown(3, default);  // 3 seconds countdown before starting game
 
             ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
@@ -56,11 +67,13 @@ namespace MathGame
         {
             gameRunning = true;
 
-            while (gameRunning)
+            while (gameRunning &&
+                (questionProgressBar.Progress < QUESTIONS_NUMBER || currentGame.GetGameMode() == Models.GameMode.Infinity))  // check if current question number isn't higher then the max one, or, to ignore this check if infinity mode enabled
             {
                 answerInput.Text = "";  // clean edit text box after answering
 
                 question.Text = currentGame.GetRandomQuestionType().GenerateQuestion().ToString();
+                questionProgressBar.Progress++;
 
                 RunAnimation(question, AnimationType.TranslationY, 750, 300f, 0f);
 
@@ -77,6 +90,9 @@ namespace MathGame
                     continue;
                 }
             }
+
+            Toast.MakeText(this, $"finished game", ToastLength.Short).Show();
+
 
         }
 
@@ -98,6 +114,7 @@ namespace MathGame
             submitButton.Enabled = isEnabled;
             skipButton.Enabled = isEnabled;
             answerInput.Enabled = isEnabled;
+            negativeAnswerButton.Enabled = isEnabled;
         }
 
         private void SetRefs()
@@ -113,6 +130,8 @@ namespace MathGame
             question = FindViewById<TextView>(Resource.Id.questionText);
             correctAnswers = FindViewById<TextView>(Resource.Id.correctAnswers);
             wrongAnswers = FindViewById<TextView>(Resource.Id.wrongAnswers);
+
+            questionProgressBar = FindViewById<ProgressBar>(Resource.Id.questionProgressbar);
         }
 
         private void SetEvents()
@@ -137,7 +156,7 @@ namespace MathGame
             if (answerInput.Text.Contains('-'))  // if negative sign already exist
                 answerInput.Text = answerInput.Text.Replace("-", "");  // remove the negative (-)
 
-           else if (answerInput.Text.All(x => x == '0') && answerInput.Text != "")  // zero AND not blank
+            else if (answerInput.Text.All(x => x == '0') && answerInput.Text != "")  // zero AND not blank
                 return;  // not add negative (-) sign
 
             else
@@ -149,8 +168,9 @@ namespace MathGame
         private void LeaveButton_Click(object sender, EventArgs e)
         {
             gameRunning = false;
+            cts.Cancel();
 
-            Toast.MakeText(this, $"leaved", ToastLength.Short).Show();
+            Toast.MakeText(this, $"Game leaved.", ToastLength.Short).Show();
         }
 
         private void SkipButton_Click(object sender, EventArgs e)
@@ -183,11 +203,15 @@ namespace MathGame
 
         private void CorrectAnswer()
         {
+            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.correct_answer);
+
             correctAnswers.Text = (int.Parse(correctAnswers.Text) + 1).ToString();
         }
 
         private void WrongAnswer()
         {
+            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.wrong_answer);
+
             wrongAnswers.Text = (int.Parse(wrongAnswers.Text) + 1).ToString();
         }
 
@@ -206,6 +230,15 @@ namespace MathGame
                 TimeSpan time = TimeSpan.FromSeconds(i);
                 timer.Text = time.ToString(@"mm\:ss");
             }
+        }
+
+        [Obsolete]
+        public override void OnBackPressed()
+        {
+            gameRunning = false;
+            cts.Cancel();
+
+            leaveButton.PerformClick();
         }
     }
 }

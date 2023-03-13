@@ -27,7 +27,7 @@ namespace MathGame.Activities
             startupWork.Start();
         }
 
-        private async Task SimulateStartupAsync()
+        private async void SimulateStartupAsync()
         {
             await Task.Delay(1000);
 

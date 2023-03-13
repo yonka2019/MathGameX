@@ -9,16 +9,16 @@ namespace MathGame
     {
         private readonly List<BaseQuestion> QuestionTypes = new List<BaseQuestion>();
 
-        private readonly GameMode difficulty;
+        private readonly GameMode mode;
 
         public BaseQuestion CurrentQuestion { get; private set; }
 
         public int AnswerTime { get; private set; }
 
 
-        public Game(GameMode gd)
+        public Game(GameMode gm)
         {
-            difficulty = gd;
+            mode = gm;
             SetOperatorsSettings();
             AnswerTime = GetAnswerTime();
         }
@@ -35,6 +35,11 @@ namespace MathGame
             return CurrentQuestion;
         }
 
+        public GameMode GetGameMode()
+        {
+            return mode;
+        }
+
         private void SetOperatorsSettings()
         {
             foreach (KeyValuePair<char, bool> op in SettingsManager.Settings["operators"])
@@ -46,7 +51,7 @@ namespace MathGame
 
         private int GetAnswerTime()
         {
-            return difficulty switch
+            return mode switch
             {
                 GameMode.Infinity => 60,
                 GameMode.Easy => 15,

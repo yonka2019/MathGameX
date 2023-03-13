@@ -77,6 +77,7 @@
     <Compile Include="Models\MathQuestions\DivisionQuestion.cs" />
     <Compile Include="Models\MathQuestions\MultiplicationQuestion.cs" />
     <Compile Include="Models\MathQuestions\SubstractionQuestion.cs" />
+    <Compile Include="Models\MethodExt.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Adapters\SongAdapter.cs" />
     <Compile Include="Models\Game.cs" />
@@ -100,8 +101,8 @@
     <AndroidResource Include="Resources\layout\main_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Raw\another_one_bites_the_dust.mp3" />
-    <AndroidResource Include="Resources\Raw\my_song.mp3" />
+    <AndroidResource Include="Resources\raw\another_one_bites_the_dust.mp3" />
+    <AndroidResource Include="Resources\raw\my_song.mp3" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
@@ -160,6 +161,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
+    <PackageReference Include="ZhangHai.Android.MaterialProgressBar">
+      <Version>1.4.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\values.xml" />
@@ -256,6 +260,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logout_33px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\correct_answer.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\wrong_answer.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\three_ticks.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

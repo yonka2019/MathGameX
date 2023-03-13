@@ -36,6 +36,15 @@
             android:id="@+id/TimerText"/>
     </LinearLayout>
 
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal" 
+        android:layout_marginTop="@dimen/dp_medium"
+        android:max="10"
+        android:progress="0"
+        android:id="@+id/questionProgressbar"/>
+
     <!--Exercise-->
     <TextView
         android:layout_width="match_parent"
@@ -62,6 +71,7 @@
             android:layout_toLeftOf="@id/inputAnswer"
             android:id="@+id/makeNegativeAnswer"
             android:text="-"
+            android:enabled="false"
             android:textStyle="bold"/>
 
         <!--Input answer (disabled before 3 sec countdown)-->

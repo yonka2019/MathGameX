@@ -91,5 +91,22 @@ namespace MathGame
             Login = FindViewById<TextView>(Resource.Id.main_loginButton);
             Register = FindViewById<TextView>(Resource.Id.main_registerButton);
         }
+
+        protected override void OnDestroy()
+        {
+            ISharedPreferences sp;
+
+            sp = GetSharedPreferences("Music", FileCreationMode.Private);
+
+            if (sp.GetBoolean("Playing", false))  // if running - stop
+                StopService(MusicSelectorActivity.MusicServiceIntent);
+
+            ISharedPreferencesEditor editor = sp.Edit();
+            editor.PutInt("SongFile", 0);  // reset song file to OFF
+            editor.PutBoolean("Playing", false);  // reset song file to OFF
+            editor.Commit();
+
+            base.OnDestroy();
+        }
     }
 }
