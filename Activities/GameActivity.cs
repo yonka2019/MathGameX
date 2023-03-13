@@ -1,10 +1,12 @@
 ﻿using Android.Animation;
 using Android.App;
 using Android.OS;
+using Android.Views.InputMethods;
 using Android.Widget;
 using MathGame.Models;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,9 +15,9 @@ namespace MathGame
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
     {
-        NumberFormatInfo numberFormat;
+        private NumberFormatInfo numberFormat;
 
-        private Button submitButton, skipButton, leaveButton;
+        private Button submitButton, skipButton, leaveButton, negativeAnswerButton;
         private EditText answerInput;
         private TextView timer, question, correctAnswers, wrongAnswers;
 
@@ -34,8 +36,7 @@ namespace MathGame
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_screen);
 
-
-           numberFormat = CultureInfo.CurrentCulture.NumberFormat;
+            numberFormat = CultureInfo.CurrentCulture.NumberFormat;
 
             SetRefs();
             SetEvents();
@@ -57,7 +58,7 @@ namespace MathGame
 
             while (gameRunning)
             {
-                answerInput.Text = "";  // clean edit text box
+                answerInput.Text = "";  // clean edit text box after answering
 
                 question.Text = currentGame.GetRandomQuestionType().GenerateQuestion().ToString();
 
@@ -104,6 +105,7 @@ namespace MathGame
             submitButton = FindViewById<Button>(Resource.Id.SubmitButton);
             skipButton = FindViewById<Button>(Resource.Id.skipButton);
             leaveButton = FindViewById<Button>(Resource.Id.leaveButton);
+            negativeAnswerButton = FindViewById<Button>(Resource.Id.makeNegativeAnswer);
 
             answerInput = FindViewById<EditText>(Resource.Id.inputAnswer);
 
@@ -118,6 +120,30 @@ namespace MathGame
             submitButton.Click += SubmitButton_Click;
             skipButton.Click += SkipButton_Click;
             leaveButton.Click += LeaveButton_Click;
+            negativeAnswerButton.Click += NegativeAnswerButton_Click;
+            answerInput.EditorAction += AnswerInput_EditorAction;
+        }
+
+        private void AnswerInput_EditorAction(object sender, TextView.EditorActionEventArgs e)
+        {
+            if (e.ActionId == ImeAction.Done)  // clicked on OK (on keyboard)
+            {
+                submitButton.PerformClick();
+            }
+        }
+
+        private void NegativeAnswerButton_Click(object sender, EventArgs e)
+        {
+            if (answerInput.Text.Contains('-'))  // if negative sign already exist
+                answerInput.Text = answerInput.Text.Replace("-", "");  // remove the negative (-)
+
+           else if (answerInput.Text.All(x => x == '0') && answerInput.Text != "")  // zero AND not blank
+                return;  // not add negative (-) sign
+
+            else
+                answerInput.Text = "-" + answerInput.Text;  // add negative (-) sign into left from the number
+
+            answerInput.SetSelection(answerInput.Text.Length);  // move crusor to end
         }
 
         private void LeaveButton_Click(object sender, EventArgs e)
@@ -142,11 +168,15 @@ namespace MathGame
             if (answerInput.Text == "")  // no input
                 WrongAnswer();  // count as wrong answer
 
-            else if (currentGame.CurrentQuestion.CheckAnswer(double.Parse(answerInput.Text)))
-                CorrectAnswer();
-
-            else
-                WrongAnswer();
+            else if (double.TryParse(answerInput.Text, out double userAnswer))
+            {
+                if (currentGame.CurrentQuestion.CheckAnswer(userAnswer))
+                    CorrectAnswer();
+                else
+                    WrongAnswer();
+            }
+            else  // can't parse (bad answer -> clean answer)
+                answerInput.Text = "";
 
             cts.Cancel();
         }
