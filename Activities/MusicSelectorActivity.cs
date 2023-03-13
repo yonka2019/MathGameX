@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MathGame.Adapters;
+using MathGame.Models;
 using MathGame.Services;
 using System.Collections.Generic;
 
@@ -19,8 +20,9 @@ namespace MathGame
         private SongAdapter songAdapter;
         private Button back;
         private ListView lv;
-        private SeekBar sb;
-        private ISharedPreferences sp;
+        private SeekBar musicSB, ambientSB;
+        private ISharedPreferences musicSP;
+        private ISharedPreferences ambientSP;
 
         private bool _musicPlaying;
 
@@ -32,7 +34,7 @@ namespace MathGame
                 _musicPlaying = value;
 
                 // save into SP
-                ISharedPreferencesEditor editor = sp.Edit();
+                ISharedPreferencesEditor editor = musicSP.Edit();
                 editor.PutBoolean("Playing", _musicPlaying);
                 editor.Commit();
             }
@@ -44,12 +46,15 @@ namespace MathGame
             SetContentView(Resource.Layout.music_select);
 
             SetRefs();
+            SetEvents();
 
-            sp = GetSharedPreferences("Music", FileCreationMode.Private);
+            musicSP = GetSharedPreferences("Music", FileCreationMode.Private);
+            ambientSP = GetSharedPreferences("Ambient", FileCreationMode.Private);
 
-            musicPlaying = sp.GetBoolean("Playing", false);
+            musicPlaying = musicSP.GetBoolean("Playing", false);
 
-            sb.Progress = sp.GetInt("Volume", 40);  // restore volume setting
+            musicSB.Progress = musicSP.GetInt("Volume", 40);  // restore volume setting [music sound]
+            ambientSB.Progress = ambientSP.GetInt("Volume", 100);  // restore volume setting [ambient sound]
 
             MusicServiceIntent = new Intent(this, typeof(MusicService));
 
@@ -59,12 +64,8 @@ namespace MathGame
 
             SongList = new List<Song> { song1, song2, song3 };
 
-            songAdapter = new SongAdapter(this, SongList, GetSongPosition(sp.GetInt("SongFile", default)));
+            songAdapter = new SongAdapter(this, SongList, GetSongPosition(musicSP.GetInt("SongFile", default)));
             lv.Adapter = songAdapter;
-
-            back.Click += Back_Click;
-            sb.ProgressChanged += Sb_ProgressChanged;
-            lv.OnItemClickListener = this;
         }
 
         private int GetSongPosition(int songFile)
@@ -77,11 +78,11 @@ namespace MathGame
             Song selectedSong = SongList[position];
             Toast.MakeText(this, $"Selected: {selectedSong.Name}", ToastLength.Short).Show();
 
-            ISharedPreferencesEditor editor = sp.Edit();
+            ISharedPreferencesEditor editor = musicSP.Edit();
             editor.PutInt("SongFile", selectedSong.FileName);
             editor.Commit();
 
-            songAdapter = new SongAdapter(this, SongList, GetSongPosition(sp.GetInt("SongFile", default)));
+            songAdapter = new SongAdapter(this, SongList, GetSongPosition(musicSP.GetInt("SongFile", default)));
             lv.Adapter = songAdapter;
 
             if (selectedSong.Name == "OFF")
@@ -103,7 +104,7 @@ namespace MathGame
         {
             if (e.FromUser)
             {
-                ISharedPreferencesEditor editor = sp.Edit();
+                ISharedPreferencesEditor editor = musicSP.Edit();
                 editor.PutInt("Volume", e.Progress);
                 editor.Commit();
 
@@ -111,11 +112,32 @@ namespace MathGame
             }
         }
 
+        private void AmbientSB_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            if (e.FromUser)
+            {
+                ISharedPreferencesEditor editor = ambientSP.Edit();
+                editor.PutInt("Volume", e.Progress);
+                editor.Commit();
+
+                MediaPlayerSound.Volume = e.Progress;
+            }
+        }
+
         private void SetRefs()
         {
             lv = FindViewById<ListView>(Resource.Id.music_lvMusic);
             back = FindViewById<Button>(Resource.Id.music_backButton);
-            sb = FindViewById<SeekBar>(Resource.Id.music_seekbar);
+            musicSB = FindViewById<SeekBar>(Resource.Id.music_seekbar);
+            ambientSB = FindViewById<SeekBar>(Resource.Id.ambient_seekbar);
+        }
+        
+        private void SetEvents()
+        {
+            back.Click += Back_Click;
+            musicSB.ProgressChanged += Sb_ProgressChanged;
+            ambientSB.ProgressChanged += AmbientSB_ProgressChanged;
+            lv.OnItemClickListener = this;
         }
 
         private void Back_Click(object sender, System.EventArgs e)

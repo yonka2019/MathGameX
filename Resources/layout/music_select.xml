@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current playing music:"
+        android:text="Sound Settings"
         android:textSize="@dimen/sp_xlarge"
         android:gravity="center"
         android:layout_marginTop="@dimen/dp_xxlarge"
@@ -26,13 +26,41 @@
         android:layout_height="wrap_content"
         android:id="@+id/music_lvMusic"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• Music Volume •"
+        android:textSize="@dimen/sp_large"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_xlarge"
+        android:layout_marginTop="@dimen/dp_medium"/>
+
     <SeekBar
         android:id="@+id/music_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20px"
         android:max="100"
-        android:progress="40"/>
+        android:progress="40"
+        android:layout_marginBottom="@dimen/dp_3xlarge"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• Ambient Sounds Volume •"
+        android:textSize="@dimen/sp_large"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_xlarge"
+        android:layout_marginTop="@dimen/dp_medium"/>
+
+     <SeekBar
+        android:id="@+id/ambient_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:max="100"
+        android:progress="40"
+        android:layout_marginBottom="@dimen/dp_3xlarge"/>
 
     <Button
         android:layout_width="match_parent"
