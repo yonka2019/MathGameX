@@ -270,6 +270,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\raw\three_ticks.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\finished_game.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

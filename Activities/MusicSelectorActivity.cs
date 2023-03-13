@@ -131,7 +131,7 @@ namespace MathGame
             musicSB = FindViewById<SeekBar>(Resource.Id.music_seekbar);
             ambientSB = FindViewById<SeekBar>(Resource.Id.ambient_seekbar);
         }
-        
+
         private void SetEvents()
         {
             back.Click += Back_Click;
