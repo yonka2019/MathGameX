@@ -4,10 +4,11 @@ using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using MathGame.Activities;
+using MathGame.Models;
 
 namespace MathGame
 {
-    [Activity(Label = "@string/app_name", 
+    [Activity(Label = "@string/app_name",
         Theme = "@style/AppTheme.Splash",
         Icon = "@mipmap/ic_launcher")]
     public class MainActivity : AppCompatActivity
@@ -22,13 +23,15 @@ namespace MathGame
             SetContentView(Resource.Layout.main_screen);
 
             SetRefs();
+            SetEvents();
+            RestoreAmbientSound();
+        }
 
-            Stats.Click += Stats_Click;
-            Start.Click += Start_Click;
-            Settings.Click += Settings_Click;
-            SetSong.Click += SetSong_Click;
-            Login.Click += Login_Click;
-            Register.Click += Register_Click;
+        private void RestoreAmbientSound()
+        {
+            ISharedPreferences ambientSP = GetSharedPreferences("Ambient", FileCreationMode.Private);
+
+            MediaPlayerSound.Volume = ambientSP.GetInt("Volume", 100);  // restore volume setting [ambient sound]
         }
 
         private void Register_Click(object sender, System.EventArgs e)
@@ -53,7 +56,7 @@ namespace MathGame
 
         private void SetSong_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(MusicSelectorActivity)));
+            StartActivity(new Intent(this, typeof(SoundManagerActivity)));
         }
 
         private void Start_Click(object sender, System.EventArgs e)
@@ -67,7 +70,7 @@ namespace MathGame
                 ShowAlertDialog("Warning", "You must set up the settings before starting game", Resource.Drawable.warning64);
             }
         }
-        
+
         /// <summary>
         /// Shortcuter to show alert dialog in THIS context
         /// </summary>
@@ -79,6 +82,7 @@ namespace MathGame
             builder.SetPositiveButton("OK", delegate { });
             builder.SetIcon(iconId);
             Android.App.AlertDialog dialog = builder.Create();
+
             dialog.Show();
         }
 
@@ -92,18 +96,28 @@ namespace MathGame
             Register = FindViewById<TextView>(Resource.Id.main_registerButton);
         }
 
+        private void SetEvents()
+        {
+            Stats.Click += Stats_Click;
+            Start.Click += Start_Click;
+            Settings.Click += Settings_Click;
+            SetSong.Click += SetSong_Click;
+            Login.Click += Login_Click;
+            Register.Click += Register_Click;
+        }
+
         protected override void OnDestroy()
         {
             ISharedPreferences sp;
 
             sp = GetSharedPreferences("Music", FileCreationMode.Private);
 
-            if (sp.GetBoolean("Playing", false))  // if running - stop
-                StopService(MusicSelectorActivity.MusicServiceIntent);
+            if (sp.GetBoolean("Playing", false))  // if running - stop music
+                StopService(SoundManagerActivity.MusicServiceIntent);
 
             ISharedPreferencesEditor editor = sp.Edit();
-            editor.PutInt("SongFile", 0);  // reset song file to OFF
-            editor.PutBoolean("Playing", false);  // reset song file to OFF
+            editor.PutInt("SongFile", 0);  // reset song file in SP to OFF
+            editor.PutBoolean("Playing", false);  // reset playing status in SP to OFF
             editor.Commit();
 
             base.OnDestroy();

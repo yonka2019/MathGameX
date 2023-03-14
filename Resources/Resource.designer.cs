@@ -10898,67 +10898,67 @@ namespace MathGame
 			public const int music_layout = 2131427427;
 			
 			// aapt resource value: 0x7F0B0064
-			public const int music_select = 2131427428;
+			public const int notification_action = 2131427428;
 			
 			// aapt resource value: 0x7F0B0065
-			public const int notification_action = 2131427429;
+			public const int notification_action_tombstone = 2131427429;
 			
 			// aapt resource value: 0x7F0B0066
-			public const int notification_action_tombstone = 2131427430;
+			public const int notification_media_action = 2131427430;
 			
 			// aapt resource value: 0x7F0B0067
-			public const int notification_media_action = 2131427431;
+			public const int notification_media_cancel_action = 2131427431;
 			
 			// aapt resource value: 0x7F0B0068
-			public const int notification_media_cancel_action = 2131427432;
+			public const int notification_template_big_media = 2131427432;
 			
 			// aapt resource value: 0x7F0B0069
-			public const int notification_template_big_media = 2131427433;
+			public const int notification_template_big_media_custom = 2131427433;
 			
 			// aapt resource value: 0x7F0B006A
-			public const int notification_template_big_media_custom = 2131427434;
+			public const int notification_template_big_media_narrow = 2131427434;
 			
 			// aapt resource value: 0x7F0B006B
-			public const int notification_template_big_media_narrow = 2131427435;
+			public const int notification_template_big_media_narrow_custom = 2131427435;
 			
 			// aapt resource value: 0x7F0B006C
-			public const int notification_template_big_media_narrow_custom = 2131427436;
+			public const int notification_template_custom_big = 2131427436;
 			
 			// aapt resource value: 0x7F0B006D
-			public const int notification_template_custom_big = 2131427437;
+			public const int notification_template_icon_group = 2131427437;
 			
 			// aapt resource value: 0x7F0B006E
-			public const int notification_template_icon_group = 2131427438;
+			public const int notification_template_lines_media = 2131427438;
 			
 			// aapt resource value: 0x7F0B006F
-			public const int notification_template_lines_media = 2131427439;
+			public const int notification_template_media = 2131427439;
 			
 			// aapt resource value: 0x7F0B0070
-			public const int notification_template_media = 2131427440;
+			public const int notification_template_media_custom = 2131427440;
 			
 			// aapt resource value: 0x7F0B0071
-			public const int notification_template_media_custom = 2131427441;
+			public const int notification_template_part_chronometer = 2131427441;
 			
 			// aapt resource value: 0x7F0B0072
-			public const int notification_template_part_chronometer = 2131427442;
+			public const int notification_template_part_time = 2131427442;
 			
 			// aapt resource value: 0x7F0B0073
-			public const int notification_template_part_time = 2131427443;
+			public const int register_screen = 2131427443;
 			
 			// aapt resource value: 0x7F0B0074
-			public const int register_screen = 2131427444;
+			public const int select_dialog_item_material = 2131427444;
 			
 			// aapt resource value: 0x7F0B0075
-			public const int select_dialog_item_material = 2131427445;
+			public const int select_dialog_multichoice_material = 2131427445;
 			
 			// aapt resource value: 0x7F0B0076
-			public const int select_dialog_multichoice_material = 2131427446;
+			public const int select_dialog_singlechoice_material = 2131427446;
 			
 			// aapt resource value: 0x7F0B0077
-			public const int select_dialog_singlechoice_material = 2131427447;
+			public const int settings_screen = 2131427447;
 			
 			// aapt resource value: 0x7F0B0078
-			public const int settings_screen = 2131427448;
+			public const int sound_manager_screen = 2131427448;
 			
 			// aapt resource value: 0x7F0B0079
 			public const int splash_screen = 2131427449;
@@ -11020,10 +11020,13 @@ namespace MathGame
 			public const int my_song = 2131689475;
 			
 			// aapt resource value: 0x7F0F0004
-			public const int three_ticks = 2131689476;
+			public const int notification = 2131689476;
 			
 			// aapt resource value: 0x7F0F0005
-			public const int wrong_answer = 2131689477;
+			public const int three_ticks = 2131689477;
+			
+			// aapt resource value: 0x7F0F0006
+			public const int wrong_answer = 2131689478;
 			
 			static Raw()
 			{

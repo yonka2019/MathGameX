@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -11,8 +12,8 @@ using System.Collections.Generic;
 
 namespace MathGame
 {
-    [Activity(Label = "MusicSelectorActivity")]
-    public class MusicSelectorActivity : Activity, AdapterView.IOnItemClickListener
+    [Activity(Label = "SoundManagerActivity")]
+    public class SoundManagerActivity : Activity, AdapterView.IOnItemClickListener
     {
         public static List<Song> SongList { get; set; }
         public static Intent MusicServiceIntent { get; private set; }
@@ -21,8 +22,11 @@ namespace MathGame
         private Button back;
         private ListView lv;
         private SeekBar musicSB, ambientSB;
+
         private ISharedPreferences musicSP;
         private ISharedPreferences ambientSP;
+
+        private MediaPlayer mediaPlayer;
 
         private bool _musicPlaying;
 
@@ -43,10 +47,12 @@ namespace MathGame
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.music_select);
+            SetContentView(Resource.Layout.sound_manager_screen);
 
             SetRefs();
             SetEvents();
+
+            mediaPlayer = new MediaPlayer();
 
             musicSP = GetSharedPreferences("Music", FileCreationMode.Private);
             ambientSP = GetSharedPreferences("Ambient", FileCreationMode.Private);
@@ -121,6 +127,8 @@ namespace MathGame
                 editor.Commit();
 
                 MediaPlayerSound.Volume = e.Progress;
+
+                mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.notification);
             }
         }
 

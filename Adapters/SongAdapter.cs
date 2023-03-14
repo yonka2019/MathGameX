@@ -35,7 +35,7 @@ namespace MathGame.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            LayoutInflater layoutInflater = ((MusicSelectorActivity)context).LayoutInflater;
+            LayoutInflater layoutInflater = ((SoundManagerActivity)context).LayoutInflater;
             View view = layoutInflater.Inflate(Resource.Layout.music_layout, parent, false);
 
             TextView tvSong = view.FindViewById<TextView>(Resource.Id.musicl_musicName);
