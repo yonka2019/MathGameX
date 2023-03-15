@@ -10,49 +10,28 @@
         android:id="@+id/game_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Awesome Game"
-        android:textSize="24sp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"/>
+        android:text="• Game Finished •"
+        android:textSize="@dimen/sp_xxlarge"
+        android:layout_marginTop="@dimen/dp_3xlarge"
+        android:layout_marginBottom="@dimen/dp_large"/>
 
     <!-- Game Statistics -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center">
 
         <TextView
             android:id="@+id/score_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score:"
-            android:textSize="@dimen/sp_large"/>
+            android:text="⎯⎯⎯⎯⎯⎯⎯⎯"
+            android:textSize="@dimen/sp_xlarge"/>
 
-        <TextView
-            android:id="@+id/score_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/time_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:textSize="18sp"
-            android:layout_marginLeft="16dp"/>
-
-        <TextView
-            android:id="@+id/time_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0:00"
-            android:textSize="18sp"/>
     </LinearLayout>
 
-    <!-- Game Buttons -->
+    <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
