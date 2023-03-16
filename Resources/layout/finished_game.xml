@@ -31,30 +31,81 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Statistics"
+            android:text="Statistics:"
             android:textSize="@dimen/sp_xlarge"/>
     </LinearLayout>
 
-    <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_3xlarge"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/button1"
+         <!--Correct answers stats-->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button 1"
-            android:textSize="18sp"
-            android:layout_margin="16dp"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/dp_4xlarge">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:src="@drawable/done_30px"
+                android:contentDescription="timer icon (not clickable)"
+                android:layout_marginRight="@dimen/dp_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_xlarge"
+                android:id="@+id/stats_correct"/>
+        </LinearLayout>
+
+        <!--Wrong answers stats-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp_4xlarge">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:src="@drawable/close_30px"
+                android:contentDescription="timer icon (not clickable)"
+                android:layout_marginRight="@dimen/dp_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_xlarge"
+                android:id="@+id/stats_wrong"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_xxlarge">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/backToMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button 2"
+            android:text="Back to menu"
             android:textSize="18sp"
             android:layout_margin="16dp"/>
     </LinearLayout>

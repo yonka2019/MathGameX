@@ -1,6 +1,8 @@
 ﻿using Android.Content;
 using Android.Graphics;
 using Android.Views;
+using MathGame.Models;
+using MathGame.Activities;
 using Android.Widget;
 using System.Collections.Generic;
 

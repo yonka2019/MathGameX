@@ -23,7 +23,11 @@ namespace MathGame.Models.MathQuestions
         /// <returns></returns>
         public abstract BaseQuestion GenerateQuestion();
 
-        protected abstract char GetOperator();
+        /// <summary>
+        ///  '+'  |  '-'  |  '/'  |  '*'
+        /// </summary>
+        /// <returns></returns>
+        public abstract char GetOperator();
 
         /// <summary>
         /// return current question

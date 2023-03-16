@@ -4,8 +4,9 @@ using Android.OS;
 using Android.Widget;
 using AndroidX.Activity;
 using System;
+using MathGame.Models;
 
-namespace MathGame
+namespace MathGame.Activities
 {
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity

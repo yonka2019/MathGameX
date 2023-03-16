@@ -10,7 +10,7 @@ using MathGame.Models;
 using MathGame.Services;
 using System.Collections.Generic;
 
-namespace MathGame
+namespace MathGame.Activities
 {
     [Activity(Label = "SoundManagerActivity")]
     public class SoundManagerActivity : Activity, AdapterView.IOnItemClickListener

@@ -1,36 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
-namespace MathGame
+namespace MathGame.Models
 {
     public static class SettingsManager
     {
-        /// <summary>
-        /// DICT<DICT>:  gameSettings
-        /// {
-        ///     [string: (settings group)] = {
-        ///         [string: (setting name)] = [bool: true/false]
-        ///     }
-        /// }
-        /// 
-        /// Example: gameSettings["operators"]["minus"] = true;
-        /// </summary>
-        private static Dictionary<string, Dictionary<char, bool>> gameSettings = new Dictionary<string, Dictionary<char, bool>>();
-
         static SettingsManager()  // initialize dictionaries
         {
-            gameSettings["operators"] = new Dictionary<char, bool> {
+            Settings["operators"] = new Dictionary<char, bool> {
                 { '+', false }, { '-', false }, { '*', false }, { '/', false } };
 
-            gameSettings["digits"] = new Dictionary<char, bool> {
+            Settings["digits"] = new Dictionary<char, bool> {
                 { '1', false }, { '2', false }, { '3', false }, { '4', false } };  // one, double, triple, fourth
         }
 
-        public static Dictionary<string, Dictionary<char, bool>> Settings
-        {
-            get { return gameSettings; }
-            set { gameSettings = value; }
-        }
+        public static Dictionary<string, Dictionary<char, bool>> Settings { get; set; } = new Dictionary<string, Dictionary<char, bool>>();
 
         /// <summary>
         /// Checks if the user allowed to run the game
@@ -42,7 +25,7 @@ namespace MathGame
             {
                 int trueCounters = 0; // should be 2 to allow game
 
-                foreach (var value in gameSettings.Values) // [operators] & [digits]
+                foreach (Dictionary<char, bool> value in Settings.Values) // [operators] & [digits]
                 {
                     /*
                      * operators:
@@ -51,7 +34,7 @@ namespace MathGame
                      * one of the settings true + 1 , leave the loops
                      * = 2 [good]
                      */
-                    foreach(var setting in value.Values)
+                    foreach (bool setting in value.Values)
                     {
                         if (setting)
                         {

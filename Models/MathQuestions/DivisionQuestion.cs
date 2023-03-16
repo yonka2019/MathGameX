@@ -18,7 +18,7 @@
             return this;
         }
 
-        protected override char GetOperator()
+        public override char GetOperator()
         {
             return '/';
         }

@@ -3,7 +3,7 @@ using MathGame.Models.MathQuestions;
 using System;
 using System.Collections.Generic;
 
-namespace MathGame
+namespace MathGame.Models
 {
     internal class Game
     {

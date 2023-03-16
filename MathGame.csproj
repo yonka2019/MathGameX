@@ -65,6 +65,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\FinishedGameActivity.cs" />
     <Compile Include="Activities\GameSelectionActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />

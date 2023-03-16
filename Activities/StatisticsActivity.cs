@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Widget;
 using System;
 
-namespace MathGame
+namespace MathGame.Activities
 {
     [Activity(Label = "StatisticsActivity")]
     public class StatisticsActivity : Activity

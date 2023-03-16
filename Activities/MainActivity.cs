@@ -6,7 +6,7 @@ using AndroidX.AppCompat.App;
 using MathGame.Activities;
 using MathGame.Models;
 
-namespace MathGame
+namespace MathGame.Activities
 {
     [Activity(Label = "@string/app_name",
         Theme = "@style/AppTheme.Splash",

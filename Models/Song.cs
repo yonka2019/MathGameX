@@ -1,4 +1,4 @@
-﻿namespace MathGame
+﻿namespace MathGame.Models
 {
     public class Song
     {

@@ -1,17 +1,19 @@
 ﻿using Android.Animation;
 using Android.App;
+using Android.Content;
 using Android.Media;
 using Android.OS;
 using Android.Views.InputMethods;
 using Android.Widget;
 using MathGame.Models;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MathGame
+namespace MathGame.Activities
 {
     [Activity(Label = "GameActivity")]
     public class GameActivity : Activity
@@ -35,6 +37,8 @@ namespace MathGame
         private CancellationTokenSource cts;
 
         private bool gameRunning;
+
+        private readonly Dictionary<char, byte> correctAnswersCounter = new Dictionary<char, byte>();
 
 
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -90,9 +94,6 @@ namespace MathGame
                     continue;
                 }
             }
-
-            Toast.MakeText(this, $"finished game", ToastLength.Short).Show();
-
 
         }
 
@@ -168,15 +169,27 @@ namespace MathGame
         private void LeaveButton_Click(object sender, EventArgs e)
         {
             gameRunning = false;
-            cts.Cancel();
 
-            Toast.MakeText(this, $"Game leaved.", ToastLength.Short).Show();
+            if (!cts.IsCancellationRequested)  // Cancel if not already canceled
+                cts.Cancel();
+
+            Intent gameActivity = new Intent(this, typeof(FinishedGameActivity));
+
+            // send values for statistic formation
+            gameActivity.PutExtra("+", correctAnswersCounter['+']);
+            gameActivity.PutExtra("-", correctAnswersCounter['-']);
+            gameActivity.PutExtra("*", correctAnswersCounter['*']);
+            gameActivity.PutExtra("/", correctAnswersCounter['/']);
+
+            StartActivity(gameActivity);
         }
 
         private void SkipButton_Click(object sender, EventArgs e)
         {
             WrongAnswer();
-            cts.Cancel();
+
+            if (!cts.IsCancellationRequested)  // Cancel if not already canceled
+                cts.Cancel();
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -198,16 +211,26 @@ namespace MathGame
             else  // can't parse (bad answer -> clean answer)
                 answerInput.Text = "";
 
-            cts.Cancel();
+
+            if (!cts.IsCancellationRequested)  // Cancel if not already canceled
+                cts.Cancel();
         }
 
+        /// <summary>
+        /// The answer of the player was correct
+        /// </summary>
         private void CorrectAnswer()
         {
             mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.correct_answer);
 
             correctAnswers.Text = (int.Parse(correctAnswers.Text) + 1).ToString();
+
+            correctAnswersCounter[currentGame.CurrentQuestion.GetOperator()]++;  // give this type of question +1 point to counter
         }
 
+        /// <summary>
+        /// The answer of the player was wrong
+        /// </summary>
         private void WrongAnswer()
         {
             mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.wrong_answer);
@@ -215,6 +238,12 @@ namespace MathGame
             wrongAnswers.Text = (int.Parse(wrongAnswers.Text) + 1).ToString();
         }
 
+        /// <summary>
+        /// Start a countdown from the given seconds number
+        /// </summary>
+        /// <param name="seconds">begin value to count down from</param>
+        /// <param name="ct">cancellation token which allows us to stop the task whenever we need</param>
+        /// <returns>Task object (to have the possibility to await)</returns>
         private async Task StartCountdown(int seconds, CancellationToken ct)
         {
             TimeSpan beginTime = TimeSpan.FromSeconds(seconds);  // show begin value
@@ -235,9 +264,6 @@ namespace MathGame
         [Obsolete]
         public override void OnBackPressed()
         {
-            gameRunning = false;
-            cts.Cancel();
-
             leaveButton.PerformClick();
         }
     }
