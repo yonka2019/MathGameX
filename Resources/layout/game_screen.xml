@@ -90,7 +90,7 @@
     <Button
         android:layout_width="@dimen/dp_uxlarge"
         android:layout_height="wrap_content"
-        android:text="Input"
+        android:text="Submit"
         android:layout_gravity="center"
         android:enabled="false"
         android:layout_marginTop="@dimen/dp_large"

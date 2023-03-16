@@ -25,6 +25,22 @@ namespace MathGame
             SetRefs();
             SetEvents();
             RestoreAmbientSound();
+            RestoreGameSettings();
+        }
+
+        private void RestoreGameSettings()
+        {
+            ISharedPreferences settingsSp = GetSharedPreferences("Settings", FileCreationMode.Private);
+
+            SettingsManager.Settings["operators"]['+'] = settingsSp.GetBoolean("o:+", false);
+            SettingsManager.Settings["operators"]['-'] = settingsSp.GetBoolean("o:-", false);
+            SettingsManager.Settings["operators"]['*'] = settingsSp.GetBoolean("o:*", false);
+            SettingsManager.Settings["operators"]['/'] = settingsSp.GetBoolean("o:/", false);
+
+            SettingsManager.Settings["digits"]['1'] = settingsSp.GetBoolean("d:1", false);
+            SettingsManager.Settings["digits"]['2'] = settingsSp.GetBoolean("d:2", false);
+            SettingsManager.Settings["digits"]['3'] = settingsSp.GetBoolean("d:3", false);
+            SettingsManager.Settings["digits"]['4'] = settingsSp.GetBoolean("d:4", false);
         }
 
         private void RestoreAmbientSound()

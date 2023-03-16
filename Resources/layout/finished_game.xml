@@ -23,12 +23,16 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/score_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="⎯⎯⎯⎯⎯⎯⎯⎯"
             android:textSize="@dimen/sp_xlarge"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:textSize="@dimen/sp_xlarge"/>
     </LinearLayout>
 
     <!-- Buttons -->

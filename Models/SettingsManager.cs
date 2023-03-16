@@ -23,7 +23,7 @@ namespace MathGame
                 { '+', false }, { '-', false }, { '*', false }, { '/', false } };
 
             gameSettings["digits"] = new Dictionary<char, bool> {
-                { 'o', false }, { 'd', false }, { 't', false }, { 'f', false } };  // one, double, triple, fourth
+                { '1', false }, { '2', false }, { '3', false }, { '4', false } };  // one, double, triple, fourth
         }
 
         public static Dictionary<string, Dictionary<char, bool>> Settings

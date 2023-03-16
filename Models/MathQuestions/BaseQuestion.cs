@@ -48,16 +48,16 @@ namespace MathGame.Models.MathQuestions
 
         private void SetDigitSettings()
         {
-            if (SettingsManager.Settings["digits"]['o'])  // one
+            if (SettingsManager.Settings["digits"]['1'])  // one
                 DigitsPreferences.Add((0, 9));
 
-            if (SettingsManager.Settings["digits"]['d'])  // double
+            if (SettingsManager.Settings["digits"]['2'])  // double
                 DigitsPreferences.Add((10, 99));
 
-            if (SettingsManager.Settings["digits"]['t'])  // triple
+            if (SettingsManager.Settings["digits"]['3'])  // triple
                 DigitsPreferences.Add((100, 999));
 
-            if (SettingsManager.Settings["digits"]['f'])  // fourth
+            if (SettingsManager.Settings["digits"]['4'])  // fourth
                 DigitsPreferences.Add((1000, 9999));
         }
     }
