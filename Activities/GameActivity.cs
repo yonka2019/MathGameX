@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace MathGame.Activities
     public class GameActivity : Activity
     {
         // if EASY / MEDIUM / HARD mode selected - there is limited questions number [SHOULD BE UPDATED ALSO IN layout/game_screen.xml [questionProgressBar : max value]
-        private const byte QUESTIONS_NUMBER = 10;
+        private const int QUESTIONS_NUMBER = 10;
 
         private NumberFormatInfo numberFormat;
         private MediaPlayer mediaPlayer;
@@ -38,7 +39,7 @@ namespace MathGame.Activities
 
         private bool gameRunning;
 
-        private readonly Dictionary<char, byte> correctAnswersCounter = new Dictionary<char, byte>();
+        private readonly Dictionary<char, int> correctAnswersCounter = new Dictionary<char, int>();
 
 
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -176,13 +177,17 @@ namespace MathGame.Activities
             Intent gameActivity = new Intent(this, typeof(FinishedGameActivity));
 
             // send values for statistic formation
-            gameActivity.PutExtra("+", correctAnswersCounter['+']);
-            gameActivity.PutExtra("-", correctAnswersCounter['-']);
-            gameActivity.PutExtra("*", correctAnswersCounter['*']);
-            gameActivity.PutExtra("/", correctAnswersCounter['/']);
+            gameActivity.PutExtra("stats:correct", int.Parse(correctAnswers.Text));
+            gameActivity.PutExtra("stats:wrong", int.Parse(wrongAnswers.Text));
+
+            gameActivity.PutExtra("stats:+", correctAnswersCounter['+']);
+            gameActivity.PutExtra("stats:-", correctAnswersCounter['-']);
+            gameActivity.PutExtra("stats:*", correctAnswersCounter['*']);
+            gameActivity.PutExtra("stats:/", correctAnswersCounter['/']);
 
             StartActivity(gameActivity);
         }
+
 
         private void SkipButton_Click(object sender, EventArgs e)
         {

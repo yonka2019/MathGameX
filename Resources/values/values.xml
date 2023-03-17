@@ -13,8 +13,9 @@
 	<dimen name="dp_ularge">75dp</dimen>
 	<dimen name="dp_2ularge">100dp</dimen>
 	<dimen name="dp_uxlarge">140dp</dimen>
-	
+
 	<dimen name="dp_mlarge">165dp</dimen>
+	<dimen name="dp_mxlarge">200dp</dimen>
 	
 		<!--text sizes-->
 	<dimen name="sp_small">12sp</dimen>

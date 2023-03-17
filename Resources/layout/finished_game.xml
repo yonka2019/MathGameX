@@ -93,6 +93,11 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Microcharts.Droid.ChartView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_mxlarge"
+        android:id="@+id/statsChart"/>
+
     <!-- Button -->
     <LinearLayout
         android:layout_width="match_parent"
