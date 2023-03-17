@@ -54,6 +54,8 @@ namespace MathGame.Activities
                     ValueLabel = correctAnswersCounter['/'].ToString(),
                     Color = SKColor.Parse("#3498db")
                 }};
+
+
         }
     }
 }
