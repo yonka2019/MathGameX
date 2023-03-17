@@ -95,6 +95,7 @@
 
     <Microcharts.Droid.ChartView
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_xxlarge"
         android:layout_height="@dimen/dp_mxlarge"
         android:id="@+id/statsChart"/>
 
