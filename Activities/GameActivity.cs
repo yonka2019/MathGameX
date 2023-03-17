@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -52,6 +51,8 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+
+            ResetCounter();
 
             Models.GameMode selectedDifficulty = (Models.GameMode)base.Intent.GetIntExtra("mode", 0);
 
@@ -117,6 +118,7 @@ namespace MathGame.Activities
             skipButton.Enabled = isEnabled;
             answerInput.Enabled = isEnabled;
             negativeAnswerButton.Enabled = isEnabled;
+            leaveButton.Enabled = isEnabled;
         }
 
         private void SetRefs()
@@ -266,10 +268,17 @@ namespace MathGame.Activities
             }
         }
 
-        [Obsolete]
         public override void OnBackPressed()
         {
             leaveButton.PerformClick();
+        }
+
+        private void ResetCounter()
+        {
+            correctAnswersCounter['+'] = 0;
+            correctAnswersCounter['-'] = 0;
+            correctAnswersCounter['*'] = 0;
+            correctAnswersCounter['/'] = 0;
         }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Models\AnimationType.cs" />
+    <Compile Include="Models\ChartTypes.cs" />
     <Compile Include="Models\FirebaseData.cs" />
     <Compile Include="Models\GameMode.cs" />
     <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
@@ -94,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\calculator_animation.json" />
+    <None Include=".editorconfig" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -278,6 +280,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\notification.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bar_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\donut_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pie_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\radar_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

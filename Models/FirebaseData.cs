@@ -32,7 +32,6 @@ namespace MathGame.Models
 
         private FirebaseOptions GetMyOptions()
         {
-            //הערכים בסוגריים לוקחים מקובץ json
             return new FirebaseOptions.Builder()
                 .SetProjectId("task6-firebase")
                 .SetApplicationId("task6-firebase")

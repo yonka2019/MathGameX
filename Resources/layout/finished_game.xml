@@ -10,7 +10,8 @@
         android:id="@+id/game_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="• Game Finished •"
+        android:text="• Finished •"
+        android:textStyle="bold"
         android:textSize="@dimen/sp_xxlarge"
         android:layout_marginTop="@dimen/dp_3xlarge"
         android:layout_marginBottom="@dimen/dp_large"/>
@@ -31,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Statistics:"
+            android:text="Game statistics:"
             android:textSize="@dimen/sp_xlarge"/>
     </LinearLayout>
 
@@ -48,20 +49,22 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginRight="@dimen/dp_4xlarge">
+            android:layout_marginRight="@dimen/dp_4xlarge"
+            android:textAlignment="center">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_ularge"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Image"
                 android:src="@drawable/done_30px"
-                android:contentDescription="timer icon (not clickable)"
-                android:layout_marginRight="@dimen/dp_small"/>
+                android:contentDescription="correct answer image (not clickable)"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_ularge"
                 android:layout_height="wrap_content"
                 android:text="0"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="@dimen/sp_xlarge"
                 android:id="@+id/stats_correct"/>
@@ -76,28 +79,43 @@
             android:layout_marginLeft="@dimen/dp_4xlarge">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_ularge"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Image"
                 android:src="@drawable/close_30px"
-                android:contentDescription="timer icon (not clickable)"
-                android:layout_marginRight="@dimen/dp_small"/>
+                android:contentDescription="wrong answer image (not clickable)"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_ularge"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 android:textSize="@dimen/sp_xlarge"
                 android:id="@+id/stats_wrong"/>
         </LinearLayout>
     </LinearLayout>
 
-    <Microcharts.Droid.ChartView
+    <!--Chart layout-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_xxlarge"
-        android:layout_height="@dimen/dp_mxlarge"
-        android:id="@+id/statsChart"/>
+        android:layout_marginTop="@dimen/dp_4xlarge"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Microcharts.Droid.ChartView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_mxlarge"
+            android:id="@+id/statsChart"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_4xlarge"
+            android:layout_gravity="center"
+            android:id="@+id/ChangeChart"
+            android:drawableBottom="@drawable/pie_chart_35px"/>
+    </LinearLayout>
 
     <!-- Button -->
     <LinearLayout
@@ -108,12 +126,11 @@
         android:layout_marginTop="@dimen/dp_xxlarge">
 
         <Button
-            android:id="@+id/backToMenu"
+            android:id="@+id/stats_backToMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back to menu"
             android:textSize="18sp"
             android:layout_margin="16dp"/>
     </LinearLayout>
-
 </LinearLayout>

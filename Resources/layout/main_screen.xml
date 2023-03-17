@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/main_main_title"
         android:layout_gravity="center"
-        android:padding="@dimen/dp_small"
+        android:padding="@dimen/dp_medium"
+        android:textColor="#4786c9"
         android:textSize="@dimen/sp_xxlarge"/>
 
     <!--Profile, login, register-->
@@ -23,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_large">
 
         <ImageView
             android:layout_width="wrap_content"

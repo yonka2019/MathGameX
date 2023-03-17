@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--Leave button-->
     <Button
         android:layout_width="@dimen/dp_4xlarge"
         android:layout_height="@dimen/dp_4xlarge"
         android:drawableBottom="@drawable/logout_33px"
-        android:id="@+id/leaveButton"/>
+        android:id="@+id/leaveButton"
+        android:enabled="false"/>
 
     <!--Image + Timer-->
     <LinearLayout
