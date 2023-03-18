@@ -20,6 +20,8 @@ namespace MathGame.Activities
     {
         // if EASY / MEDIUM / HARD mode selected - there is limited questions number [SHOULD BE UPDATED ALSO IN layout/game_screen.xml [questionProgressBar : max value]
         private const int QUESTIONS_NUMBER = 10;
+        private const int VIBRATION_AMPLITUDE = 65;  // 1 - 255
+        private const int VIBRATION_MS = 200;
 
         private NumberFormatInfo numberFormat;
         private MediaPlayer mediaPlayer;
@@ -65,7 +67,6 @@ namespace MathGame.Activities
             await StartCountdown(3, default);  // 3 seconds countdown before starting game
 
             ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
-
             await StartGame();  // starting game
         }
 
@@ -169,12 +170,21 @@ namespace MathGame.Activities
             answerInput.SetSelection(answerInput.Text.Length);  // move crusor to end
         }
 
+        /// <summary>
+        /// This event called on finishing game OR leaving the game
+        /// </summary>
         private void LeaveButton_Click(object sender, EventArgs e)
         {
             gameRunning = false;
 
             if (!cts.IsCancellationRequested)  // Cancel if not already canceled
                 cts.Cancel();
+
+            Vibrator vibrator = (Vibrator)GetSystemService(VibratorService);
+            if (vibrator.HasVibrator)
+            {
+                vibrator.Vibrate(VibrationEffect.CreateOneShot(VIBRATION_MS, VIBRATION_AMPLITUDE));
+            }
 
             Intent gameActivity = new Intent(this, typeof(FinishedGameActivity));
 

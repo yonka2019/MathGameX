@@ -15,11 +15,11 @@ using Xamarin.Essentials;
 
 namespace MathGame.Models
 {
-    class FirebaseData
+    class FirebaseManager
     {
         private readonly FirebaseApp app;
         private readonly FirebaseAuth auth;
-        public FirebaseData()
+        public FirebaseManager()
         {
             app = FirebaseApp.InitializeApp(Application.Context);
             if (app is null)

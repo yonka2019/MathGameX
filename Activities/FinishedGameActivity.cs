@@ -24,7 +24,7 @@ namespace MathGame.Activities
 
         private ChartTypes currentChartType;
 
-        private const int LABEL_FONT_SIZE = 35;
+        private const int LABEL_FONT_SIZE = 40;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

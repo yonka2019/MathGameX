@@ -72,7 +72,7 @@
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Models\AnimationType.cs" />
     <Compile Include="Models\ChartTypes.cs" />
-    <Compile Include="Models\FirebaseData.cs" />
+    <Compile Include="Models\FirebaseManager.cs" />
     <Compile Include="Models\GameMode.cs" />
     <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
     <Compile Include="Models\MathQuestions\BaseQuestion.cs" />
