@@ -125,8 +125,8 @@
     <PackageReference Include="Com.Airbnb.Android.Lottie">
       <Version>4.2.2</Version>
     </PackageReference>
-    <PackageReference Include="Microcharts">
-      <Version>0.9.5.9</Version>
+    <PackageReference Include="Microcharts.Android">
+      <Version>1.0.0-preview1</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
