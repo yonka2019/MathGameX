@@ -60,6 +60,7 @@
   <ItemGroup>
     <Reference Include="Java.Interop" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -73,6 +74,7 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\UserInfoActivity.cs" />
+    <Compile Include="Adapters\GridViewAdaper.cs" />
     <Compile Include="Enums\AnimationType.cs" />
     <Compile Include="Enums\ChartTypes.cs" />
     <Compile Include="Models\FirebaseManager.cs" />
@@ -133,6 +135,9 @@
     </PackageReference>
     <PackageReference Include="Microcharts.Android">
       <Version>1.0.0-preview1</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid.Android">
+      <Version>20.4.0.54</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
@@ -314,6 +319,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\wifi_off_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\grid_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\gridview_border.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

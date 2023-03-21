@@ -1,4 +1,4 @@
-<LinearLayout
+﻿<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,41 +7,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/info_playerName"
+        android:layout_marginTop="@dimen/dp_xxlarge"
         android:layout_gravity="center_horizontal"
         android:text="Player Name"
-        android:textSize="24sp"
+        android:textSize="@dimen/sp_xxlarge"
         android:textStyle="bold" />
         
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="⎯⎯⎯⎯⎯⎯⎯⎯"
+        android:textSize="@dimen/sp_xlarge"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp">
-        
+        android:gravity="center">
+       
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Statistic 1"
-            android:textSize="18sp" />
+            android:text="Created At: "
+            android:textSize="@dimen/sp_xlarge"/>
             
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Statistic 2"
+            android:textAlignment="center"
+            android:text="00.00.00 00:00"
             android:textSize="18sp" />
-            
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Statistic 3"
-            android:textSize="18sp" />
+
+
             
     </LinearLayout>
-    
 </LinearLayout>
