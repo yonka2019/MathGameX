@@ -3,16 +3,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp">
+    android:padding="@dimen/dp_3xlarge">
   
+    <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Register Menu"
+       android:textSize="@dimen/sp_xlarge"
+       android:textStyle="bold"
+       android:layout_gravity="center_horizontal"
+       android:layout_margin="@dimen/dp_xlarge"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/register_userTB">
+        android:layout_marginTop="@dimen/dp_3xlarge"
+        android:layout_height="wrap_content">
         <EditText
             android:inputType="textEmailAddress"
             android:hint="Username"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_large"
+            android:id="@+id/register_userTB"
             android:imeOptions="actionNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -20,32 +30,33 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/register_passTB">
+        android:layout_height="wrap_content">
         <EditText
             android:inputType="textPassword"
             android:hint="Password"
             android:imeOptions="actionDone"
-            android:textSize="18sp"
+            android:id="@+id/register_passTB"
+            android:textSize="@dimen/sp_large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/register_confPassTB">
+        android:layout_height="wrap_content">
         <EditText
             android:inputType="textPassword"
+            android:id="@+id/register_confPassTB"
             android:hint="Confirm password"
             android:imeOptions="actionDone"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
     
     <Button
         android:text="Register"
+        android:layout_marginTop="@dimen/dp_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/register_registerButton"/>

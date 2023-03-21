@@ -1,4 +1,4 @@
-﻿namespace MathGame.Models
+﻿namespace MathGame
 {
     internal enum GameMode
     {

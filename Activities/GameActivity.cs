@@ -56,9 +56,9 @@ namespace MathGame.Activities
 
             ResetCounter();
 
-            Models.GameMode selectedDifficulty = (Models.GameMode)base.Intent.GetIntExtra("mode", 0);
+            GameMode selectedDifficulty = (GameMode)base.Intent.GetIntExtra("mode", 0);
 
-            if (selectedDifficulty == Models.GameMode.Infinity)  // if infinity mdoe enabled - hide the progress bar
+            if (selectedDifficulty == GameMode.Infinity)  // if infinity mdoe enabled - hide the progress bar
                 questionProgressBar.Visibility = Android.Views.ViewStates.Invisible;
 
             currentGame = new Game(selectedDifficulty);
@@ -75,7 +75,7 @@ namespace MathGame.Activities
             gameRunning = true;
 
             while (gameRunning &&
-                (questionProgressBar.Progress < QUESTIONS_NUMBER || currentGame.GetGameMode() == Models.GameMode.Infinity))  // check if current question number isn't higher then the max one, or, to ignore this check if infinity mode enabled
+                (questionProgressBar.Progress < QUESTIONS_NUMBER || currentGame.GetGameMode() == GameMode.Infinity))  // check if current question number isn't higher then the max one, or, to ignore this check if infinity mode enabled
             {
                 answerInput.Text = "";  // clean edit text box after answering
 
@@ -96,6 +96,8 @@ namespace MathGame.Activities
                 {
                     continue;
                 }
+
+                leaveButton.PerformClick();  // simulate leaving in order to show statistics screen
             }
 
         }

@@ -68,7 +68,10 @@ namespace MathGame.Activities
 
         private void SaveDataToDB()
         {
-
+            //FirebaseManager.SetStatsDataAsync(MainActivity.Username, correctAnswersCounter['+'],
+            //    correctAnswersCounter['-'],
+            //    correctAnswersCounter['*'],
+            //    correctAnswersCounter['/']);
         }
 
         private void SetRefs()

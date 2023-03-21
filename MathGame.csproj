@@ -58,6 +58,7 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Java.Interop" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -68,18 +69,21 @@
     <Compile Include="Activities\FinishedGameActivity.cs" />
     <Compile Include="Activities\GameSelectionActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\PreActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
-    <Compile Include="Models\AnimationType.cs" />
-    <Compile Include="Models\ChartTypes.cs" />
+    <Compile Include="Activities\UserInfoActivity.cs" />
+    <Compile Include="Enums\AnimationType.cs" />
+    <Compile Include="Enums\ChartTypes.cs" />
     <Compile Include="Models\FirebaseManager.cs" />
-    <Compile Include="Models\GameMode.cs" />
+    <Compile Include="Enums\GameMode.cs" />
     <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
     <Compile Include="Models\MathQuestions\BaseQuestion.cs" />
     <Compile Include="Models\MathQuestions\DivisionQuestion.cs" />
     <Compile Include="Models\MathQuestions\MultiplicationQuestion.cs" />
     <Compile Include="Models\MathQuestions\SubstractionQuestion.cs" />
     <Compile Include="Models\MediaPlayerSound.cs" />
+    <Compile Include="Models\MethodExt.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Adapters\SongAdapter.cs" />
     <Compile Include="Models\Game.cs" />
@@ -95,7 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\calculator_animation.json" />
+    <AndroidAsset Include="Assets\calculator_animation_pre.json" />
     <None Include=".editorconfig" />
+    <AndroidAsset Include="Assets\google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -156,11 +162,8 @@
     <PackageReference Include="Xamarin.AndroidX.Media">
       <Version>1.6.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Firebase.Auth">
-      <Version>121.0.8</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Firestore">
-      <Version>124.3.1</Version>
+      <Version>124.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
@@ -298,6 +301,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\pre_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\user_info_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\wifi_off_64px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

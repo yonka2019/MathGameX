@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "909793803468",
+    "project_id": "mathgame-x",
+    "storage_bucket": "mathgame-x.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909793803468:android:7052c15697ed01fae55669",
+        "android_client_info": {
+          "package_name": "com.yonka.mathgamex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909793803468-7aimkct74f7g7j0l0tvpcirna16oli1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqJoZcLu-IVCkp-_ULJLIHAnNFiluL0cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909793803468-7aimkct74f7g7j0l0tvpcirna16oli1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

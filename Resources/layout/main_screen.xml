@@ -39,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="@dimen/sp_large"
             android:textStyle="bold"
             android:text="username"
             android:id="@+id/main_username"/>

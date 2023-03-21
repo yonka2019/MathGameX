@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Net;
 using Android.OS;
+using MathGame.Models;
 using System.Threading.Tasks;
 
 namespace MathGame.Activities
@@ -12,17 +14,27 @@ namespace MathGame.Activities
             Icon = "@mipmap/ic_launcher")]
     public class SplashActivity : Activity
     {
+        public static bool InternetConnection { get; private set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            // check internet connection only on program loading in order to avoid problems with uninitialized database
+            ConnectivityManager connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+            NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
+
+            InternetConnection = networkInfo != null && networkInfo.IsConnected;
+
+            if (InternetConnection) // check if there is internet connection
+                FirebaseManager.Init(this);  // init firebase
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             SetContentView(Resource.Layout.splash_screen);
+
             Task startupWork = new Task(() => { SimulateStartupAsync(); });
             startupWork.Start();
         }
@@ -30,8 +42,12 @@ namespace MathGame.Activities
         private async void SimulateStartupAsync()
         {
             await Task.Delay(1000);
+            // CHECK IF ALRERADY LOGGED
 
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            Intent preActivity = new Intent(Application.Context, typeof(PreActivity));
+            preActivity.PutExtra("InternetConnection", InternetConnection);
+
+            StartActivity(preActivity);
         }
     }
 }

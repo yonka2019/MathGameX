@@ -1,4 +1,4 @@
-﻿namespace MathGame.Models
+﻿namespace MathGame
 {
     public static class AnimationType
     {

@@ -1,9 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Net;
 using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
-using MathGame.Activities;
 using MathGame.Models;
 
 namespace MathGame.Activities
@@ -14,7 +14,7 @@ namespace MathGame.Activities
     public class MainActivity : AppCompatActivity
     {
         private Button Stats, Start, Settings;
-        private TextView Login, Register;
+        private TextView Login, Register, Username;
         private ImageButton SetSong;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -26,6 +26,16 @@ namespace MathGame.Activities
             SetEvents();
             RestoreAmbientSound();
             RestoreGameSettings();
+
+            string user = base.Intent.GetStringExtra("User");
+            //if (user != "")  // not anonymous mode and there is internet (if there is internet lack - the mode automatically will be anonymous
+            //{
+            //    Username.Text = user;
+
+            //    Username.Visibility = Android.Views.ViewStates.Visible;
+            //    Login.Visibility = Android.Views.ViewStates.Gone;
+            //    Register.Visibility = Android.Views.ViewStates.Gone;
+            //}
         }
 
         private void RestoreGameSettings()
@@ -52,17 +62,26 @@ namespace MathGame.Activities
 
         private void Register_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(RegisterActivity)));
+            if (SplashActivity.InternetConnection)  // check if there is internet connection
+                StartActivity(new Intent(this, typeof(RegisterActivity)));
+            else
+                ShowDialog("No internet connection", "Can't register due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Login_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(LoginActivity)));
+            if (SplashActivity.InternetConnection)  // check if there is internet connection
+                StartActivity(new Intent(this, typeof(LoginActivity)));
+            else
+                ShowDialog("No internet connection", "Can't login due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Stats_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(StatisticsActivity)));
+            if (SplashActivity.InternetConnection)  // check if there is internet connection
+                StartActivity(new Intent(this, typeof(StatisticsActivity)));
+            else
+                ShowDialog("No internet connection", "Can't open statistics due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Settings_Click(object sender, System.EventArgs e)
@@ -83,33 +102,41 @@ namespace MathGame.Activities
             }
             else
             {
-                ShowAlertDialog("Warning", "You must set up the settings before starting game", Resource.Drawable.warning64);
+                ShowDialog("Warning", "You must set up the settings before starting game", "OK", Resource.Drawable.warning64);
             }
         }
 
         /// <summary>
-        /// Shortcuter to show alert dialog in THIS context
+        /// Shortcuter to show dialog in THIS context
         /// </summary>
-        private void ShowAlertDialog(string title, string message, int iconId)
+        private void ShowDialog(string title, string message, string positiveButtonText, int iconId = 0)
         {
             Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
+
             builder.SetTitle(title);
             builder.SetMessage(message);
-            builder.SetPositiveButton("OK", delegate { });
-            builder.SetIcon(iconId);
+            builder.SetPositiveButton(positiveButtonText, delegate { });
+
+            if (iconId != 0)  // check if icon gived
+                builder.SetIcon(iconId);
+
             Android.App.AlertDialog dialog = builder.Create();
 
             dialog.Show();
         }
+
 
         private void SetRefs()
         {
             Stats = FindViewById<Button>(Resource.Id.main_statsButton);
             Start = FindViewById<Button>(Resource.Id.main_startGameButton);
             Settings = FindViewById<Button>(Resource.Id.main_settingsButton);
+
             SetSong = FindViewById<ImageButton>(Resource.Id.main_setSongButton);
+
             Login = FindViewById<TextView>(Resource.Id.main_loginButton);
             Register = FindViewById<TextView>(Resource.Id.main_registerButton);
+            Username = FindViewById<TextView>(Resource.Id.main_username);
         }
 
         private void SetEvents()
@@ -117,7 +144,9 @@ namespace MathGame.Activities
             Stats.Click += Stats_Click;
             Start.Click += Start_Click;
             Settings.Click += Settings_Click;
+
             SetSong.Click += SetSong_Click;
+
             Login.Click += Login_Click;
             Register.Click += Register_Click;
         }
@@ -132,6 +161,7 @@ namespace MathGame.Activities
                 StopService(SoundManagerActivity.MusicServiceIntent);
 
             ISharedPreferencesEditor editor = sp.Edit();
+
             editor.PutInt("SongFile", 0);  // reset song file in SP to OFF
             editor.PutBoolean("Playing", false);  // reset playing status in SP to OFF
             editor.Commit();
