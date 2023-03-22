@@ -1,10 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MathGame.Adapters;
-using Syncfusion.SfDataGrid;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,19 +30,19 @@ namespace MathGame.Activities
 
             dt.Columns.Add("Plus");
             dt.Columns.Add("Minus");
-            dt.Columns.Add("Multiply");
-            dt.Columns.Add("Divide");
 
-            dt.Rows.Add("asd", 0, 1, 2, 3);
-            var list = new List<Dictionary<string, object>>();
+            dt.Rows.Add("asd", "asd", "asd");
+            var list = new JavaList<IDictionary<string, object>>();
 
             foreach (DataRow row in dt.Rows)
             {
                 var dictionary = new Dictionary<string, object>();
                 foreach (DataColumn column in dt.Columns)
                 {
-                    dictionary.Add(column.ColumnName, row[column].ToString());
+                    var value = row[column];
+                    dictionary.Add(column.ColumnName, value != null ? value.ToString() : null);
                 }
+
                 list.Add(dictionary);
             }
 
@@ -51,7 +51,7 @@ namespace MathGame.Activities
                 this,
                 list,
                 Resource.Layout.list_item_layout,
-                new string[] { "Column 1", "Column 2", "Column 3" },
+                new string[] { "Name", "Plus", "Minus" },
                 new int[] { Resource.Id.column1_textview, Resource.Id.column2_textview, Resource.Id.column3_textview });
 
             // Set the adapter for the ListView
