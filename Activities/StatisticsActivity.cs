@@ -34,11 +34,11 @@ namespace MathGame.Activities
             dt.Columns.Add("Divide");
 
             dt.Rows.Add("asd", 0, 1, 2, 3);
-            var list = new List<Dictionary<string, string>>();
+            var list = new List<Dictionary<string, object>>();
 
             foreach (DataRow row in dt.Rows)
             {
-                var dictionary = new Dictionary<string, string>();
+                var dictionary = new Dictionary<string, object>();
                 foreach (DataColumn column in dt.Columns)
                 {
                     dictionary.Add(column.ColumnName, row[column].ToString());
