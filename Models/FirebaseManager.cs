@@ -104,7 +104,7 @@ namespace MathGame.Models
             return await GetDataAsync(username, STATISTICS_DOCUMENT);
         }
 
-        public static async Task<Dictionary<string, object>> GetRegisterDataAsync(string username)
+        public static async Task<Dictionary<string, object>> GetGlobalDataAsync(string username)
         {
             return await GetDataAsync(username);
         }
@@ -130,13 +130,13 @@ namespace MathGame.Models
             SetData(newStatisticsData, username, STATISTICS_DOCUMENT);
         }
 
-        public static void SetRegisterData(string username)
+        public static void SetGlobalData(string username)
         {
-            HashMap registerData = new HashMap();
+            HashMap globalData = new HashMap();
 
-            registerData.Put("CreatedAt", new Timestamp(new Date()));
+            globalData.Put("CreatedAt", new Timestamp(new Date()));
 
-            SetData(registerData, username);
+            SetData(globalData, username);
         }
 
 #region Help Functions
@@ -146,7 +146,7 @@ namespace MathGame.Models
         /// </summary>
         /// <param name="data">data to be uploaded</param>
         /// <param name="userDocument">user document</param>
-        /// <param name="document">user sub-document (login/stats), if empty it's refers to register document</param>
+        /// <param name="document">user sub-document (login/stats), if empty it's refers to global document</param>
         private static void SetData(HashMap data, string userDocument, string document = "")
         {
             DocumentReference documentRef;
@@ -164,7 +164,7 @@ namespace MathGame.Models
         /// Retreieve the required data from specific collection and specific document
         /// </summary>
         /// <param name="userDocument">user document to retreieve data from</param>
-        /// <param name="requestedDocument">requested document to retreive data from, if empty it's refers to register document</param>
+        /// <param name="requestedDocument">requested document to retreive data from, if empty it's refers to global document</param>
         /// <returns>requested data</returns>
         private static async Task<Dictionary<string, object>> GetDataAsync(string userDocument, string requestedDocument = "")
         {

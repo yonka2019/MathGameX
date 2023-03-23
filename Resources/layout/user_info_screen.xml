@@ -90,9 +90,10 @@
             android:textAlignment="center"
             android:textColor="#999999"/>
 
-        <!--will remove only if you the owner (user) of the card-->SSS
+        <!--will remove only if you the owner (user) of the card-->SSSS
         <CheckBox
-            android:layout_marginTop="@dimen/dp_small" 
+            android:layout_marginTop="@dimen/dp_small"
+            android:id="@+id/cbClearTag"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Clear data from tag"

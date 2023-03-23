@@ -91,7 +91,7 @@ namespace MathGame.Activities
             if (SplashActivity.InternetConnection)  // check if there is internet connection
                 StartActivity(new Intent(this, typeof(StatisticsActivity)));
             else
-                this.CreateShowDialog("No internet connection", "Can't open statistics due internet lack", "OK", Resource.Drawable.wifi_off_64px);
+                this.CreateShowDialog("No internet connection", "Can't show statistics table due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Settings_Click(object sender, System.EventArgs e)

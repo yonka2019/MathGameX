@@ -23,6 +23,7 @@ namespace MathGame.Activities
         private Button backToMenu, changeChart;
         private ChartView statsChart;
         private TextView playerName, createdAt;
+        private CheckBox clearTag;
 
         private ChartEntry[] statisticsEntries;
         private ChartTypes currentChartType;
@@ -43,7 +44,7 @@ namespace MathGame.Activities
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
             Dictionary<string, object> userStatisticsData = await FirebaseManager.GetStatsDataAsync(MainActivity.Username);
-            Dictionary<string, object> userRegisterData = await FirebaseManager.GetRegisterDataAsync(MainActivity.Username);
+            Dictionary<string, object> userRegisterData = await FirebaseManager.GetGlobalDataAsync(MainActivity.Username);
 
             playerName.Text = MainActivity.Username;
 
@@ -82,6 +83,8 @@ namespace MathGame.Activities
 
             playerName = FindViewById<TextView>(Resource.Id.info_playerName);
             createdAt = FindViewById<TextView>(Resource.Id.info_createdAt);
+
+            clearTag = FindViewById<CheckBox>(Resource.Id.cbClearTag);
         }
 
         private void SetEvents()
@@ -232,24 +235,46 @@ namespace MathGame.Activities
         /// <param name="intent"></param>
         protected override async void OnNewIntent(Intent intent)
         {
-            // save login data to NFC Card in order to easily login
-            string hashedPassword = (await FirebaseManager.GetLoginDataAsync(MainActivity.Username))["Password"].ToString();
-            WriteToNFCTag(intent, hashedPassword);
+            if (clearTag.Checked)  // user checked to clean the tag data
+            {
+                bool success = WriteToNFCTag(intent, "");
+
+                if (success)
+                    this.CreateShowDialog("NFC tag clean", "Your NFC tag cleaned successfully", "OK", Resource.Drawable.done_64px);
+                else
+                    this.CreateShowDialog("Something went wrong..", "Can't clean your NFC tag", "OK", Resource.Drawable.warning64);
+            }
+            else
+            {
+                // save login data to NFC Card in order to allow easily login
+                string hashedPassword = (await FirebaseManager.GetLoginDataAsync(MainActivity.Username))["Password"].ToString();
+
+                string dataToWrite = $"[com.yonka.mathgame]$LOGIN_DATA{{{MainActivity.Username}:{hashedPassword}}}$";
+                bool success = WriteToNFCTag(intent, dataToWrite);
+
+                if (success)
+                    this.CreateShowDialog("NFC Login Data Copy", "Your authentication data successfuly saved on the NFC tag!", "OK", Resource.Drawable.done_64px);
+                else
+                    this.CreateShowDialog("Something went wrong..", "Can't copy your authentication data to the NFC tag", "OK", Resource.Drawable.warning64);
+            }
         }
 
-        public void WriteToNFCTag(Intent intent, string content)
+        public bool WriteToNFCTag(Intent intent, string content)
         {
-            if (!(intent.GetParcelableExtra(NfcAdapter.ExtraTag) is Tag tag)) return;
+            if (!(intent.GetParcelableExtra(NfcAdapter.ExtraTag) is Tag tag)) return false;
             Ndef ndef = Ndef.Get(tag);
-            if (ndef == null || !ndef.IsWritable) return;
+            if (ndef == null || !ndef.IsWritable) return false;
+
             byte[] payload = Encoding.ASCII.GetBytes(content);
             byte[] mimeBytes = Encoding.ASCII.GetBytes("text/plain");
+
             NdefRecord record = new NdefRecord(NdefRecord.TnfWellKnown, mimeBytes, new byte[0], payload);
             NdefMessage ndefMessage = new NdefMessage(new[] { record });
 
             ndef.Connect();
             ndef.WriteNdefMessage(ndefMessage);
             ndef.Close();
+            return true;
         }
     }
 }

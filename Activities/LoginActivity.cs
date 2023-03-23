@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using MathGame.Models;
+using System.Text.RegularExpressions;
 using System;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace MathGame.Activities
         private Button login;
 
         private NfcAdapter nfcAdapter;
+        private Regex loginDataExpression;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -53,14 +55,26 @@ namespace MathGame.Activities
             login.Click += Login_Click;
         }
 
-        private async Task<bool> PasswordCorrect(string username, string password)
+        /// <summary>
+        /// Checks if the given password is correct compared the given user
+        /// </summary>
+        /// <param name="username">username which is password should be tested</param>
+        /// <param name="password">(probably) the password of the given username</param>
+        /// <param name="MD5_required">if MD5 required to check, if the password already the hash, for example like in NFC tag auto-login), the hashes from the NFC Tag and from the DB got compared, and when the user logins via regular method, the password got hashed and after that get checked with the DB hashed password</param>
+        /// <returns>true if the local password and DB password matched according the MD5 rules</returns>
+        private async Task<bool> PasswordCorrect(string username, string password, bool MD5_required)
         {
             System.Collections.Generic.Dictionary<string, object> loginData = await FirebaseManager.GetLoginDataAsync(username);
 
             if (loginData == null)
                 return false;
             else
-                return password.GetMD5() == loginData["Password"].ToString();  // compare between already hashed password in db, and entered password hashed
+            {
+                if (MD5_required)
+                    password = password.GetMD5();
+            }
+
+            return password == loginData["Password"].ToString();  // compare between already hashed password in db, and entered password hashed
         }
 
         private async void Login_Click(object sender, EventArgs e)
@@ -77,7 +91,7 @@ namespace MathGame.Activities
                 return;
             }
 
-            if (await PasswordCorrect(username.Text, password.Text))  // if password matches => successfully logged in
+            if (await PasswordCorrect(username.Text, password.Text, true))  // if password matches => successfully logged in
             {
                 this.Login(username.Text);
             }
@@ -140,6 +154,20 @@ namespace MathGame.Activities
             // Get the transmitted data
             string data = System.Text.Encoding.ASCII.GetString(record.GetPayload());
 
+            loginDataExpression = new Regex(@"^\[com\.yonka\.mathgame\]\$LOGIN_DATA\{(.+?):(.+?)\}\$$");
+            Match dataMatch = loginDataExpression.Match(data);
+
+            if (dataMatch.Success)
+            {
+                // if data matched -> fill login data and try to login
+                username.Text = dataMatch.Groups[1].Value;
+                password.Text = dataMatch.Groups[2].Value;
+
+                if (await PasswordCorrect(username.Text, password.Text, false))  // if password matches => successfully logged in
+                {
+                    this.Login(username.Text);
+                }
+            }
 
         }
     }
