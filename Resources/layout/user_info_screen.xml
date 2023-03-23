@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Created At: "
+            android:text="Since: "
             android:textSize="@dimen/sp_xlarge"/>
             
         <TextView
@@ -105,6 +105,14 @@
             android:layout_height="wrap_content"
             android:text="Back to menu"
             android:textSize="@dimen/sp_large"
-            android:layout_margin="16dp"/>
+            android:layout_margin="@dimen/dp_xlarge"/>
+
+        <Button
+            android:id="@+id/info_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOG OUT"
+            android:textSize="@dimen/sp_medium"
+            android:layout_margin="@dimen/dp_xlarge"/>
     </LinearLayout>
 </LinearLayout>

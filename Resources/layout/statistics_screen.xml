@@ -14,10 +14,12 @@
         android:padding="@dimen/dp_large"
         android:textSize="@dimen/sp_xxlarge"/>
 
+    <!--0dp to make the listview maximized and enable the scroll when he will be fully filled-->
     <ListView
-        android:id="@+id/my_listview"
+        android:id="@+id/statistics_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:padding="@dimen/dp_xlarge"/>
 
     <Button

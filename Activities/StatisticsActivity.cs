@@ -112,7 +112,7 @@ namespace MathGame.Activities
         private void SetRefs()
         {
             backButton = FindViewById<Button>(Resource.Id.stats_backButton);
-            listView = FindViewById<ListView>(Resource.Id.my_listview);
+            listView = FindViewById<ListView>(Resource.Id.statistics_listview);
         }
 
         private void SetEvents()

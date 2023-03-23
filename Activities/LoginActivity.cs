@@ -8,12 +8,14 @@ using MathGame.Models;
 using System.Text.RegularExpressions;
 using System;
 using System.Threading.Tasks;
+using Google.Android.Material.TextField;
 
 namespace MathGame.Activities
 {
     [Activity(Label = "LoginActivity")]
     public class LoginActivity : Activity
     {
+        private TextInputLayout usernametil, passwordtil;
         private EditText username, password;
         private TextView gotoRegister;
         private Button login;
@@ -47,12 +49,27 @@ namespace MathGame.Activities
 
             username = FindViewById<EditText>(Resource.Id.login_userTB);
             password = FindViewById<EditText>(Resource.Id.login_passTB);
+
+            usernametil = FindViewById<TextInputLayout>(Resource.Id.login_usernametil);
+            passwordtil = FindViewById<TextInputLayout>(Resource.Id.login_passtil);
         }
 
         private void SetEvents()
         {
             gotoRegister.Click += GotoRegister_Click;
             login.Click += Login_Click;
+            username.TextChanged += Username_TextChanged;
+            password.TextChanged += Password_TextChanged;
+        }
+
+        private void Password_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            passwordtil.Error = "";
+        }
+
+        private void Username_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            usernametil.Error = "";
         }
 
         /// <summary>
@@ -81,13 +98,13 @@ namespace MathGame.Activities
         {
             if (username.Text == "")
             {
-                username.Error = "Username can't be blank";
+                usernametil.Error = "Username can't be blank";
                 return;
             }
 
             if (password.Text == "")
             {
-                password.Error = "Password can't be blank";
+                passwordtil.Error = "Password can't be blank";
                 return;
             }
 
@@ -97,7 +114,7 @@ namespace MathGame.Activities
             }
             else
             {
-                password.Error = "Wrong username or password";
+                passwordtil.Error = "Wrong username or password";
             }
         }
 
@@ -120,7 +137,7 @@ namespace MathGame.Activities
 
                 Intent intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
 
-                PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
+                PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.Mutable);
 
                 // Gives your current foreground activity priority in receiving NFC events over all other activities.
                 nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
@@ -131,7 +148,7 @@ namespace MathGame.Activities
         /// If there's a new NFC tag detection, OnNewIntent will catch it
         /// </summary>
         /// <param name="intent"></param>
-        protected override void OnNewIntent(Intent intent)
+        protected override async void OnNewIntent(Intent intent)
         {
             if (intent.Action != NfcAdapter.ActionTagDiscovered) return;
             Tag NFCTag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);

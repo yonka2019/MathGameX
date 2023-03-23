@@ -83,7 +83,7 @@ namespace MathGame.Activities
 
         private (string, System.DateTime) GetLastLoginDT()
         {
-            ISharedPreferences loginSessionSP = GetSharedPreferences("LoginSesson", FileCreationMode.Private);
+            ISharedPreferences loginSessionSP = GetSharedPreferences("LoginSession", FileCreationMode.Private);
             string lastLoginTime = loginSessionSP.GetString("LoginTime", System.DateTime.MinValue.ToString());  // if there is no last session - it will be automatically the lowest value - which will always require to re-log-in (session would be always expired)
 
             string username = loginSessionSP.GetString("Username", "");

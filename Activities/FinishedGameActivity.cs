@@ -76,7 +76,8 @@ namespace MathGame.Activities
 
         private void SaveDataToDB()
         {
-            FirebaseManager.SetStatsData(MainActivity.Username,
+            if (MainActivity.Username != "")  // save only if the player not in anonymous 
+                FirebaseManager.SetStatsData(MainActivity.Username,
                 correctAnswersCounter['+'],
                 correctAnswersCounter['-'],
                 correctAnswersCounter['*'],

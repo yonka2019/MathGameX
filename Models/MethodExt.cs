@@ -59,7 +59,7 @@ namespace MathGame.Models
         /// <param name="password"></param>
         public static void Login(this Context context, string username)
         {
-            ISharedPreferences loginSessionSP = context.GetSharedPreferences("LoginSesson", FileCreationMode.Private);
+            ISharedPreferences loginSessionSP = context.GetSharedPreferences("LoginSession", FileCreationMode.Private);
             ISharedPreferencesEditor lsEditor = loginSessionSP.Edit();
 
             lsEditor.PutString("Username", username);

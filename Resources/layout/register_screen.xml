@@ -3,12 +3,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_3xlarge">
+    android:padding="@dimen/dp_3xlarge"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
   
     <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Register Menu"
+       android:text="Sign up"
        android:textSize="@dimen/sp_xlarge"
        android:textStyle="bold"
        android:layout_gravity="center_horizontal"
@@ -17,8 +18,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_3xlarge"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="wrap_content"
+        android:id="@+id/register_usernametil">
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="textEmailAddress"
             android:hint="Username"
             android:textSize="@dimen/sp_large"
@@ -30,8 +32,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="wrap_content"
+        android:id="@+id/register_passtil">
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="textPassword"
             android:hint="Password"
             android:imeOptions="actionDone"
@@ -43,8 +46,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="wrap_content"
+        android:id="@+id/register_confpasstil">
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="textPassword"
             android:id="@+id/register_confPassTB"
             android:hint="Confirm password"

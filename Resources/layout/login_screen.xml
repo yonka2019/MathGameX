@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_3xlarge">
+    android:padding="@dimen/dp_3xlarge"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
   
     <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Login Menu"
+       android:text="Login"
        android:textSize="@dimen/sp_xlarge"
        android:textStyle="bold"
        android:layout_gravity="center_horizontal"
@@ -19,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_3xlarge"
         android:id="@+id/login_usernametil">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="textEmailAddress"
             android:hint="Username"
             android:id="@+id/login_userTB"
@@ -30,10 +32,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_passtil">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="textPassword"
             android:hint="Password"
             android:id="@+id/login_passTB"

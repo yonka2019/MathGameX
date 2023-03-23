@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Widget;
 using Firebase;
 using Java.Util;
@@ -15,6 +16,7 @@ namespace MathGame.Activities
     [Activity(Label = "RegisterActivity")]
     public class RegisterActivity : Activity
     {
+        private TextInputLayout usernametil, passwordtil, confpasswordtil;
         private EditText username, password, confirmPassword;
         private TextView gotoLogin;
         private Button register;
@@ -44,12 +46,34 @@ namespace MathGame.Activities
             username = FindViewById<EditText>(Resource.Id.register_userTB);
             password = FindViewById<EditText>(Resource.Id.register_passTB);
             confirmPassword = FindViewById<EditText>(Resource.Id.register_confPassTB);
+
+            usernametil = FindViewById<TextInputLayout>(Resource.Id.register_usernametil);
+            passwordtil = FindViewById<TextInputLayout>(Resource.Id.register_passtil);
+            confpasswordtil = FindViewById<TextInputLayout>(Resource.Id.register_confpasstil);
         }
 
         private void SetEvents()
         {
             gotoLogin.Click += GotoLogin_Click;
             register.Click += Register_Click;
+            username.TextChanged += Username_TextChanged;
+            password.TextChanged += Password_TextChanged;
+            confirmPassword.TextChanged += ConfirmPassword_TextChanged;
+        }
+
+        private void ConfirmPassword_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            confpasswordtil.Error = "";
+        }
+
+        private void Password_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            passwordtil.Error = "";
+        }
+
+        private void Username_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            usernametil.Error = "";
         }
 
         /// <summary>
@@ -82,25 +106,25 @@ namespace MathGame.Activities
         {
             if (username.Text == "")
             {
-                username.Error = "Username can't be blank";
+                usernametil.Error = "Username can't be blank";
                 return;
             }
 
             if (password.Text == "")
             {
-                password.Error = "Password can't be blank";
+                passwordtil.Error = "Password can't be blank";
                 return;
             }
 
             if (password.Text != confirmPassword.Text)
             {
-                confirmPassword.Error = "Not the same";
+                confpasswordtil.Error = "Not the same";
                 return;
             }
 
             if (!IsStrongPassword(password.Text))  // check if password strong enough
             {
-                password.Error = "Weak password";
+                passwordtil.Error = "Weak password";
                 return;
             }
 
@@ -113,7 +137,7 @@ namespace MathGame.Activities
             }
             else  // already exists
             {
-                username.Error = "Already Exists";
+                usernametil.Error = "Already Exists";
             }
         }
 

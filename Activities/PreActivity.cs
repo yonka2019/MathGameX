@@ -23,7 +23,7 @@ namespace MathGame.Activities
             SetEvents();
 
             // if there is no internet connection allow only play anonymously (because can not connect to the database)
-            if (!base.Intent.GetBooleanExtra("InternetConnection", false))
+            if (!base.Intent.GetBooleanExtra("InternetConnection", true))
             {
                 login.Enabled = false;
                 register.Enabled = false;
@@ -68,6 +68,11 @@ namespace MathGame.Activities
         private void Register_Click(object sender, EventArgs e)
         {
             StartActivity(new Intent(this, typeof(RegisterActivity)));
+        }
+
+        public override void OnBackPressed()
+        {
+            // prevent user to get back because he can be after log-out
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MathGame.Activities
     [Activity(Label = "UserInfoActivity")]
     public class UserInfoActivity : Activity
     {
-        private Button backToMenu, changeChart;
+        private Button backToMenu, changeChart, logout;
         private ChartView statsChart;
         private TextView playerName, createdAt;
         private CheckBox clearTag;
@@ -78,6 +78,7 @@ namespace MathGame.Activities
         {
             backToMenu = FindViewById<Button>(Resource.Id.info_backToMenu);
             changeChart = FindViewById<Button>(Resource.Id.info_changeChart);
+            logout = FindViewById<Button>(Resource.Id.info_logout);
 
             statsChart = FindViewById<ChartView>(Resource.Id.info_statsChart);
 
@@ -91,6 +92,19 @@ namespace MathGame.Activities
         {
             backToMenu.Click += BackToMenu_Click;
             changeChart.Click += ChangeChart_Click;
+            logout.Click += Logout_Click;
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            MainActivity.Username = "";  // remove username
+
+            GetSharedPreferences("LoginSession", FileCreationMode.Private).Edit().Clear().Commit();  // removes current session (even if expired)
+
+            Intent preActivity = new Intent(this, typeof(PreActivity));
+            StartActivity(preActivity);
+
+            Toast.MakeText(this, "Logged out", ToastLength.Short).Show();
         }
 
         private void SetupChartData(Dictionary<string, object> userStatisticsData)
@@ -222,7 +236,7 @@ namespace MathGame.Activities
 
                 Intent intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
 
-                PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
+                PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.Mutable);
 
                 // Gives your current foreground activity priority in receiving NFC events over all other activities.
                 nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);

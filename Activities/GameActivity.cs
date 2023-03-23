@@ -314,15 +314,22 @@ namespace MathGame.Activities
         {
             base.OnResume();
 
-            RegisterReceiver(lowBatteryReceiver, lowBatteryFilter);
+            try  // if receiver already registed
+            {
+                RegisterReceiver(lowBatteryReceiver, lowBatteryFilter);
+            }
+            catch { }
         }
 
-        protected override void OnPause()
+        protected override void OnDestroy()
         {
-            base.OnPause();
+            base.OnDestroy();
 
-            // Unregister the low-battery broadcast receiver
-            UnregisterReceiver(lowBatteryReceiver);
+            try  // if receiver already unregistred
+            {
+                UnregisterReceiver(lowBatteryReceiver);
+            }
+            catch { }
         }
 
         private void ResetCounter()

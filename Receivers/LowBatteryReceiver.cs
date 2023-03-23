@@ -9,7 +9,7 @@ namespace MathGame
     [IntentFilter(new[] { Intent.ActionBatteryChanged })]
     public class LowBatteryReceiver : BroadcastReceiver
     {
-        private const int LOW_PERCENT_WARNING = 10;
+        private const int LOW_PERCENT_WARNING = 5;
 
         public override void OnReceive(Context context, Intent intent)
         {
