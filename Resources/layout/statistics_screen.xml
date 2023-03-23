@@ -18,7 +18,7 @@
         android:id="@+id/my_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"/>
+        android:padding="@dimen/dp_xlarge"/>
 
     <Button
         android:layout_width="match_parent"

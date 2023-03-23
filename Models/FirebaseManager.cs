@@ -49,6 +49,10 @@ namespace MathGame.Models
          *  [Field]                                                                 [int] Divide
          */
 
+        /// <summary>
+        /// Initialize the database (should be only one time at the first launching (at SplashActivity.cs)
+        /// </summary>
+        /// <param name="context">current context</param>
         public static void Init(Context context)
         {
             FirebaseApp app = FirebaseApp.InitializeApp(context);

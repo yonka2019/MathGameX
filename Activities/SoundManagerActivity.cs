@@ -47,6 +47,7 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.sound_manager_screen);
 
             SetRefs();
@@ -72,6 +73,13 @@ namespace MathGame.Activities
 
             songAdapter = new SongAdapter(this, SongList, GetSongPosition(musicSP.GetInt("SongFile", default)));
             lv.Adapter = songAdapter;
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private int GetSongPosition(int songFile)
@@ -151,13 +159,6 @@ namespace MathGame.Activities
         private void Back_Click(object sender, System.EventArgs e)
         {
             StartActivity(new Intent(this, typeof(MainActivity)));
-        }
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

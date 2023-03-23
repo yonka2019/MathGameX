@@ -19,6 +19,7 @@ namespace MathGame.Activities
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.statistics_screen);
 
             SetRefs();
@@ -29,6 +30,13 @@ namespace MathGame.Activities
 
             // Set the adapter for the ListView
             listView.Adapter = adapter;
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private SimpleAdapter SetAdapter(DataTable dataTable)

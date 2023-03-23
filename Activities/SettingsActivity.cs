@@ -5,6 +5,7 @@ using Android.Widget;
 using AndroidX.Activity;
 using System;
 using MathGame.Models;
+using Android.Runtime;
 
 namespace MathGame.Activities
 {
@@ -20,6 +21,7 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.settings_screen);
 
             SetRefs();
@@ -28,6 +30,13 @@ namespace MathGame.Activities
             settingsSP = GetSharedPreferences("Settings", FileCreationMode.Private);
 
             RestoreSettingsView();  // settings manager already restored in main activity (on program startup)
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private void RestoreSettingsView()

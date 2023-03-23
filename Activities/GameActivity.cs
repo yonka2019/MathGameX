@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Media;
 using Android.OS;
+using Android.Runtime;
 using Android.Views.InputMethods;
 using Android.Widget;
 using MathGame.Models;
@@ -48,6 +49,7 @@ namespace MathGame.Activities
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.game_screen);
 
             numberFormat = CultureInfo.CurrentCulture.NumberFormat;
@@ -71,6 +73,13 @@ namespace MathGame.Activities
 
             ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
             await StartGame();  // starting game
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private void SetLowBatteryReceiver()

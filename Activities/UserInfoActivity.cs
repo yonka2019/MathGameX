@@ -1,7 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
+using Android.Nfc;
+using Android.Nfc.Tech;
 using Android.OS;
+using Android.Runtime;
 using Android.Widget;
 using Java.Text;
 using MathGame.Models;
@@ -10,6 +13,7 @@ using Microcharts.Droid;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MathGame.Activities
 {
@@ -25,13 +29,18 @@ namespace MathGame.Activities
 
         private const int LABEL_FONT_SIZE = 45;
 
+        private NfcAdapter nfcAdapter;
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.user_info_screen);
 
             SetRefs();
             SetEvents();
+
+            nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
             Dictionary<string, object> userStatisticsData = await FirebaseManager.GetStatsDataAsync(MainActivity.Username);
             Dictionary<string, object> userRegisterData = await FirebaseManager.GetRegisterDataAsync(MainActivity.Username);
@@ -42,6 +51,13 @@ namespace MathGame.Activities
 
             SetupChartData(userStatisticsData);
             SetupIntialChart();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
 
@@ -187,6 +203,53 @@ namespace MathGame.Activities
         private void BackToMenu_Click(object sender, EventArgs e)
         {
             StartActivity(new Intent(this, typeof(MainActivity)));
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (nfcAdapter != null)
+            {
+                //Set events and filters
+                IntentFilter tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
+                IntentFilter ndefDetected = new IntentFilter(NfcAdapter.ActionNdefDiscovered);
+                IntentFilter techDetected = new IntentFilter(NfcAdapter.ActionTechDiscovered);
+                IntentFilter[] filters = new[] { ndefDetected, tagDetected, techDetected };
+
+                Intent intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
+
+                PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
+
+                // Gives your current foreground activity priority in receiving NFC events over all other activities.
+                nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
+            }
+        }
+
+        /// <summary>
+        /// If there's NFC detection OnNewIntent will catch it
+        /// </summary>
+        /// <param name="intent"></param>
+        protected override async void OnNewIntent(Intent intent)
+        {
+            // save login data to NFC Card in order to easily login
+            string hashedPassword = (await FirebaseManager.GetLoginDataAsync(MainActivity.Username))["Password"].ToString();
+            WriteToNFCTag(intent, hashedPassword);
+        }
+
+        public void WriteToNFCTag(Intent intent, string content)
+        {
+            if (!(intent.GetParcelableExtra(NfcAdapter.ExtraTag) is Tag tag)) return;
+            Ndef ndef = Ndef.Get(tag);
+            if (ndef == null || !ndef.IsWritable) return;
+            byte[] payload = Encoding.ASCII.GetBytes(content);
+            byte[] mimeBytes = Encoding.ASCII.GetBytes("text/plain");
+            NdefRecord record = new NdefRecord(NdefRecord.TnfWellKnown, mimeBytes, new byte[0], payload);
+            NdefMessage ndefMessage = new NdefMessage(new[] { record });
+
+            ndef.Connect();
+            ndef.WriteNdefMessage(ndefMessage);
+            ndef.Close();
         }
     }
 }

@@ -18,7 +18,7 @@ public class LowBatteryReceiver : BroadcastReceiver
 
         if (batteryPercent <= LOW_PERCENT_WARNING)
         {
-            context.ShowDialog("Low Battery", "Your battery is getting low!", "Understand");
+            context.CreateShowDialog("Low Battery", "Your battery is getting low!", "Understand");
         }
     }
 }

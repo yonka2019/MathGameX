@@ -36,7 +36,7 @@ namespace MathGame.Models
         /// <summary>
         /// Shortcuter to show dialog in THIS context
         /// </summary>
-        public static void ShowDialog(this Android.Content.Context context, string title, string message, string positiveButtonText, int iconId = 0)
+        public static void CreateShowDialog(this Android.Content.Context context, string title, string message, string positiveButtonText, int iconId = 0)
         {
             Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(context);
 

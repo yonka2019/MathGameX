@@ -59,4 +59,29 @@
         android:textSize="@dimen/sp_large"
         android:textStyle="bold"
         android:id="@+id/login_gotoRegister"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_35xlarge"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="just an image of NFC (non-clickable)"
+            android:src="@drawable/nfc_tag_50px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NFC tag login supported"
+            android:layout_marginTop="@dimen/dp_medium"
+            android:textSize="@dimen/sp_large"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#999999"/>
+        </LinearLayout>
 </LinearLayout>

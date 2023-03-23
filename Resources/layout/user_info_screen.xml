@@ -68,16 +68,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dp_xxlarge">
+        android:layout_marginTop="@dimen/dp_35xlarge">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_35xlarge"
+            android:layout_gravity="center"
+            android:contentDescription="just an image of NFC (non-clickable)"
+            android:src="@drawable/nfc_tag_50px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place NFC tag to save login data"
+            android:layout_marginTop="@dimen/dp_medium"
+            android:textSize="@dimen/sp_large"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#999999"/>
+
+        <!--will remove only if you the owner (user) of the card-->SSS
+        <CheckBox
+            android:layout_marginTop="@dimen/dp_small" 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Clear data from tag"
+            android:textColor="#999999"/>
 
         <Button
             android:id="@+id/info_backToMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back to menu"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_large"
             android:layout_margin="16dp"/>
     </LinearLayout>
 </LinearLayout>

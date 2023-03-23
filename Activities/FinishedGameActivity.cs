@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Runtime;
 using Android.Widget;
 using MathGame.Models;
 using Microcharts;
@@ -29,6 +30,7 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.finished_game);
 
             SetRefs();
@@ -50,6 +52,13 @@ namespace MathGame.Activities
 
             correctAnswersNumber.Text = correctAnswers.ToString();
             wrongAnswersNumber.Text = wrongAnswers.ToString();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private void SetupIntialChart()
