@@ -2,7 +2,8 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Google.Android.Material.TextField;
+using Firebase;
+using Java.Util;
 using MathGame.Models;
 using System;
 using System.Text.RegularExpressions;
@@ -34,7 +35,6 @@ namespace MathGame.Activities
             username = FindViewById<EditText>(Resource.Id.register_userTB);
             password = FindViewById<EditText>(Resource.Id.register_passTB);
             confirmPassword = FindViewById<EditText>(Resource.Id.register_confPassTB);
-
         }
 
         private void SetEvents()
@@ -62,8 +62,9 @@ namespace MathGame.Activities
             return await FirebaseManager.GetLoginDataAsync(username) != null;  // check if user already exist
         }
 
-        private void AddUser(string username, string password)
+        private void RegisterUser(string username, string password)
         {
+            FirebaseManager.SetRegisterData(username);
             FirebaseManager.SetLoginData(username, password);
             FirebaseManager.SetStatsData(username, 0, 0, 0, 0);  // fill zeros to stats
         }
@@ -97,11 +98,9 @@ namespace MathGame.Activities
 
             if (!await UserAlreadyExists(username.Text))  // not exist -> create user and auto login
             {
-                AddUser(username.Text, password.Text);
-                Intent mainActivity = new Intent(this, typeof(MainActivity));
+                RegisterUser(username.Text, password.Text);
 
-                mainActivity.PutExtra("User", username.Text);
-                StartActivity(mainActivity);
+                this.Login(username.Text);
             }
             else  // already exists
             {

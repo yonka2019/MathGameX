@@ -69,12 +69,9 @@ namespace MathGame.Activities
                 return;
             }
 
-            if (await PasswordCorrect(username.Text, password.Text))  // successfully logged in
+            if (await PasswordCorrect(username.Text, password.Text))  // if password matches => successfully logged in
             {
-                Intent mainActivity = new Intent(this, typeof(MainActivity));
-
-                mainActivity.PutExtra("User", username.Text);
-                StartActivity(mainActivity);
+                this.Login(username.Text);
             }
             else
             {

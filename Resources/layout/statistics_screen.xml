@@ -9,7 +9,7 @@
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Statistics"
+        android:text="Global Statistics"
         android:layout_gravity="center"
         android:padding="@dimen/dp_large"
         android:textSize="@dimen/sp_xxlarge"/>
@@ -18,7 +18,7 @@
         android:id="@+id/my_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp" />
+        android:padding="16dp"/>
 
     <Button
         android:layout_width="match_parent"

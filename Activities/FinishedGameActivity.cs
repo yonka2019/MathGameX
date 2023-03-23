@@ -43,14 +43,13 @@ namespace MathGame.Activities
             correctAnswersCounter['*'] = base.Intent.GetIntExtra("stats:*", 0);
             correctAnswersCounter['/'] = base.Intent.GetIntExtra("stats:/", 0);
 
+            SaveDataToDB();
+
             SetupChartData();
+            SetupIntialChart();
 
             correctAnswersNumber.Text = correctAnswers.ToString();
             wrongAnswersNumber.Text = wrongAnswers.ToString();
-
-            SetupIntialChart();
-
-            SaveDataToDB();
         }
 
         private void SetupIntialChart()
@@ -68,10 +67,11 @@ namespace MathGame.Activities
 
         private void SaveDataToDB()
         {
-            //FirebaseManager.SetStatsDataAsync(MainActivity.Username, correctAnswersCounter['+'],
-            //    correctAnswersCounter['-'],
-            //    correctAnswersCounter['*'],
-            //    correctAnswersCounter['/']);
+            FirebaseManager.SetStatsData(MainActivity.Username,
+                correctAnswersCounter['+'],
+                correctAnswersCounter['-'],
+                correctAnswersCounter['*'],
+                correctAnswersCounter['/']);
         }
 
         private void SetRefs()

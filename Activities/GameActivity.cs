@@ -33,15 +33,17 @@ namespace MathGame.Activities
 
         private Game currentGame;
 
-        /// <summary>
-        /// Cancellation token which allows to stop the task remotely (for example if the user submitted the answer, or skipped)
-        /// </summary>
-        private CancellationTokenSource cts;
-
         private bool gameRunning;
 
         private readonly Dictionary<char, int> correctAnswersCounter = new Dictionary<char, int>();
 
+        private LowBatteryReceiver lowBatteryReceiver;
+        private IntentFilter lowBatteryFilter;
+
+        /// <summary>
+        /// Cancellation token which allows to stop the task remotely (for example if the user submitted the answer, or skipped)
+        /// </summary>
+        private CancellationTokenSource cts;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -53,6 +55,7 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+            SetLowBatteryReceiver();
 
             ResetCounter();
 
@@ -68,6 +71,16 @@ namespace MathGame.Activities
 
             ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
             await StartGame();  // starting game
+        }
+
+        private void SetLowBatteryReceiver()
+        {
+            // Create the broadcast receiver and intent filter
+            lowBatteryReceiver = new LowBatteryReceiver();
+            lowBatteryFilter = new IntentFilter(Intent.ActionBatteryChanged);
+
+            // Register the broadcast receiver
+            RegisterReceiver(lowBatteryReceiver, lowBatteryFilter);
         }
 
         private async Task StartGame()
@@ -182,6 +195,9 @@ namespace MathGame.Activities
             if (!cts.IsCancellationRequested)  // Cancel if not already canceled
                 cts.Cancel();
 
+            // Unregister the low-battery broadcast receiver
+            UnregisterReceiver(lowBatteryReceiver);
+
             Vibrator vibrator = (Vibrator)GetSystemService(VibratorService);
             if (vibrator.HasVibrator)
             {
@@ -283,6 +299,21 @@ namespace MathGame.Activities
         public override void OnBackPressed()
         {
             leaveButton.PerformClick();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            RegisterReceiver(lowBatteryReceiver, lowBatteryFilter);
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            // Unregister the low-battery broadcast receiver
+            UnregisterReceiver(lowBatteryReceiver);
         }
 
         private void ResetCounter()

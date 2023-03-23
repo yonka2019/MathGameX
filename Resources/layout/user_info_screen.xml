@@ -35,14 +35,49 @@
             android:textSize="@dimen/sp_xlarge"/>
             
         <TextView
+            android:id="@+id/info_createdAt"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="00.00.00 00:00"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_xlarge"/>
+    </LinearLayout>
 
+    <!--Chart layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_4xlarge"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-            
+        <Microcharts.Droid.ChartView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_mxlarge"
+            android:id="@+id/info_statsChart"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_4xlarge"
+            android:layout_gravity="center"
+            android:id="@+id/info_changeChart"
+            android:drawableBottom="@drawable/pie_chart_35px"/>
+    </LinearLayout>
+
+    <!-- Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_xxlarge">
+
+        <Button
+            android:id="@+id/info_backToMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to menu"
+            android:textSize="18sp"
+            android:layout_margin="16dp"/>
     </LinearLayout>
 </LinearLayout>

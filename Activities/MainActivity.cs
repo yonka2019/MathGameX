@@ -13,8 +13,10 @@ namespace MathGame.Activities
         Icon = "@mipmap/ic_launcher")]
     public class MainActivity : AppCompatActivity
     {
+        public static string Username { set; get; }
+
         private Button Stats, Start, Settings;
-        private TextView Login, Register, Username;
+        private TextView Login, Register, UsernameTV;
         private ImageButton SetSong;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -27,15 +29,14 @@ namespace MathGame.Activities
             RestoreAmbientSound();
             RestoreGameSettings();
 
-            string user = base.Intent.GetStringExtra("User");
-            //if (user != "")  // not anonymous mode and there is internet (if there is internet lack - the mode automatically will be anonymous
-            //{
-            //    Username.Text = user;
+            if (Username != "")  // not anonymous mode and there is internet (if there is internet lack - the mode automatically will be anonymous
+            {
+                UsernameTV.Text = Username;
 
-            //    Username.Visibility = Android.Views.ViewStates.Visible;
-            //    Login.Visibility = Android.Views.ViewStates.Gone;
-            //    Register.Visibility = Android.Views.ViewStates.Gone;
-            //}
+                UsernameTV.Visibility = Android.Views.ViewStates.Visible;
+                Login.Visibility = Android.Views.ViewStates.Gone;
+                Register.Visibility = Android.Views.ViewStates.Gone;
+            }
         }
 
         private void RestoreGameSettings()
@@ -65,7 +66,7 @@ namespace MathGame.Activities
             if (SplashActivity.InternetConnection)  // check if there is internet connection
                 StartActivity(new Intent(this, typeof(RegisterActivity)));
             else
-                ShowDialog("No internet connection", "Can't register due internet lack", "OK", Resource.Drawable.wifi_off_64px);
+                this.ShowDialog("No internet connection", "Can't register due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Login_Click(object sender, System.EventArgs e)
@@ -73,7 +74,7 @@ namespace MathGame.Activities
             if (SplashActivity.InternetConnection)  // check if there is internet connection
                 StartActivity(new Intent(this, typeof(LoginActivity)));
             else
-                ShowDialog("No internet connection", "Can't login due internet lack", "OK", Resource.Drawable.wifi_off_64px);
+                this.ShowDialog("No internet connection", "Can't login due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Stats_Click(object sender, System.EventArgs e)
@@ -81,7 +82,7 @@ namespace MathGame.Activities
             if (SplashActivity.InternetConnection)  // check if there is internet connection
                 StartActivity(new Intent(this, typeof(StatisticsActivity)));
             else
-                ShowDialog("No internet connection", "Can't open statistics due internet lack", "OK", Resource.Drawable.wifi_off_64px);
+                this.ShowDialog("No internet connection", "Can't open statistics due internet lack", "OK", Resource.Drawable.wifi_off_64px);
         }
 
         private void Settings_Click(object sender, System.EventArgs e)
@@ -102,29 +103,9 @@ namespace MathGame.Activities
             }
             else
             {
-                ShowDialog("Warning", "You must set up the settings before starting game", "OK", Resource.Drawable.warning64);
+                this.ShowDialog("Warning", "You must set up the settings before starting game", "OK", Resource.Drawable.warning64);
             }
         }
-
-        /// <summary>
-        /// Shortcuter to show dialog in THIS context
-        /// </summary>
-        private void ShowDialog(string title, string message, string positiveButtonText, int iconId = 0)
-        {
-            Android.App.AlertDialog.Builder builder = new Android.App.AlertDialog.Builder(this);
-
-            builder.SetTitle(title);
-            builder.SetMessage(message);
-            builder.SetPositiveButton(positiveButtonText, delegate { });
-
-            if (iconId != 0)  // check if icon gived
-                builder.SetIcon(iconId);
-
-            Android.App.AlertDialog dialog = builder.Create();
-
-            dialog.Show();
-        }
-
 
         private void SetRefs()
         {
@@ -136,7 +117,7 @@ namespace MathGame.Activities
 
             Login = FindViewById<TextView>(Resource.Id.main_loginButton);
             Register = FindViewById<TextView>(Resource.Id.main_registerButton);
-            Username = FindViewById<TextView>(Resource.Id.main_username);
+            UsernameTV = FindViewById<TextView>(Resource.Id.main_username);
         }
 
         private void SetEvents()
@@ -149,6 +130,13 @@ namespace MathGame.Activities
 
             Login.Click += Login_Click;
             Register.Click += Register_Click;
+
+            UsernameTV.Click += UsernameTV_Click;
+        }
+
+        private void UsernameTV_Click(object sender, System.EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(UserInfoActivity)));
         }
 
         protected override void OnDestroy()

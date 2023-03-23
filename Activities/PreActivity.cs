@@ -47,7 +47,7 @@ namespace MathGame.Activities
         {
             Intent mainActivity = new Intent(this, typeof(MainActivity));
 
-            mainActivity.PutExtra("User", "");
+            MainActivity.Username = "";
             StartActivity(mainActivity);
         }
 

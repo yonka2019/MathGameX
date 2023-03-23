@@ -26,6 +26,7 @@ namespace MathGame.Models
         private static FirebaseFirestore database;
         private static CollectionReference baseReference;
 
+
         /*                                        $ # ## ### DATA BASE STRUCTURE ### ## # $
          *            
          *  [Collection]                                          Users 
@@ -72,46 +73,11 @@ namespace MathGame.Models
             baseReference = database.Collection(MAIN_COLLECTION);
         }
 
-        public static async Task<Dictionary<string, object>> GetLoginDataAsync(string username)
-        {
-            return await GetDataAsync(username, LOGIN_DOCUMENT);
-        }
-
-        public static async Task<Dictionary<string, object>> GetStatsDataAsync(string username)
-        {
-            return await GetDataAsync(username, STATISTICS_DOCUMENT);
-        }
-
-        public static void SetLoginData(string username, string password)
-        {
-            HashMap newLoginData = new HashMap();
-
-            newLoginData.Put("Password", password.GetMD5());  // hash password
-            newLoginData.Put("CreatedOn", new Timestamp(new Date()));
-
-            SetData(username, LOGIN_DOCUMENT, newLoginData);
-        }
-
-        public static void SetStatsData(string username, int plus, int minus, int multiply, int divide)
-        {
-            HashMap newStatisticsData = new HashMap();
-
-            newStatisticsData.Put("Plus", plus);
-            newStatisticsData.Put("Minus", minus);
-            newStatisticsData.Put("Multiply", multiply);
-            newStatisticsData.Put("Divide", divide);
-
-            SetData(username, STATISTICS_DOCUMENT, newStatisticsData);
-        }
-
-        #region Help Functions
-        private static void SetData(string collection, string document, HashMap data)
-        {
-            DocumentReference documentRef = baseReference.Document(collection).Collection(DATA_COLLECTION).Document(document);
-            documentRef.Set(data);
-        }
-
-        private static async Task<List<string>> GetUsers()
+        /// <summary>
+        /// returns all users which appears in the DB (all user documents)
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<string>> GetUsernames()
         {
             List<string> usersList = new List<string>();
 
@@ -124,14 +90,88 @@ namespace MathGame.Models
             return usersList;
         }
 
+        public static async Task<Dictionary<string, object>> GetLoginDataAsync(string username)
+        {
+            return await GetDataAsync(username, LOGIN_DOCUMENT);
+        }
+
+        public static async Task<Dictionary<string, object>> GetStatsDataAsync(string username)
+        {
+            return await GetDataAsync(username, STATISTICS_DOCUMENT);
+        }
+
+        public static async Task<Dictionary<string, object>> GetRegisterDataAsync(string username)
+        {
+            return await GetDataAsync(username);
+        }
+
+        public static void SetLoginData(string username, string password)
+        {
+            HashMap newLoginData = new HashMap();
+
+            newLoginData.Put("Password", password.GetMD5());  // hash (via MD5) the password
+
+            SetData(newLoginData, username, LOGIN_DOCUMENT);
+        }
+
+        public static void SetStatsData(string username, int plus, int minus, int multiply, int divide)
+        {
+            HashMap newStatisticsData = new HashMap();
+
+            newStatisticsData.Put("Plus", plus);
+            newStatisticsData.Put("Minus", minus);
+            newStatisticsData.Put("Multiply", multiply);
+            newStatisticsData.Put("Divide", divide);
+
+            SetData(newStatisticsData, username, STATISTICS_DOCUMENT);
+        }
+
+        public static void SetRegisterData(string username)
+        {
+            HashMap registerData = new HashMap();
+
+            registerData.Put("CreatedAt", new Timestamp(new Date()));
+
+            SetData(registerData, username);
+        }
+
+#region Help Functions
+
+        /// <summary>
+        /// Sets the given data in the documents which requested to be updated
+        /// </summary>
+        /// <param name="data">data to be uploaded</param>
+        /// <param name="userDocument">user document</param>
+        /// <param name="document">user sub-document (login/stats), if empty it's refers to register document</param>
+        private static void SetData(HashMap data, string userDocument, string document = "")
+        {
+            DocumentReference documentRef;
+
+            if (document == "")
+                documentRef = baseReference.Document(userDocument);
+            else
+                documentRef = baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(document);
+
+
+            documentRef.Set(data);
+        }
+
         /// <summary>
         /// Retreieve the required data from specific collection and specific document
         /// </summary>
-        private static async Task<Dictionary<string, object>> GetDataAsync(string collection, string document)
+        /// <param name="userDocument">user document to retreieve data from</param>
+        /// <param name="requestedDocument">requested document to retreive data from, if empty it's refers to register document</param>
+        /// <returns>requested data</returns>
+        private static async Task<Dictionary<string, object>> GetDataAsync(string userDocument, string requestedDocument = "")
         {
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            DocumentSnapshot documentSnapshot;
 
-            DocumentSnapshot documentSnapshot = (DocumentSnapshot)await baseReference.Document(collection).Collection(DATA_COLLECTION).Document(document).Get();
+            if (requestedDocument == "")
+                documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Get();
+            else
+                documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(requestedDocument).Get();
+
 
             if (documentSnapshot != null && documentSnapshot.Exists())
             {
@@ -145,6 +185,7 @@ namespace MathGame.Models
             else
                 return null;
         }
-        #endregion
+
+#endregion
     }
 }

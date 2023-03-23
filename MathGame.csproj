@@ -74,7 +74,6 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\UserInfoActivity.cs" />
-    <Compile Include="Adapters\GridViewAdaper.cs" />
     <Compile Include="Enums\AnimationType.cs" />
     <Compile Include="Enums\ChartTypes.cs" />
     <Compile Include="Models\FirebaseManager.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Activities\GameActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SoundManagerActivity.cs" />
+    <Compile Include="Receivers\LowBatteryReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
@@ -318,15 +318,10 @@
     <AndroidResource Include="Resources\drawable\wifi_off_64px.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\grid_layout.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\gridview_border.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\list_item_layout.xml">
+    <AndroidResource Include="Resources\layout\statistics_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

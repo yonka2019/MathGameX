@@ -2,7 +2,9 @@
 using Android.Content;
 using Android.Net;
 using Android.OS;
+using Android.Widget;
 using MathGame.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace MathGame.Activities
@@ -42,12 +44,53 @@ namespace MathGame.Activities
         private async void SimulateStartupAsync()
         {
             await Task.Delay(1000);
-            // CHECK IF ALRERADY LOGGED
 
             Intent preActivity = new Intent(Application.Context, typeof(PreActivity));
             preActivity.PutExtra("InternetConnection", InternetConnection);
 
-            StartActivity(preActivity);
+            (string username, System.DateTime lastLoginDT) = GetLastLoginDT();
+
+
+            // if there is no internet connection -> must to open up pre-Activity (auto-login not takes in a count) 
+            // because user must be logged in as anonymous from pre-activity
+            //
+            //                      --- OR ---
+            //
+            // Session (which is 15 minutes) had been expired and the user must to re-log in
+
+            if (!InternetConnection || SessionExpired(lastLoginDT))
+                StartActivity(preActivity);
+
+            else  // session isn't expired
+            {
+                this.Login(username);
+
+                RunOnUiThread(() =>  // to avoid 'Can't toast on a thread that has not called Looper.prepare()'
+                {
+                    Toast.MakeText(this, "Session restored", ToastLength.Short).Show();
+                });
+            }
+        }
+
+        private (string, System.DateTime) GetLastLoginDT()
+        {
+            ISharedPreferences loginSessionSP = GetSharedPreferences("LoginSesson", FileCreationMode.Private);
+            string lastLoginTime = loginSessionSP.GetString("LoginTime", System.DateTime.MinValue.ToString());  // if there is no last session - it will be automatically the lowest value - which will always require to re-log-in (session would be always expired)
+
+            string username = loginSessionSP.GetString("Username", "");
+
+            return (username, System.DateTime.Parse(lastLoginTime));
+        }
+
+        /// <summary>
+        /// Checks if passed more than 15 minutes -> which means that the session expired and the user should be logged in again
+        /// </summary>
+        /// <param name="lastLogin">last login datetime</param>
+        /// <returns>true if session is expired and user must be re-logged in</returns>
+        private bool SessionExpired(System.DateTime lastLogin)
+        {
+            TimeSpan timeDifference = System.DateTime.Now - lastLogin;
+            return timeDifference.TotalMinutes > 15;  // if total minutes is higher than 15 -> session expired
         }
     }
 }

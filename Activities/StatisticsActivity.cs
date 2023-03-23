@@ -2,9 +2,8 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using MathGame.Adapters;
+using MathGame.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,9 +14,9 @@ namespace MathGame.Activities
     public class StatisticsActivity : Activity
     {
         private Button backButton;
-        private GridView gv;
+        private ListView listView;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.statistics_screen);
@@ -25,44 +24,87 @@ namespace MathGame.Activities
             SetRefs();
             SetEvents();
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Name");
-
-            dt.Columns.Add("Plus");
-            dt.Columns.Add("Minus");
-
-            dt.Rows.Add("asd", "asd", "asd");
-            var list = new JavaList<IDictionary<string, object>>();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                var dictionary = new Dictionary<string, object>();
-                foreach (DataColumn column in dt.Columns)
-                {
-                    var value = row[column];
-                    dictionary.Add(column.ColumnName, value != null ? value.ToString() : null);
-                }
-
-                list.Add(dictionary);
-            }
-
-            // Create a SimpleAdapter with the DataTable
-            var adapter = new SimpleAdapter(
-                this,
-                list,
-                Resource.Layout.list_item_layout,
-                new string[] { "Name", "Plus", "Minus" },
-                new int[] { Resource.Id.column1_textview, Resource.Id.column2_textview, Resource.Id.column3_textview });
+            DataTable sortedDataTable = SortTable(await SetupDataTable());
+            SimpleAdapter adapter = SetAdapter(sortedDataTable);
 
             // Set the adapter for the ListView
-            var listView = FindViewById<ListView>(Resource.Id.my_listview);
             listView.Adapter = adapter;
         }
 
+        private SimpleAdapter SetAdapter(DataTable dataTable)
+        {
+            JavaList<IDictionary<string, object>> totalDataList = new JavaList<IDictionary<string, object>>();
+
+            foreach (DataRow row in dataTable.Rows) // each row
+            {
+                JavaDictionary<string, object> userDictionary = new JavaDictionary<string, object>();
+
+                foreach (DataColumn column in dataTable.Columns)  // each column
+                { 
+                    object value = row[column];
+                    userDictionary.Add(column.ColumnName, value?.ToString());
+                }
+                totalDataList.Add(userDictionary);
+            }
+
+            // Create a SimpleAdapter with the DataTable
+            SimpleAdapter simpleAdapter = new SimpleAdapter(
+                this,
+                totalDataList,
+                Resource.Layout.statistics_layout,
+                new string[] { "Name", "+", "-", "*", "/", "Total" },
+                new int[] { Resource.Id.column1_playername, Resource.Id.column2_plusTotal, Resource.Id.column3_minusTotal, Resource.Id.column4_multiplyTotal, Resource.Id.column5_divideTotal, Resource.Id.column6_totalPoints }); ;
+
+            return simpleAdapter;
+        }
+
+        private async System.Threading.Tasks.Task<DataTable> SetupDataTable()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Name");
+
+            dataTable.Columns.Add("+");
+            dataTable.Columns.Add("-");
+            dataTable.Columns.Add("*");
+            dataTable.Columns.Add("/");
+            dataTable.Columns.Add("Total");
+
+            dataTable.Rows.Add("Name", "+", "-", "*", "/", "Total");
+
+            List<string> usernames = await FirebaseManager.GetUsernames();
+
+            foreach (string username in usernames)
+            {
+                Dictionary<string, object> statisticsData = await FirebaseManager.GetStatsDataAsync(username);
+                dataTable.Rows.Add(username, statisticsData["Plus"], statisticsData["Minus"], statisticsData["Multiply"], statisticsData["Divide"],
+                    GetTotalPoints(statisticsData));
+            }
+
+            return dataTable;
+        }
+
+        private DataTable SortTable(DataTable table)
+        {
+            table.DefaultView.Sort = "Total DESC";
+            return table.DefaultView.ToTable();
+        }
+
+        private int GetTotalPoints(Dictionary<string, object> stats)
+        {
+            int totalPoints = 0;
+
+            foreach (object correctAnswersCounter in stats.Values)
+            {
+                totalPoints += Convert.ToInt32(correctAnswersCounter);
+            }
+
+            return totalPoints;
+        }
 
         private void SetRefs()
         {
             backButton = FindViewById<Button>(Resource.Id.stats_backButton);
+            listView = FindViewById<ListView>(Resource.Id.my_listview);
         }
 
         private void SetEvents()
