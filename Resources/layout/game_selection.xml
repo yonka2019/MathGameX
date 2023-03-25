@@ -18,11 +18,11 @@
         android:layout_marginBottom="@dimen/dp_3xlarge"/>
 
     <Button 
-        android:id = "@+id/gSelection_infinity"
-        android:layout_width = "match_parent" 
-        android:layout_margin = "10dp"
-        android:layout_height = "wrap_content" 
-        android:text = "Inifnity Game"/> 
+        android:id="@+id/gSelection_infinity"
+        android:layout_width="match_parent" 
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content" 
+        android:text="Inifnity Game"/> 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -32,7 +32,7 @@
     android:layout_marginBottom="@dimen/dp_medium">
 
     <Button
-        android:id = "@+id/gSelection_easy"
+        android:id="@+id/gSelection_easy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

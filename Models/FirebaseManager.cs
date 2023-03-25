@@ -36,17 +36,21 @@ namespace MathGame.Models
          *                                                        /   \
          *  [Document]                                         user1  userX
          *                                                      /       \
-         *                                                     /         \
-         *  [Collection]                                     Data       Data
-         *                                                    |           |
-         *                                                    |           |
-         *  [Document]                         Login: --------|           |-------- Statistics: (counter of total correct answers)
-         *                                       |                                       |
-         *                                       |                                       |
-         *  [Field]             [string] Password (hashed MD5)                      [int] Plus 
-         *  [Field]             [timestamp] CreatedAt                               [int] Minus
-         *  [Field]                                                                 [int] Multiply
-         *  [Field]                                                                 [int] Divide
+         *                            Fields: _________________/         \_________________ Fields:
+         *                                                    /           \
+         *                      [Timestamp] CreatedAt        /             \        [Timestamp] CreatedAt
+         *                                                  /               \
+         *  [Collection]                                   Data             Data
+         *                                                  |                |
+         *                                                  |                |
+         *  [Document]                       Login: --------|                |-------- Statistics: (counter of total correct answers & average answer time)
+         *                                     |                                            |
+         *                                     |                                            |
+         *  [Field]           [string] Password (hashed via MD5)                       [int] Plus 
+         *  [Field]                                                                    [int] Minus
+         *  [Field]                                                                    [int] Multiply
+         *  [Field]                                                                    [int] Divide
+         *  [Field]                                                                    [int] AVG_AnswerTime_S
          */
 
         /// <summary>
@@ -66,7 +70,9 @@ namespace MathGame.Models
                     .Build();
 
                 app = FirebaseApp.InitializeApp(context, options);
+
                 database = FirebaseFirestore.GetInstance(app);
+                database.FirestoreSettings = new FirebaseFirestoreSettings.Builder().SetPersistenceEnabled(false).Build();
             }
             else
             {
@@ -118,7 +124,7 @@ namespace MathGame.Models
             SetData(newLoginData, username, LOGIN_DOCUMENT);
         }
 
-        public static void SetStatsData(string username, int plus, int minus, int multiply, int divide)
+        public static void SetStatsData(string username, int plus, int minus, int multiply, int divide, double averageAnswerTimeSeconds)
         {
             HashMap newStatisticsData = new HashMap();
 
@@ -126,6 +132,7 @@ namespace MathGame.Models
             newStatisticsData.Put("Minus", minus);
             newStatisticsData.Put("Multiply", multiply);
             newStatisticsData.Put("Divide", divide);
+            newStatisticsData.Put("AVG_AnswerTime_S", averageAnswerTimeSeconds);
 
             SetData(newStatisticsData, username, STATISTICS_DOCUMENT);
         }
@@ -139,7 +146,7 @@ namespace MathGame.Models
             SetData(globalData, username);
         }
 
-#region Help Functions
+        #region Help Functions
 
         /// <summary>
         /// Sets the given data in the documents which requested to be updated
@@ -149,15 +156,18 @@ namespace MathGame.Models
         /// <param name="document">user sub-document (login/stats), if empty it's refers to global document</param>
         private static void SetData(HashMap data, string userDocument, string document = "")
         {
-            DocumentReference documentRef;
+            try
+            {
+                DocumentReference documentRef;
 
-            if (document == "")
-                documentRef = baseReference.Document(userDocument);
-            else
-                documentRef = baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(document);
+                if (document == "")
+                    documentRef = baseReference.Document(userDocument);
+                else
+                    documentRef = baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(document);
 
-
-            documentRef.Set(data);
+                documentRef.Set(data);
+            }
+            catch { }
         }
 
         /// <summary>
@@ -168,28 +178,35 @@ namespace MathGame.Models
         /// <returns>requested data</returns>
         private static async Task<Dictionary<string, object>> GetDataAsync(string userDocument, string requestedDocument = "")
         {
-            Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            DocumentSnapshot documentSnapshot;
-
-            if (requestedDocument == "")
-                documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Get();
-            else
-                documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(requestedDocument).Get();
-
-
-            if (documentSnapshot != null && documentSnapshot.Exists())
+            try
             {
-                foreach (KeyValuePair<string, Java.Lang.Object> item in documentSnapshot.Data)
-                {
-                    dictionary.Add(item.Key, item.Value);
-                }
+                Dictionary<string, object> dictionary = new Dictionary<string, object>();
+                DocumentSnapshot documentSnapshot;
 
-                return dictionary;
+                if (requestedDocument == "")
+                    documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Get();
+                else
+                    documentSnapshot = (DocumentSnapshot)await baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(requestedDocument).Get();
+
+
+                if (documentSnapshot != null && documentSnapshot.Exists())
+                {
+                    foreach (KeyValuePair<string, Java.Lang.Object> item in documentSnapshot.Data)
+                    {
+                        dictionary.Add(item.Key, item.Value);
+                    }
+
+                    return dictionary;
+                }
+                else
+                    return null;
             }
-            else
+            catch
+            {
                 return null;
+            }
         }
 
-#endregion
+        #endregion
     }
 }

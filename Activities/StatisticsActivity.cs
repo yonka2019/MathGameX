@@ -48,7 +48,7 @@ namespace MathGame.Activities
                 JavaDictionary<string, object> userDictionary = new JavaDictionary<string, object>();
 
                 foreach (DataColumn column in dataTable.Columns)  // each column
-                { 
+                {
                     object value = row[column];
                     userDictionary.Add(column.ColumnName, value?.ToString());
                 }
@@ -60,8 +60,8 @@ namespace MathGame.Activities
                 this,
                 totalDataList,
                 Resource.Layout.statistics_layout,
-                new string[] { "Name", "+", "-", "*", "/", "Total" },
-                new int[] { Resource.Id.column1_playername, Resource.Id.column2_plusTotal, Resource.Id.column3_minusTotal, Resource.Id.column4_multiplyTotal, Resource.Id.column5_divideTotal, Resource.Id.column6_totalPoints }); ;
+                new string[] { "Name", "+", "-", "*", "/", "Total", "Time" },
+                new int[] { Resource.Id.column1_playername, Resource.Id.column2_plusTotal, Resource.Id.column3_minusTotal, Resource.Id.column4_multiplyTotal, Resource.Id.column5_divideTotal, Resource.Id.column6_totalPoints, Resource.Id.column7_averageTime }); ;
 
             return simpleAdapter;
         }
@@ -76,8 +76,9 @@ namespace MathGame.Activities
             dataTable.Columns.Add("*");
             dataTable.Columns.Add("/");
             dataTable.Columns.Add("Total");
+            dataTable.Columns.Add("Time");
 
-            dataTable.Rows.Add("Name", "+", "-", "*", "/", "Total");
+            dataTable.Rows.Add("Name", "+", "-", "*", "/", "Total", "Time");
 
             List<string> usernames = await FirebaseManager.GetUsernames();
 
@@ -85,7 +86,7 @@ namespace MathGame.Activities
             {
                 Dictionary<string, object> statisticsData = await FirebaseManager.GetStatsDataAsync(username);
                 dataTable.Rows.Add(username, statisticsData["Plus"], statisticsData["Minus"], statisticsData["Multiply"], statisticsData["Divide"],
-                    GetTotalPoints(statisticsData));
+                    GetTotalPoints(statisticsData), $"{Math.Round(Convert.ToDouble(statisticsData["AVG_AnswerTime_S"]), 2)}s");
             }
 
             return dataTable;
@@ -93,18 +94,31 @@ namespace MathGame.Activities
 
         private DataTable SortTable(DataTable table)
         {
-            table.DefaultView.Sort = "Total DESC";
-            return table.DefaultView.ToTable();
+            // assuming you have a DataTable called 'table'
+            DataTable sortedTable = table.Clone(); // create a new table with the same schema as the original table
+            DataRow firstRow = table.Rows[0]; // store the first row in a separate variable
+            table.Rows.Remove(firstRow); // remove the first row from the original table
+            table.DefaultView.Sort = "Total ASC"; // sort the remaining rows by the ColumnName column in ascending order
+            DataTable sortedRows = table.DefaultView.ToTable(); // create a new table with the sorted rows
+            DataRow newRow = sortedTable.NewRow(); // create a new DataRow in the target DataTable
+            newRow.BeginEdit();
+            newRow.ItemArray = firstRow.ItemArray; // copy the values from the firstRow to the new DataRow
+            sortedRows.Rows.InsertAt(newRow, 0); // add the new DataRow back to the beginning of the sorted rows
+            sortedTable.Merge(sortedRows); // merge the sorted rows into the new table
+
+            // the sortedTable DataTable now contains all the rows sorted, with the first row in its original 
+
+            return sortedTable;
         }
 
         private int GetTotalPoints(Dictionary<string, object> stats)
         {
             int totalPoints = 0;
 
-            foreach (object correctAnswersCounter in stats.Values)
-            {
-                totalPoints += Convert.ToInt32(correctAnswersCounter);
-            }
+            totalPoints += Convert.ToInt32(stats["Plus"]);
+            totalPoints += Convert.ToInt32(stats["Minus"]);
+            totalPoints += Convert.ToInt32(stats["Multiply"]);
+            totalPoints += Convert.ToInt32(stats["Divide"]);
 
             return totalPoints;
         }

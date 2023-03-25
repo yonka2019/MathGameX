@@ -5,12 +5,21 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
+    <!--Camera button-->
+    <Button
+        android:layout_width="@dimen/dp_4xlarge"
+        android:layout_height="@dimen/dp_4xlarge"
+        android:drawableBottom="@drawable/camera_33px"
+        android:id="@+id/cameraButton"
+        android:textColor="@android:color/transparent"
+        android:background ="@android:color/transparent"/>
+
     <!-- Game Title -->
     <TextView
         android:id="@+id/game_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="• Finished •"
+        android:text="• Finished Game •"
         android:textStyle="bold"
         android:textSize="@dimen/sp_xxlarge"
         android:layout_marginTop="@dimen/dp_3xlarge"
@@ -21,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp_large"
         android:gravity="center">
 
         <TextView
@@ -34,6 +44,52 @@
             android:layout_height="wrap_content"
             android:text="Game statistics:"
             android:textSize="@dimen/sp_xlarge"/>
+    </LinearLayout>
+
+    <!--Total game time-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_medium">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_span_30px"
+            android:contentDescription="clock image (non-clickable)"
+            android:layout_marginRight="@dimen/dp_small"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/finish_totalTime"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_large"
+            android:text="00:00:00"/>
+    </LinearLayout>
+
+    <!--Average answer time (in seconds) per ONE question-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_medium">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/first_30px"
+            android:contentDescription="one digit image (non-clickable)"
+            android:layout_marginRight="@dimen/dp_small"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_large"
+            android:id="@+id/finish_averageAnswerTime"
+            android:layout_height="wrap_content"
+            android:text="0 seconds"/>
     </LinearLayout>
 
     <LinearLayout
@@ -130,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back to menu"
-            android:textSize="18sp"
-            android:layout_margin="16dp"/>
+            android:textSize="@dimen/sp_large"
+            android:layout_margin="@dimen/dp_xlarge"/>
     </LinearLayout>
 </LinearLayout>

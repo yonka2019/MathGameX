@@ -22,13 +22,13 @@ namespace MathGame.Activities
     {
         private Button backToMenu, changeChart, logout;
         private ChartView statsChart;
-        private TextView playerName, createdAt;
+        private TextView playerName, createdAt, averageAnswerTime;
         private CheckBox clearTag;
 
         private ChartEntry[] statisticsEntries;
         private ChartTypes currentChartType;
 
-        private const int LABEL_FONT_SIZE = 45;
+        private const int LABEL_FONT_SIZE = 40;
 
         private NfcAdapter nfcAdapter;
 
@@ -49,6 +49,7 @@ namespace MathGame.Activities
             playerName.Text = MainActivity.Username;
 
             createdAt.Text = FormatTimestamp(userRegisterData["CreatedAt"]);
+            averageAnswerTime.Text = $"{System.Math.Round(Convert.ToDouble(userStatisticsData["AVG_AnswerTime_S"]), 2)} seconds";
 
             SetupChartData(userStatisticsData);
             SetupIntialChart();
@@ -84,6 +85,7 @@ namespace MathGame.Activities
 
             playerName = FindViewById<TextView>(Resource.Id.info_playerName);
             createdAt = FindViewById<TextView>(Resource.Id.info_createdAt);
+            averageAnswerTime = FindViewById<TextView>(Resource.Id.info_averageAnswerTime);
 
             clearTag = FindViewById<CheckBox>(Resource.Id.cbClearTag);
         }
@@ -232,6 +234,7 @@ namespace MathGame.Activities
                 IntentFilter tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
                 IntentFilter ndefDetected = new IntentFilter(NfcAdapter.ActionNdefDiscovered);
                 IntentFilter techDetected = new IntentFilter(NfcAdapter.ActionTechDiscovered);
+
                 IntentFilter[] filters = new[] { ndefDetected, tagDetected, techDetected };
 
                 Intent intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
@@ -251,10 +254,10 @@ namespace MathGame.Activities
         {
             if (clearTag.Checked)  // user checked to clean the tag data
             {
-                bool success = WriteToNFCTag(intent, "");
+                bool succeed = WriteToNFCTag(intent, "");
 
-                if (success)
-                    this.CreateShowDialog("NFC tag clean", "Your NFC tag cleaned successfully", "OK", Resource.Drawable.done_64px);
+                if (succeed)
+                    this.CreateShowDialog("NFC tag cleaned", "Your NFC tag cleaned successfully", "OK", Resource.Drawable.done_64px);
                 else
                     this.CreateShowDialog("Something went wrong..", "Can't clean your NFC tag", "OK", Resource.Drawable.warning64);
             }
@@ -264,10 +267,10 @@ namespace MathGame.Activities
                 string hashedPassword = (await FirebaseManager.GetLoginDataAsync(MainActivity.Username))["Password"].ToString();
 
                 string dataToWrite = $"[com.yonka.mathgame]$LOGIN_DATA{{{MainActivity.Username}:{hashedPassword}}}$";
-                bool success = WriteToNFCTag(intent, dataToWrite);
+                bool succeed = WriteToNFCTag(intent, dataToWrite);
 
-                if (success)
-                    this.CreateShowDialog("NFC Login Data Copy", "Your authentication data successfuly saved on the NFC tag!", "OK", Resource.Drawable.done_64px);
+                if (succeed)
+                    this.CreateShowDialog("NFC Login Data Copied", "Your authentication data successfuly saved on the NFC tag!", "OK", Resource.Drawable.done_64px);
                 else
                     this.CreateShowDialog("Something went wrong..", "Can't copy your authentication data to the NFC tag", "OK", Resource.Drawable.warning64);
             }
@@ -275,20 +278,25 @@ namespace MathGame.Activities
 
         public bool WriteToNFCTag(Intent intent, string content)
         {
-            if (!(intent.GetParcelableExtra(NfcAdapter.ExtraTag) is Tag tag)) return false;
-            Ndef ndef = Ndef.Get(tag);
-            if (ndef == null || !ndef.IsWritable) return false;
+            try
+            {
+                if (!(intent.GetParcelableExtra(NfcAdapter.ExtraTag) is Tag tag)) return false;
+                Ndef ndef = Ndef.Get(tag);
+                if (ndef == null || !ndef.IsWritable) return false;
 
-            byte[] payload = Encoding.ASCII.GetBytes(content);
-            byte[] mimeBytes = Encoding.ASCII.GetBytes("text/plain");
+                byte[] payload = Encoding.ASCII.GetBytes(content);
+                byte[] mimeBytes = Encoding.ASCII.GetBytes("text/plain");
 
-            NdefRecord record = new NdefRecord(NdefRecord.TnfWellKnown, mimeBytes, new byte[0], payload);
-            NdefMessage ndefMessage = new NdefMessage(new[] { record });
+                NdefRecord record = new NdefRecord(NdefRecord.TnfWellKnown, mimeBytes, new byte[0], payload);
+                NdefMessage ndefMessage = new NdefMessage(new[] { record });
 
-            ndef.Connect();
-            ndef.WriteNdefMessage(ndefMessage);
-            ndef.Close();
-            return true;
+                ndef.Connect();
+                ndef.WriteNdefMessage(ndefMessage);
+                ndef.Close();
+
+                return true;
+            }
+            catch { return false; }
         }
     }
 }

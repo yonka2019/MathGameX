@@ -20,7 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_3xlarge"
+        app:startIconDrawable="@drawable/person_24px"
         android:id="@+id/login_usernametil">
+
         <com.google.android.material.textfield.TextInputEditText
             android:inputType="textEmailAddress"
             android:hint="Username"
@@ -34,8 +36,10 @@
     <com.google.android.material.textfield.TextInputLayout
         app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
+        app:startIconDrawable="@drawable/lock_24px"
         android:layout_height="wrap_content"
         android:id="@+id/login_passtil">
+
         <com.google.android.material.textfield.TextInputEditText
             android:inputType="textPassword"
             android:hint="Password"
@@ -85,6 +89,6 @@
             android:textSize="@dimen/sp_large"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="#999999"/>
+            android:textColor="@color/light_gray"/>
         </LinearLayout>
 </LinearLayout>

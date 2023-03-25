@@ -62,4 +62,14 @@
         android:layout_marginTop="@dimen/dp_medium"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textAlignment="center"/>
+
+        <TextView
+        android:id="@+id/column7_averageTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/dp_medium"
+        android:layout_marginTop="@dimen/dp_medium"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAlignment="center"/>
 </LinearLayout>

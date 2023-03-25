@@ -163,4 +163,21 @@
                 android:id="@+id/wrongAnswers"/>
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_marginBottom="@dimen/dp_medium"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/game_timer"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="00:00:00"
+            android:textSize="@dimen/sp_xlarge"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
 </LinearLayout>

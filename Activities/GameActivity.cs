@@ -29,14 +29,17 @@ namespace MathGame.Activities
 
         private Button submitButton, skipButton, leaveButton, negativeAnswerButton;
         private EditText answerInput;
-        private TextView timer, question, correctAnswers, wrongAnswers;
+        private TextView timer, question, correctAnswers, wrongAnswers, gameTimerTV;
         private ProgressBar questionProgressBar;
 
         private Game currentGame;
+        private System.Timers.Timer gameTimer;
+        private int totalSecondsPlaying;
 
         private bool gameRunning;
+        private bool leavedGame;
 
-        private readonly Dictionary<char, int> correctAnswersCounter = new Dictionary<char, int>();
+        private Dictionary<char, int> correctAnswersCounter;
 
         private LowBatteryReceiver lowBatteryReceiver;
         private IntentFilter lowBatteryFilter;
@@ -54,10 +57,13 @@ namespace MathGame.Activities
 
             numberFormat = CultureInfo.CurrentCulture.NumberFormat;
             mediaPlayer = new MediaPlayer();  // create media player object (which will play sound when correct or wrong answer given)
+            correctAnswersCounter = new Dictionary<char, int>();
+            leavedGame = false;
 
             SetRefs();
             SetEvents();
             SetLowBatteryReceiver();
+            SetupTimer();
 
             ResetCounter();
 
@@ -75,10 +81,28 @@ namespace MathGame.Activities
             await StartGame();  // starting game
         }
 
+        private void SetupTimer()
+        {
+            gameTimer = new System.Timers.Timer(1000);
+            gameTimer.Elapsed += GameTimer_Elapsed;
+
+            totalSecondsPlaying = 0;
+        }
+
+        private void GameTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            totalSecondsPlaying++;
+
+            TimeSpan timeSpan = TimeSpan.FromSeconds(totalSecondsPlaying);
+            gameTimerTV.Text = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                            timeSpan.Hours,
+                            timeSpan.Minutes,
+                            timeSpan.Seconds);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -94,7 +118,11 @@ namespace MathGame.Activities
 
         private async Task StartGame()
         {
+            if (leavedGame)  // if game leaved before he started
+                return;
+
             gameRunning = true;
+            gameTimer.Enabled = true;
 
             while (gameRunning &&
                 (questionProgressBar.Progress < QUESTIONS_NUMBER || currentGame.GetGameMode() == GameMode.Infinity))  // check if current question number isn't higher then the max one, or, to ignore this check if infinity mode enabled
@@ -118,10 +146,9 @@ namespace MathGame.Activities
                 {
                     continue;
                 }
-
-                leaveButton.PerformClick();  // simulate leaving in order to show statistics screen
             }
 
+            leaveButton.PerformClick();  // loop leaved, game finished => simulate leaving in order to show statistics screen
         }
 
         /// <summary>
@@ -159,6 +186,7 @@ namespace MathGame.Activities
             question = FindViewById<TextView>(Resource.Id.questionText);
             correctAnswers = FindViewById<TextView>(Resource.Id.correctAnswers);
             wrongAnswers = FindViewById<TextView>(Resource.Id.wrongAnswers);
+            gameTimerTV = FindViewById<TextView>(Resource.Id.game_timer);
 
             questionProgressBar = FindViewById<ProgressBar>(Resource.Id.questionProgressbar);
         }
@@ -199,13 +227,14 @@ namespace MathGame.Activities
         /// </summary>
         private void LeaveButton_Click(object sender, EventArgs e)
         {
+            leavedGame = true;
+
             gameRunning = false;
+            gameTimer.Enabled = false;
 
-            if (!cts.IsCancellationRequested)  // Cancel if not already canceled
-                cts.Cancel();
-
-            // Unregister the low-battery broadcast receiver
-            UnregisterReceiver(lowBatteryReceiver);
+            if (cts != null)
+                if (!cts.IsCancellationRequested)  // Cancel if not already canceled
+                    cts.Cancel();
 
             Vibrator vibrator = (Vibrator)GetSystemService(VibratorService);
             if (vibrator.HasVibrator)
@@ -218,6 +247,7 @@ namespace MathGame.Activities
             // send values for statistic formation
             gameActivity.PutExtra("stats:correct", int.Parse(correctAnswers.Text));
             gameActivity.PutExtra("stats:wrong", int.Parse(wrongAnswers.Text));
+            gameActivity.PutExtra("stats:totalGameTime_S", totalSecondsPlaying);
 
             gameActivity.PutExtra("stats:+", correctAnswersCounter['+']);
             gameActivity.PutExtra("stats:-", correctAnswersCounter['-']);
@@ -310,9 +340,9 @@ namespace MathGame.Activities
             leaveButton.PerformClick();
         }
 
-        protected override void OnResume()
+        protected override void OnStart()
         {
-            base.OnResume();
+            base.OnStart();
 
             try  // if receiver already registed
             {
@@ -321,9 +351,9 @@ namespace MathGame.Activities
             catch { }
         }
 
-        protected override void OnDestroy()
+        protected override void OnStop()
         {
-            base.OnDestroy();
+            base.OnStop();
 
             try  // if receiver already unregistred
             {

@@ -171,21 +171,39 @@ namespace MathGame.Activities
             // Get the transmitted data
             string data = System.Text.Encoding.ASCII.GetString(record.GetPayload());
 
+            (string nfc_username, string nfc_password) = ExtractNFCData(data);
+            if (nfc_username != null && nfc_password != null)
+            {
+                username.Text = nfc_username;
+                password.Text = nfc_password;
+
+                if (await PasswordCorrect(nfc_username, nfc_password, false))  // if password matches => successfully logged in
+                {
+                    this.Login(nfc_username);
+                }
+                else
+                {
+                    passwordtil.Error = "Wrong username or password";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Extracts the username and the password from the given data which returned from NFC Tag (if it's not hold the right information the functions returns NULLs
+        /// </summary>
+        /// <param name="data">data which got from the scanned NFC tag</param>
+        /// <returns>username and password from this data if the data matches according application sign</returns>
+        private (string, string) ExtractNFCData(string data)
+        {
             loginDataExpression = new Regex(@"^\[com\.yonka\.mathgame\]\$LOGIN_DATA\{(.+?):(.+?)\}\$$");
             Match dataMatch = loginDataExpression.Match(data);
 
             if (dataMatch.Success)
             {
-                // if data matched -> fill login data and try to login
-                username.Text = dataMatch.Groups[1].Value;
-                password.Text = dataMatch.Groups[2].Value;
-
-                if (await PasswordCorrect(username.Text, password.Text, false))  // if password matches => successfully logged in
-                {
-                    this.Login(username.Text);
-                }
+                return (dataMatch.Groups[1].Value, dataMatch.Groups[2].Value);
             }
-
+            else
+                return (null, null);
         }
     }
 }

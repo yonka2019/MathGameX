@@ -99,7 +99,7 @@ namespace MathGame.Activities
         {
             FirebaseManager.SetGlobalData(username);
             FirebaseManager.SetLoginData(username, password);
-            FirebaseManager.SetStatsData(username, 0, 0, 0, 0);  // fill zeros to stats
+            FirebaseManager.SetStatsData(username, 0, 0, 0, 0, 0);  // fill zeros to stats
         }
 
         private async void Register_Click(object sender, EventArgs e)

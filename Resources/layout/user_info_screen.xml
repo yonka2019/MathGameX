@@ -44,14 +44,46 @@
             android:textSize="@dimen/sp_xlarge"/>
     </LinearLayout>
 
+    <!--Average answer time (in seconds) per ONE question-->
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_machine_30px"
+            android:contentDescription="one digit image (non-clickable)"
+            android:layout_marginRight="@dimen/dp_small"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/info_averageAnswerTime"
+            android:textSize="@dimen/sp_large"
+            android:layout_height="wrap_content"
+            android:text="0 seconds"/>
+    </LinearLayout>
+
     <!--Chart layout-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_4xlarge"
+        android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total correct answers"
+            android:gravity="center"
+            android:textSize="@dimen/sp_large"
+            android:textStyle="bold"/>
+
         <Microcharts.Droid.ChartView
+            android:layout_marginTop="@dimen/dp_xxlarge"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_mxlarge"
             android:id="@+id/info_statsChart"/>
@@ -88,16 +120,16 @@
             android:textSize="@dimen/sp_large"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="#999999"/>
+            android:textColor="@color/light_gray"/>
 
-        <!--will remove only if you the owner (user) of the card-->SSSS
+        <!--will remove only if you the owner (user) of the card-->
         <CheckBox
             android:layout_marginTop="@dimen/dp_small"
             android:id="@+id/cbClearTag"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Clear data from tag"
-            android:textColor="#999999"/>
+            android:textColor="@color/light_gray"/>
 
         <Button
             android:id="@+id/info_backToMenu"

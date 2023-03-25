@@ -116,7 +116,7 @@ namespace MathGame.Activities
 
         private void Sb_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (e.FromUser)
+            if (e.FromUser && musicPlaying)
             {
                 ISharedPreferencesEditor editor = musicSP.Edit();
                 editor.PutInt("Volume", e.Progress);
