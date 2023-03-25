@@ -76,13 +76,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/register_registerButton"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="•  Login  •"
-        android:gravity="center"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? "
+        android:layout_marginTop="@dimen/dp_small"
+        android:textSize="@dimen/sp_large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
         android:layout_marginTop="@dimen/dp_small"
         android:textStyle="bold"
         android:textSize="@dimen/sp_large"
         android:id="@+id/register_gotoLogin"/>
+        </LinearLayout>
 </LinearLayout>

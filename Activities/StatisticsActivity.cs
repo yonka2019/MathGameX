@@ -92,7 +92,7 @@ namespace MathGame.Activities
 
         private DataTable SortTable(DataTable table)
         {
-            table.DefaultView.Sort = "Total ASC";  // sort the remaining rows by the ColumnName column in ascending order
+            table.DefaultView.Sort = "Total DESC";  // sort the remaining rows by the ColumnName column in ascending order
             DataTable sortedTable = table.DefaultView.ToTable();  // create a new table with the sorted rows
 
             DataRow newRow = sortedTable.NewRow();  // create a new DataRow in the target DataTable

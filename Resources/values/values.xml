@@ -16,6 +16,8 @@
 
 	<dimen name="dp_mlarge">165dp</dimen>
 	<dimen name="dp_mxlarge">200dp</dimen>
+	<dimen name="dp_2mlarge">265dp</dimen>
+	<dimen name="dp_3mlarge">300dp</dimen>
 	
 		<!--text sizes-->
 	<dimen name="sp_small">12sp</dimen>

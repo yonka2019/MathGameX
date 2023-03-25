@@ -58,16 +58,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_loginButton"/>
-
-    <TextView
+    
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="• Register  •"
-        android:gravity="center"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? "
+        android:layout_marginTop="@dimen/dp_small"
+        android:textSize="@dimen/sp_large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
         android:layout_marginTop="@dimen/dp_small"
         android:textSize="@dimen/sp_large"
         android:textStyle="bold"
         android:id="@+id/login_gotoRegister"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

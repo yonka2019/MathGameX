@@ -41,14 +41,14 @@
 
         <Button
             android:id="@+id/gSelection_medium"
-            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_width="@dimen/dp_2mlarge"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_medium"
             android:text="Medium"/>
 
         <Button
             android:id="@+id/gSelection_hard"
-            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_width="@dimen/dp_3mlarge"
             android:layout_marginBottom="@dimen/dp_medium"
             android:layout_height="wrap_content"
             android:text="Hard"/>

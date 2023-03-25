@@ -66,10 +66,13 @@ namespace MathGame.Activities
             MusicServiceIntent = new Intent(this, typeof(MusicService));
 
             Song song1 = new Song("OFF", default);
-            Song song2 = new Song("another", Resource.Raw.another_one_bites_the_dust);
-            Song song3 = new Song("my", Resource.Raw.my_song);
 
-            SongList = new List<Song> { song1, song2, song3 };
+            Song song2 = new Song("Glossy Heart", Resource.Raw.Glossy_heart);
+            Song song3 = new Song("Give And Take", Resource.Raw.Give_And_Take);
+            Song song4 = new Song("Wanderland", Resource.Raw.Wanderland);
+            Song song5 = new Song("Silent nights", Resource.Raw.Silent_Nights);
+
+            SongList = new List<Song> { song1, song2, song3, song4, song5 };
 
             songAdapter = new SongAdapter(this, SongList, GetSongPosition(musicSP.GetInt("SongFile", default)));
             lv.Adapter = songAdapter;

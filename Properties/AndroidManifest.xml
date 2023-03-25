@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.yonka.mathgame" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="33" />
 	<application android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme.Splash" android:icon="@mipmap/ic_launcher">
-		<receiver android:name="crc642b4d3a99f297758a.LowBatteryReceiver" android:exported="true" android:enabled="true">
+		<receiver android:name="crc64d755cf378c64a4b0.LowBatteryReceiver" android:exported="true" android:enabled="true">
 			<intent-filter>
 				<action android:name="android.intent.action.BATTERY_CHANGED" />
 			</intent-filter>

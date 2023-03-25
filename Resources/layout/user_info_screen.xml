@@ -70,14 +70,14 @@
     <!--Chart layout-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_xlarge"
+        android:layout_marginTop="@dimen/dp_xxlarge"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total correct answers"
+            android:text="- Total correct answers -"
             android:gravity="center"
             android:textSize="@dimen/sp_large"
             android:textStyle="bold"/>
@@ -107,7 +107,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_35xlarge"
+            android:layout_marginTop="@dimen/dp_xxlarge"
             android:layout_gravity="center"
             android:contentDescription="just an image of NFC (non-clickable)"
             android:src="@drawable/nfc_tag_50px"/>
