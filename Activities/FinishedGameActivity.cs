@@ -107,8 +107,8 @@ namespace MathGame.Activities
 
                 double averageAnswerTimeSeconds_DB = Convert.ToDouble(currentStats["AVG_AnswerTime_S"]);
 
-                // The average answer time record takes in a count only if the total answered questions is more than 10 (to avoid fast wrong answer and leave game)
-                if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 10))
+                // The average answer time record takes in a count only if the total answered questions is more than 20 (to avoid fast wrong answer and leave game)
+                if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 20))
                 {
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_CURRENT;
                     this.CreateShowDialog("You beat your own record", "You have beat your own record!", "OK", Resource.Drawable.confetti_64px);
@@ -235,6 +235,7 @@ namespace MathGame.Activities
                 {
                     Entries = statisticsEntries,
                     LabelTextSize = LABEL_FONT_SIZE,
+                    LabelOrientation = Microcharts.Orientation.Horizontal
                 };
 
                 statsChart.Chart = barChart;
@@ -279,28 +280,28 @@ namespace MathGame.Activities
                 {
                     Label = "Plus",
                     ValueLabel = correctAnswersCounter['+'].ToString(),
-                    Color = SKColor.Parse("#2C3E50")
+                    Color = SKColor.Parse("#D66E81")
                 },
 
                 new ChartEntry(correctAnswersCounter['-'])
                 {
                     Label = "Minus",
                     ValueLabel = correctAnswersCounter['-'].ToString(),
-                    Color = SKColor.Parse("#77D065")
+                    Color = SKColor.Parse("#72BfDD")
                 },
 
                 new ChartEntry(correctAnswersCounter['*'])
                 {
                     Label = "Multiply",
                     ValueLabel = correctAnswersCounter['*'].ToString(),
-                    Color = SKColor.Parse("#B455B6")
+                    Color = SKColor.Parse("#62B58F")
                 },
 
                 new ChartEntry(correctAnswersCounter['/'])
                 {
                     Label = "Divide",
                     ValueLabel = correctAnswersCounter['/'].ToString(),
-                    Color = SKColor.Parse("#3498DB")
+                    Color = SKColor.Parse("#fAC857")
                 }};
         }
     }

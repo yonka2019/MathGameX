@@ -31,7 +31,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/male_user_32px"
+            android:src="@drawable/circled_user_male_skin_type_7_37px"
             android:contentDescription="profile image (non-clickable)"
             android:paddingRight="@dimen/dp_medium"/>
 

@@ -116,28 +116,28 @@ namespace MathGame.Activities
                 {
                     Label = "Plus",
                     ValueLabel = userStatisticsData["Plus"].ToString(),
-                    Color = SKColor.Parse("#2C3E50")
+                    Color = SKColor.Parse("#D66E81")
                 },
 
                 new ChartEntry(float.Parse(userStatisticsData["Minus"].ToString()))
                 {
                     Label = "Minus",
                     ValueLabel = userStatisticsData["Minus"].ToString(),
-                    Color = SKColor.Parse("#77D065")
+                    Color = SKColor.Parse("#72BfDD")
                 },
 
                 new ChartEntry(float.Parse(userStatisticsData["Multiply"].ToString()))
                 {
                     Label = "Multiply",
                     ValueLabel = userStatisticsData["Multiply"].ToString(),
-                    Color = SKColor.Parse("#B455B6")
+                    Color = SKColor.Parse("#62B58F")
                 },
 
                 new ChartEntry(float.Parse(userStatisticsData["Divide"].ToString()))
                 {
                     Label = "Divide",
                     ValueLabel = userStatisticsData["Divide"].ToString(),
-                    Color = SKColor.Parse("#3498DB")
+                    Color = SKColor.Parse("#FAC857")
                 }};
         }
 
@@ -181,6 +181,7 @@ namespace MathGame.Activities
                 {
                     Entries = statisticsEntries,
                     LabelTextSize = LABEL_FONT_SIZE,
+                    LabelOrientation = Microcharts.Orientation.Horizontal
                 };
 
                 statsChart.Chart = barChart;

@@ -1,8 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Provider;
 using Android.Runtime;
 using Android.Widget;
+using AndroidX.Emoji2.Text.FlatBuffer;
 using MathGame.Models;
 using System;
 using System.Collections.Generic;
@@ -43,7 +45,17 @@ namespace MathGame.Activities
         {
             JavaList<IDictionary<string, object>> totalDataList = new JavaList<IDictionary<string, object>>();
 
-            foreach (DataRow row in dataTable.Rows) // each row
+            JavaDictionary<string, object> columnNames = new JavaDictionary<string, object>();
+
+            // Add column names at the first row
+            foreach (DataColumn column in dataTable.Columns)  // each column
+            {
+                columnNames.Add(column.ColumnName, column.ColumnName);
+            }
+            totalDataList.Add(columnNames);
+
+
+            foreach (DataRow row in dataTable.Rows)  // each row
             {
                 JavaDictionary<string, object> userDictionary = new JavaDictionary<string, object>();
 
@@ -75,7 +87,9 @@ namespace MathGame.Activities
             dataTable.Columns.Add("-");
             dataTable.Columns.Add("*");
             dataTable.Columns.Add("/");
+
             dataTable.Columns.Add("Total");
+            dataTable.Columns["Total"].DataType = typeof(int);
             dataTable.Columns.Add("Time");
 
             List<string> usernames = await FirebaseManager.GetUsernames();
@@ -94,16 +108,6 @@ namespace MathGame.Activities
         {
             table.DefaultView.Sort = "Total DESC";  // sort the remaining rows by the ColumnName column in ascending order
             DataTable sortedTable = table.DefaultView.ToTable();  // create a new table with the sorted rows
-
-            DataRow newRow = sortedTable.NewRow();  // create a new DataRow in the target DataTable
-
-            foreach (DataColumn column in table.Columns)
-            {
-                newRow[column.ColumnName] = column.ColumnName;
-            }
-
-            sortedTable.Rows.InsertAt(newRow, 0);
-            // the sortedTable DataTable now contains all the rows sorted, with the first row in its original 
 
             return sortedTable;
         }
