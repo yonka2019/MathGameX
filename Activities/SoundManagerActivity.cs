@@ -137,7 +137,7 @@ namespace MathGame.Activities
                 editor.PutInt("Volume", e.Progress);
                 editor.Commit();
 
-                MediaPlayerSound.Volume = e.Progress;
+                MediaPlayerAmbient.Volume = e.Progress;
 
                 mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.notification);
             }

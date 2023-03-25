@@ -67,7 +67,7 @@ namespace MathGame.Activities
         {
             ISharedPreferences ambientSP = GetSharedPreferences("Ambient", FileCreationMode.Private);
 
-            MediaPlayerSound.Volume = ambientSP.GetInt("Volume", 100);  // restore volume setting [ambient sound]
+            MediaPlayerAmbient.Volume = ambientSP.GetInt("Volume", 100);  // restore volume setting [ambient sound]
         }
 
         private void Register_Click(object sender, System.EventArgs e)

@@ -84,7 +84,7 @@
     <Compile Include="Models\MathQuestions\DivisionQuestion.cs" />
     <Compile Include="Models\MathQuestions\MultiplicationQuestion.cs" />
     <Compile Include="Models\MathQuestions\SubstractionQuestion.cs" />
-    <Compile Include="Models\MediaPlayerSound.cs" />
+    <Compile Include="Models\MediaPlayerAmbient.cs" />
     <Compile Include="Models\MethodExt.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Adapters\SongAdapter.cs" />

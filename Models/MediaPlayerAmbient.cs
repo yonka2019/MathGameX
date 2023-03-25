@@ -4,9 +4,9 @@ using Android.Media;
 namespace MathGame.Models
 {
     // class which represents a media player which can play a sound (ambient sound) for example: correct answer, wrong answer, some sound which is especially short
-    public static class MediaPlayerSound
+    public static class MediaPlayerAmbient
     {
-        private static float _volume;
+        private static float _volume;  // ambient volume
 
         public static float Volume
         {
@@ -14,21 +14,21 @@ namespace MathGame.Models
             set => _volume = (float)value / 100;
         }
 
-        public static void PlaySound(this MediaPlayer mediaPlayer, string PackageName, Context ApplicationContext, int soundId)
+        public static void PlaySound(this MediaPlayer ambientMediaPlayer, string PackageName, Context ApplicationContext, int ambient_SoundID)
         {
             // stop and reset previous plays
-            mediaPlayer.Stop();
-            mediaPlayer.Reset();
+            ambientMediaPlayer.Stop();
+            ambientMediaPlayer.Reset();
 
             // set sound source
-            int id = soundId;
+            int id = ambient_SoundID;
             Android.Net.Uri correctAnswerURI = Android.Net.Uri.Parse("android.resource://" + PackageName + "/" + id);
-            mediaPlayer.SetDataSource(ApplicationContext, correctAnswerURI);
+            ambientMediaPlayer.SetDataSource(ApplicationContext, correctAnswerURI);
 
-            mediaPlayer.Prepare();
-            mediaPlayer.SetVolume(_volume, _volume);
+            ambientMediaPlayer.Prepare();
+            ambientMediaPlayer.SetVolume(_volume, _volume);
 
-            mediaPlayer.Start();
+            ambientMediaPlayer.Start();
         }
     }
 }
