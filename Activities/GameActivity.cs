@@ -41,7 +41,7 @@ namespace MathGame.Activities
 
         private Dictionary<char, int> correctAnswersCounter;
 
-        private LowBatteryReceiver lowBatteryReceiver;
+        private Receivers.LowBatteryReceiver lowBatteryReceiver;
         private IntentFilter lowBatteryFilter;
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MathGame.Activities
         private void SetLowBatteryReceiver()
         {
             // Create the broadcast receiver and intent filter
-            lowBatteryReceiver = new LowBatteryReceiver();
+            lowBatteryReceiver = new Receivers.LowBatteryReceiver();
             lowBatteryFilter = new IntentFilter(Intent.ActionBatteryChanged);
 
             // Register the broadcast receiver

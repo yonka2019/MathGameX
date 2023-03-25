@@ -14,5 +14,4 @@
         app:lottie_fileName="calculator_animation.json"
         app:lottie_loop="false"
         app:lottie_speed="1.25" />
-
 </RelativeLayout>

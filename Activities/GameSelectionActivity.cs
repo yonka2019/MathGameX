@@ -10,7 +10,7 @@ namespace MathGame.Activities
     [Activity(Label = "GameSelectionActivity")]
     public class GameSelectionActivity : Activity
     {
-        private Button infinity, easy, medium, hard, online;
+        private Button infinity, easy, medium, hard;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,14 +27,6 @@ namespace MathGame.Activities
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        private void Online_Click(object sender, EventArgs e)
-        {
-            Intent gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("mode", "4");
-
-            StartActivity(gameActivity);
         }
 
         private void Hard_Click(object sender, EventArgs e)
@@ -75,7 +67,6 @@ namespace MathGame.Activities
             easy = FindViewById<Button>(Resource.Id.gSelection_easy);
             medium = FindViewById<Button>(Resource.Id.gSelection_medium);
             hard = FindViewById<Button>(Resource.Id.gSelection_hard);
-            online = FindViewById<Button>(Resource.Id.gSelection_online);
         }
 
         private void SetEvents()
@@ -84,7 +75,6 @@ namespace MathGame.Activities
             easy.Click += Easy_Click;
             medium.Click += Medium_Click;
             hard.Click += Hard_Click;
-            online.Click += Online_Click;
         }
     }
 }

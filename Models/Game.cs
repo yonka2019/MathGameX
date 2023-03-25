@@ -1,5 +1,4 @@
-﻿using MathGame.Models;
-using MathGame.Models.MathQuestions;
+﻿using MathGame.Models.MathQuestions;
 using System;
 using System.Collections.Generic;
 

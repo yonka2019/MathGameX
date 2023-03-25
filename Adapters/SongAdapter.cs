@@ -1,18 +1,18 @@
 ﻿using Android.Content;
 using Android.Graphics;
 using Android.Views;
-using MathGame.Models;
-using MathGame.Activities;
 using Android.Widget;
+using MathGame.Activities;
+using MathGame.Models;
 using System.Collections.Generic;
 
 namespace MathGame.Adapters
 {
-    class SongAdapter : BaseAdapter<Song>
+    internal class SongAdapter : BaseAdapter<Song>
     {
-        private Context context;
-        private List<Song> songs;
-        private int selectedPosition;
+        private readonly Context context;
+        private readonly List<Song> songs;
+        private readonly int selectedPosition;
 
         public List<Song> GetList()
         {

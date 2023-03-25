@@ -5,13 +5,13 @@
     android:layout_height = "match_parent" 
     android:minWidth = "25px" 
     android:minHeight = "25px"
-    android:paddingTop="@dimen/dp_ularge"> 
+    android:paddingTop="@dimen/dp_4xlarge"> 
 
     <!--Main Title-->
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="- Game Selection -"
+        android:text="• Select Game •"
         android:layout_gravity="center"
         android:padding="@dimen/dp_small"
         android:textSize="@dimen/sp_xxlarge"
@@ -24,40 +24,33 @@
         android:layout_height="wrap_content" 
         android:text="Inifnity Game"/> 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="@dimen/dp_medium"
-    android:layout_marginBottom="@dimen/dp_medium">
-
-    <Button
-        android:id="@+id/gSelection_easy"
-        android:layout_width="0dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Easy"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_medium"
+        android:layout_marginBottom="@dimen/dp_medium">
 
-    <Button
-        android:id = "@+id/gSelection_medium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Medium"/>
+        <Button
+            android:id="@+id/gSelection_easy"
+            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_height="wrap_content"
+            android:text="Easy"
+            android:layout_marginBottom="@dimen/dp_medium"/>
 
-    <Button
-        android:id = "@+id/gSelection_hard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Hard"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/gSelection_medium"
+            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_medium"
+            android:text="Medium"/>
 
-
-   <Button 
-      android:id = "@+id/gSelection_online" 
-      android:layout_width = "match_parent" 
-      android:layout_margin = "10dp" 
-      android:layout_height = "wrap_content" 
-      android:text="Online Game"/> 
+        <Button
+            android:id="@+id/gSelection_hard"
+            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_marginBottom="@dimen/dp_medium"
+            android:layout_height="wrap_content"
+            android:text="Hard"/>
+    </LinearLayout>
 </LinearLayout>

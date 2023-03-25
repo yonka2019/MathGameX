@@ -33,7 +33,7 @@
         android:textSize="@dimen/sp_large"
         android:gravity="center"
         android:layout_marginBottom="@dimen/dp_xlarge"
-        android:layout_marginTop="@dimen/dp_medium"/>
+        android:layout_marginTop="@dimen/dp_xlarge"/>
 
     <SeekBar
         android:id="@+id/music_seekbar"

@@ -78,8 +78,6 @@ namespace MathGame.Activities
             dataTable.Columns.Add("Total");
             dataTable.Columns.Add("Time");
 
-            dataTable.Rows.Add("Name", "+", "-", "*", "/", "Total", "Time");
-
             List<string> usernames = await FirebaseManager.GetUsernames();
 
             foreach (string username in usernames)
@@ -94,18 +92,17 @@ namespace MathGame.Activities
 
         private DataTable SortTable(DataTable table)
         {
-            // assuming you have a DataTable called 'table'
-            DataTable sortedTable = table.Clone(); // create a new table with the same schema as the original table
-            DataRow firstRow = table.Rows[0]; // store the first row in a separate variable
-            table.Rows.Remove(firstRow); // remove the first row from the original table
-            table.DefaultView.Sort = "Total ASC"; // sort the remaining rows by the ColumnName column in ascending order
-            DataTable sortedRows = table.DefaultView.ToTable(); // create a new table with the sorted rows
-            DataRow newRow = sortedTable.NewRow(); // create a new DataRow in the target DataTable
-            newRow.BeginEdit();
-            newRow.ItemArray = firstRow.ItemArray; // copy the values from the firstRow to the new DataRow
-            sortedRows.Rows.InsertAt(newRow, 0); // add the new DataRow back to the beginning of the sorted rows
-            sortedTable.Merge(sortedRows); // merge the sorted rows into the new table
+            table.DefaultView.Sort = "Total ASC";  // sort the remaining rows by the ColumnName column in ascending order
+            DataTable sortedTable = table.DefaultView.ToTable();  // create a new table with the sorted rows
 
+            DataRow newRow = sortedTable.NewRow();  // create a new DataRow in the target DataTable
+
+            foreach (DataColumn column in table.Columns)
+            {
+                newRow[column.ColumnName] = column.ColumnName;
+            }
+
+            sortedTable.Rows.InsertAt(newRow, 0);
             // the sortedTable DataTable now contains all the rows sorted, with the first row in its original 
 
             return sortedTable;

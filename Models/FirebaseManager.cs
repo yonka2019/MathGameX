@@ -1,5 +1,4 @@
-﻿
-using Android.Content;
+﻿using Android.Content;
 using Android.Gms.Extensions;
 using Firebase;
 using Firebase.Firestore;

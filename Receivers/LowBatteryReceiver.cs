@@ -3,7 +3,7 @@ using Android.Content;
 using Android.OS;
 using MathGame.Models;
 
-namespace MathGame
+namespace MathGame.Receivers
 {
     [BroadcastReceiver(Enabled = true, Label = "Low Battery Receiver")]
     [IntentFilter(new[] { Intent.ActionBatteryChanged })]

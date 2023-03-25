@@ -1,11 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Widget;
-using AndroidX.Activity;
-using System;
-using MathGame.Models;
 using Android.Runtime;
+using Android.Widget;
+using MathGame.Models;
+using System;
 
 namespace MathGame.Activities
 {

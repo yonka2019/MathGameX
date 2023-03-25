@@ -6,6 +6,5 @@
         Easy,
         Medium ,
         Hard,
-        Online
     }
 }

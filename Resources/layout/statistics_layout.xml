@@ -63,7 +63,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textAlignment="center"/>
 
-        <TextView
+    <TextView
         android:id="@+id/column7_averageTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

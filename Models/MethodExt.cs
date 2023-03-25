@@ -1,5 +1,4 @@
 ﻿using Android.Content;
-using Google.Type;
 using MathGame.Activities;
 using System.Security.Cryptography;
 using System.Text;
@@ -56,7 +55,6 @@ namespace MathGame.Models
         /// logins user (opens up the main activity and updates session) ; (after user successfully creation // after successfully password check
         /// </summary>
         /// <param name="username"></param>
-        /// <param name="password"></param>
         public static void Login(this Context context, string username)
         {
             ISharedPreferences loginSessionSP = context.GetSharedPreferences("LoginSession", FileCreationMode.Private);
