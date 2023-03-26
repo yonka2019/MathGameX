@@ -1,10 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Provider;
 using Android.Runtime;
 using Android.Widget;
-using AndroidX.Emoji2.Text.FlatBuffer;
+using MathGame.Adapters;
 using MathGame.Models;
 using System;
 using System.Collections.Generic;
@@ -68,12 +67,12 @@ namespace MathGame.Activities
             }
 
             // Create a SimpleAdapter with the DataTable
-            SimpleAdapter simpleAdapter = new SimpleAdapter(
+            StatsAdapter simpleAdapter = new StatsAdapter(
                 this,
                 totalDataList,
                 Resource.Layout.statistics_layout,
                 new string[] { "Name", "+", "-", "*", "/", "Total", "Time" },
-                new int[] { Resource.Id.column1_playername, Resource.Id.column2_plusTotal, Resource.Id.column3_minusTotal, Resource.Id.column4_multiplyTotal, Resource.Id.column5_divideTotal, Resource.Id.column6_totalPoints, Resource.Id.column7_averageTime }); ;
+                new int[] { Resource.Id.column1_playername, Resource.Id.column2_plusTotal, Resource.Id.column3_minusTotal, Resource.Id.column4_multiplyTotal, Resource.Id.column5_divideTotal, Resource.Id.column6_totalPoints, Resource.Id.column7_averageTime });
 
             return simpleAdapter;
         }

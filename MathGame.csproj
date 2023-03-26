@@ -75,6 +75,7 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\UserInfoActivity.cs" />
+    <Compile Include="Adapters\StatsAdapter.cs" />
     <Compile Include="Enums\AnimationType.cs" />
     <Compile Include="Enums\ChartTypes.cs" />
     <Compile Include="Models\FirebaseManager.cs" />
