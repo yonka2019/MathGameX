@@ -78,7 +78,7 @@ namespace MathGame.Models
                 database = FirebaseFirestore.GetInstance(app);
             }
 
-            // get reference to base data 'Users / [USERNAME]'        ( / Data / [STATS|LOGIN]' )
+            // get reference to base data '--> Users <-- / [USERNAME] / Data / [STATS|LOGIN]'
             baseReference = database.Collection(MAIN_COLLECTION);
         }
 
