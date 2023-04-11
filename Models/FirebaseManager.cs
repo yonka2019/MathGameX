@@ -35,14 +35,14 @@ namespace MathGame.Models
          *                                                        /   \
          *  [Document]                                         user1  userX
          *                                                      /       \
-         *                            Fields: _________________/         \_________________ Fields:
-         *                                                    /           \
-         *                      [Timestamp] CreatedAt        /             \        [Timestamp] CreatedAt
-         *                                                  /               \
-         *  [Collection]                                   Data             Data
-         *                                                  |                |
-         *                                                  |                |
-         *  [Document]                       Login: --------|                |-------- Statistics: (counter of total correct answers & average answer time)
+         *                            Fields: _________________/         \
+         *                                                    /         . . .
+         *                      [Timestamp] CreatedAt        /          
+         *                                                  /              
+         *  [Collection]                                   Data            
+         *                                                  |               
+         *                                                  |                
+         *  [Document]                       Login: --------|------------------------- Statistics: (counter of total correct answers & average answer time)
          *                                     |                                            |
          *                                     |                                            |
          *  [Field]           [string] Password (hashed via MD5)                       [int] Plus 
@@ -145,7 +145,7 @@ namespace MathGame.Models
             SetData(globalData, username);
         }
 
-        #region Help Functions
+        #region Firebase interaction Functions
 
         /// <summary>
         /// Sets the given data in the documents which requested to be updated
