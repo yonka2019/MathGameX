@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using Android.Animation;
+using Android.Content;
 using MathGame.Activities;
 using System.Security.Cryptography;
 using System.Text;
@@ -68,6 +69,19 @@ namespace MathGame.Models
             MainActivity.Username = username;
             context.StartActivity(new Intent(context, typeof(MainActivity)));
 
+        }
+
+        /// <summary>
+        /// Run a X animation in a X duration with the X values
+        /// </summary>
+        /// <param name="type">type of the animation</param>
+        /// <param name="duration">duration to run in the requested animation</param>
+        /// <param name="values">values which the animation should get</param>
+        public static void Animate(this Java.Lang.Object target, string type, int duration, params float[] values)
+        {
+            ObjectAnimator animator = ObjectAnimator.OfFloat(target, type, values);
+            animator.SetDuration(duration);
+            animator.Start();
         }
     }
 }

@@ -11,16 +11,22 @@ namespace MathGame.Activities
     [Activity(Label = "PreActivity")]
     public class PreActivity : Activity
     {
+        private TextView welcomeText1;
+        private TextView welcomeText2;
         private Button login, register, anon;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
             SetContentView(Resource.Layout.pre_screen);
 
             SetRefs();
             SetEvents();
+
+            welcomeText1.Animate(AnimationType.TranslationX, 500, -500f, 0f);
+            welcomeText2.Animate(AnimationType.TranslationX, 500, 500f, 0f);
 
             // if there is no internet connection allow only play anonymously (because can not connect to the database)
             if (!base.Intent.GetBooleanExtra("InternetConnection", true))
@@ -28,7 +34,6 @@ namespace MathGame.Activities
                 login.Enabled = false;
                 register.Enabled = false;
             }
-
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -40,6 +45,9 @@ namespace MathGame.Activities
 
         private void SetRefs()
         {
+            welcomeText1 = FindViewById<TextView>(Resource.Id.pre_welcome1);
+            welcomeText2 = FindViewById<TextView>(Resource.Id.pre_welcome2);
+
             login = FindViewById<Button>(Resource.Id.pre_login_button);
             register = FindViewById<Button>(Resource.Id.pre_register_button);
             anon = FindViewById<Button>(Resource.Id.pre_anonymously_button);

@@ -132,7 +132,7 @@ namespace MathGame.Activities
                 question.Text = currentGame.GetRandomQuestionType().GenerateQuestion().ToString();
                 questionProgressBar.Progress++;
 
-                RunAnimation(question, AnimationType.TranslationY, 750, 300f, 0f);
+                question.Animate(AnimationType.TranslationY, 750, 300f, 0f);
 
                 cts = new CancellationTokenSource();
 
@@ -151,18 +151,6 @@ namespace MathGame.Activities
             leaveButton.PerformClick();  // loop leaved, game finished => simulate leaving in order to show statistics screen
         }
 
-        /// <summary>
-        /// Run a X animation in a X duration with the X values
-        /// </summary>
-        /// <param name="type">type of the animation</param>
-        /// <param name="duration">duration to run in the requested animation</param>
-        /// <param name="values">values which the animation should get</param>
-        private void RunAnimation(Java.Lang.Object target, string type, int duration, params float[] values)
-        {
-            ObjectAnimator animator = ObjectAnimator.OfFloat(target, type, values);
-            animator.SetDuration(duration);
-            animator.Start();
-        }
 
         private void ButtonsEnable(bool isEnabled)
         {
