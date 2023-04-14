@@ -29,7 +29,6 @@ namespace MathGame.Activities
 
         private readonly Dictionary<char, int> correctAnswersCounter = new Dictionary<char, int>();
         private ChartEntry[] statisticsEntries;
-        private MediaPlayer mediaPlayer;
 
         private ChartTypes currentChartType;
 
@@ -43,8 +42,6 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
-
-            mediaPlayer = new MediaPlayer();
 
             // restore collected data from game in order to show it
             correctAnswers = base.Intent.GetIntExtra("stats:correct", 0);
@@ -155,7 +152,7 @@ namespace MathGame.Activities
 
             if (succeed)
             {
-                mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.camera_click_sound);
+                MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.camera_click_sound);
                 this.CreateShowDialog("Screenshot saved", "Screenshot successfully saved on your phone!", "OK", Resource.Drawable.done_64px);
             }
             else

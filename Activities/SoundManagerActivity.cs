@@ -26,8 +26,6 @@ namespace MathGame.Activities
         private ISharedPreferences musicSP;
         private ISharedPreferences ambientSP;
 
-        private MediaPlayer mediaPlayer;
-
         private bool _musicPlaying;
 
         private bool musicPlaying
@@ -52,8 +50,6 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
-
-            mediaPlayer = new MediaPlayer();
 
             musicSP = GetSharedPreferences("Music", FileCreationMode.Private);
             ambientSP = GetSharedPreferences("Ambient", FileCreationMode.Private);
@@ -139,7 +135,7 @@ namespace MathGame.Activities
 
                 MediaPlayerAmbient.Volume = e.Progress;
 
-                mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.notification);
+                MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.notification);
             }
         }
 

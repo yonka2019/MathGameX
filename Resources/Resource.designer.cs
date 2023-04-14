@@ -11182,31 +11182,34 @@ namespace MathGame
 			public const int correct_answer = 2131689474;
 			
 			// aapt resource value: 0x7F0F0003
-			public const int firebase_common_keep = 2131689475;
+			public const int final_game = 2131689475;
 			
 			// aapt resource value: 0x7F0F0004
-			public const int Give_And_Take = 2131689476;
+			public const int firebase_common_keep = 2131689476;
 			
 			// aapt resource value: 0x7F0F0005
-			public const int Glossy_heart = 2131689477;
+			public const int Give_And_Take = 2131689477;
 			
 			// aapt resource value: 0x7F0F0006
-			public const int my_song = 2131689478;
+			public const int Glossy_heart = 2131689478;
 			
 			// aapt resource value: 0x7F0F0007
-			public const int notification = 2131689479;
+			public const int my_song = 2131689479;
 			
 			// aapt resource value: 0x7F0F0008
-			public const int Silent_Nights = 2131689480;
+			public const int notification = 2131689480;
 			
 			// aapt resource value: 0x7F0F0009
-			public const int three_ticks = 2131689481;
+			public const int Silent_Nights = 2131689481;
 			
 			// aapt resource value: 0x7F0F000A
-			public const int Wanderland = 2131689482;
+			public const int three_ticks = 2131689482;
 			
 			// aapt resource value: 0x7F0F000B
-			public const int wrong_answer = 2131689483;
+			public const int Wanderland = 2131689483;
+			
+			// aapt resource value: 0x7F0F000C
+			public const int wrong_answer = 2131689484;
 			
 			static Raw()
 			{

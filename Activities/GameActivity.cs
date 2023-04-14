@@ -25,7 +25,6 @@ namespace MathGame.Activities
         private const int VIBRATION_MS = 200;
 
         private NumberFormatInfo numberFormat;
-        private MediaPlayer mediaPlayer;
 
         private Button submitButton, skipButton, leaveButton, negativeAnswerButton;
         private EditText answerInput;
@@ -56,7 +55,6 @@ namespace MathGame.Activities
             SetContentView(Resource.Layout.game_screen);
 
             numberFormat = CultureInfo.CurrentCulture.NumberFormat;
-            mediaPlayer = new MediaPlayer();  // create media player object (which will play sound when correct or wrong answer given)
             correctAnswersCounter = new Dictionary<char, int>();
             leavedGame = false;
 
@@ -74,7 +72,7 @@ namespace MathGame.Activities
 
             currentGame = new Game(selectedDifficulty);
 
-            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.three_ticks);
+            MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.three_ticks);
             await StartCountdown(3, default);  // 3 seconds countdown before starting game
 
             ButtonsEnable(true);  // enable all the buttons (they are disabled by default)
@@ -242,6 +240,7 @@ namespace MathGame.Activities
             gameActivity.PutExtra("stats:*", correctAnswersCounter['*']);
             gameActivity.PutExtra("stats:/", correctAnswersCounter['/']);
 
+            MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.final_game);
             StartActivity(gameActivity);
         }
 
@@ -283,7 +282,7 @@ namespace MathGame.Activities
         /// </summary>
         private void CorrectAnswer()
         {
-            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.correct_answer);
+            MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.correct_answer);
 
             correctAnswers.Text = (int.Parse(correctAnswers.Text) + 1).ToString();
 
@@ -295,7 +294,7 @@ namespace MathGame.Activities
         /// </summary>
         private void WrongAnswer()
         {
-            mediaPlayer.PlaySound(PackageName, ApplicationContext, Resource.Raw.wrong_answer);
+            MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.wrong_answer);
 
             wrongAnswers.Text = (int.Parse(wrongAnswers.Text) + 1).ToString();
         }
