@@ -2,9 +2,9 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Media;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using MathGame.Models;
@@ -104,8 +104,8 @@ namespace MathGame.Activities
 
                 double averageAnswerTimeSeconds_DB = Convert.ToDouble(currentStats["AVG_AnswerTime_S"]);
 
-                // The average answer time record takes in a count only if the total answered questions is more than 20 (to avoid fast wrong answer and leave game)
-                if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 20))
+                // The average answer time record takes in a count only if the total answered questions is more or equal than 10 (to avoid fast wrong answer and leave game)
+                if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 10))
                 {
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_CURRENT;
                     this.CreateShowDialog("You beat your own record", "You have beat your own record!", "OK", Resource.Drawable.confetti_64px);
@@ -146,14 +146,15 @@ namespace MathGame.Activities
             screenshotButton.Click += ScreenshotButton_Click;
         }
 
+
         private void ScreenshotButton_Click(object sender, EventArgs e)
         {
-            bool succeed = TakeScreenshot();
+            bool succeed = TakeSaveScreenshot();
 
             if (succeed)
             {
                 MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.camera_click_sound);
-                this.CreateShowDialog("Screenshot saved", "Screenshot successfully saved on your phone!", "OK", Resource.Drawable.done_64px);
+                this.CreateShowDialog("Screenshot saved", "Screenshot successfully saved to your gallery!", "OK", Resource.Drawable.done_64px);
             }
             else
                 this.CreateShowDialog("Something went wrong..", "Can't take a screenshot", "OK", Resource.Drawable.warning64);
@@ -163,7 +164,7 @@ namespace MathGame.Activities
         /// Takes screenshot and returns true if succeed
         /// </summary>
         /// <returns>True if succeed or false if error occured</returns>
-        private bool TakeScreenshot()
+        private bool TakeSaveScreenshot()
         {
             try
             {
@@ -199,6 +200,7 @@ namespace MathGame.Activities
                 return false;
             }
         }
+
 
         private void BackToMenu_Click(object sender, System.EventArgs e)
         {

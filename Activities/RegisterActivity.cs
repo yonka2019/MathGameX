@@ -4,8 +4,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Widget;
-using Firebase;
-using Java.Util;
 using MathGame.Models;
 using System;
 using System.Text.RegularExpressions;

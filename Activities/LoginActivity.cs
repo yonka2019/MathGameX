@@ -4,11 +4,11 @@ using Android.Nfc;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
-using MathGame.Models;
-using System.Text.RegularExpressions;
-using System;
-using System.Threading.Tasks;
 using Google.Android.Material.TextField;
+using MathGame.Models;
+using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace MathGame.Activities
 {

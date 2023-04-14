@@ -1,7 +1,5 @@
-﻿using Android.Animation;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views.InputMethods;
@@ -255,9 +253,8 @@ namespace MathGame.Activities
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            // if the cultureinfo setted that the decimal separator is '.' or ',', replace current separator to the right one (to prevent exception in double.Parse(XX))
+            // if the cultureinfo setted that the decimal separator is '.' OR ',', replace current separator to the right one according the current culture (to prevent exception in double.Parse(XX))
             answerInput.Text = answerInput.Text.Replace(',', numberFormat.NumberDecimalSeparator[0]).Replace('.', numberFormat.NumberDecimalSeparator[0]);
-
 
             if (answerInput.Text == "")  // no input
                 WrongAnswer();  // count as wrong answer
@@ -269,8 +266,8 @@ namespace MathGame.Activities
                 else
                     WrongAnswer();
             }
-            else  // can't parse (bad answer -> clean answer)
-                answerInput.Text = "";
+            else  // can't parse (bad answer -> count as wrong)
+                WrongAnswer();
 
 
             if (!cts.IsCancellationRequested)  // Cancel if not already canceled
