@@ -40,6 +40,7 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+            SetTooltips();
 
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
@@ -62,19 +63,6 @@ namespace MathGame.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-
-        /// <summary>
-        /// formats the timestamp object of Firebase as dd.MM.yy HH:mm
-        /// </summary>
-        /// <param name="timestampObject">object to reformat in string</param>
-        /// <returns>reformatted string as 'dd.MM.yy HH:mm'</returns>
-        private string FormatTimestamp(object timestampObject)
-        {
-            Java.Util.Date date = ((Firebase.Timestamp)timestampObject).ToDate();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm");
-            return dateFormat.Format(date);
-        }
-
         private void SetRefs()
         {
             backToMenu = FindViewById<Button>(Resource.Id.info_backToMenu);
@@ -95,6 +83,24 @@ namespace MathGame.Activities
             backToMenu.Click += BackToMenu_Click;
             changeChart.Click += ChangeChart_Click;
             logout.Click += Logout_Click;
+        }
+
+        private void SetTooltips()
+        {
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Average time to answer per answer");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart type");
+        }
+
+        /// <summary>
+        /// formats the timestamp object of Firebase as dd.MM.yy HH:mm
+        /// </summary>
+        /// <param name="timestampObject">object to reformat in string</param>
+        /// <returns>reformatted string as 'dd.MM.yy HH:mm'</returns>
+        private string FormatTimestamp(object timestampObject)
+        {
+            Java.Util.Date date = ((Firebase.Timestamp)timestampObject).ToDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm");
+            return dateFormat.Format(date);
         }
 
         private void Logout_Click(object sender, EventArgs e)

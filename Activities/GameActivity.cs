@@ -77,6 +77,39 @@ namespace MathGame.Activities
             await StartGame();  // starting game
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void SetRefs()
+        {
+            submitButton = FindViewById<Button>(Resource.Id.SubmitButton);
+            skipButton = FindViewById<Button>(Resource.Id.skipButton);
+            leaveButton = FindViewById<Button>(Resource.Id.leaveButton);
+            negativeAnswerButton = FindViewById<Button>(Resource.Id.makeNegativeAnswer);
+
+            answerInput = FindViewById<EditText>(Resource.Id.inputAnswer);
+
+            timer = FindViewById<TextView>(Resource.Id.TimerText);
+            question = FindViewById<TextView>(Resource.Id.questionText);
+            correctAnswers = FindViewById<TextView>(Resource.Id.correctAnswers);
+            wrongAnswers = FindViewById<TextView>(Resource.Id.wrongAnswers);
+            gameTimerTV = FindViewById<TextView>(Resource.Id.game_timer);
+
+            questionProgressBar = FindViewById<ProgressBar>(Resource.Id.questionProgressbar);
+        }
+
+        private void SetEvents()
+        {
+            submitButton.Click += SubmitButton_Click;
+            skipButton.Click += SkipButton_Click;
+            leaveButton.Click += LeaveButton_Click;
+            negativeAnswerButton.Click += NegativeAnswerButton_Click;
+            answerInput.EditorAction += AnswerInput_EditorAction;
+        }
+
         private void SetupTimer()
         {
             gameTimer = new System.Timers.Timer(1000);
@@ -94,12 +127,6 @@ namespace MathGame.Activities
                             timeSpan.Hours,
                             timeSpan.Minutes,
                             timeSpan.Seconds);
-        }
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         private void SetLowBatteryReceiver()
@@ -155,33 +182,6 @@ namespace MathGame.Activities
             answerInput.Enabled = isEnabled;
             negativeAnswerButton.Enabled = isEnabled;
             leaveButton.Enabled = isEnabled;
-        }
-
-        private void SetRefs()
-        {
-            submitButton = FindViewById<Button>(Resource.Id.SubmitButton);
-            skipButton = FindViewById<Button>(Resource.Id.skipButton);
-            leaveButton = FindViewById<Button>(Resource.Id.leaveButton);
-            negativeAnswerButton = FindViewById<Button>(Resource.Id.makeNegativeAnswer);
-
-            answerInput = FindViewById<EditText>(Resource.Id.inputAnswer);
-
-            timer = FindViewById<TextView>(Resource.Id.TimerText);
-            question = FindViewById<TextView>(Resource.Id.questionText);
-            correctAnswers = FindViewById<TextView>(Resource.Id.correctAnswers);
-            wrongAnswers = FindViewById<TextView>(Resource.Id.wrongAnswers);
-            gameTimerTV = FindViewById<TextView>(Resource.Id.game_timer);
-
-            questionProgressBar = FindViewById<ProgressBar>(Resource.Id.questionProgressbar);
-        }
-
-        private void SetEvents()
-        {
-            submitButton.Click += SubmitButton_Click;
-            skipButton.Click += SkipButton_Click;
-            leaveButton.Click += LeaveButton_Click;
-            negativeAnswerButton.Click += NegativeAnswerButton_Click;
-            answerInput.EditorAction += AnswerInput_EditorAction;
         }
 
         private void AnswerInput_EditorAction(object sender, TextView.EditorActionEventArgs e)

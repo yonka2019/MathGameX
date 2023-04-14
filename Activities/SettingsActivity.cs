@@ -38,6 +38,26 @@ namespace MathGame.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void SetRefs()
+        {
+            oneD = FindViewById<CheckBox>(Resource.Id.setting_singleDigit);
+            doubleD = FindViewById<CheckBox>(Resource.Id.setting_doubleDigit);
+            tripleD = FindViewById<CheckBox>(Resource.Id.setting_tripleDigit);
+            fourthD = FindViewById<CheckBox>(Resource.Id.setting_fourthDigit);
+
+            plus = FindViewById<CheckBox>(Resource.Id.setting_plus);
+            minus = FindViewById<CheckBox>(Resource.Id.setting_minus);
+            multiply = FindViewById<CheckBox>(Resource.Id.setting_multiply);
+            divide = FindViewById<CheckBox>(Resource.Id.setting_divide);
+
+            saveExit = FindViewById<Button>(Resource.Id.settings_saveAndExitButton);
+        }
+
+        private void SetEvents()
+        {
+            saveExit.Click += SaveAndExit_Click;
+        }
+
         private void RestoreSettingsView()
         {
             plus.Checked = SettingsManager.Settings["operators"]['+'];
@@ -85,26 +105,6 @@ namespace MathGame.Activities
 
             // back to main screen
             StartActivity(new Intent(this, typeof(MainActivity)));
-        }
-
-        private void SetRefs()
-        {
-            oneD = FindViewById<CheckBox>(Resource.Id.setting_singleDigit);
-            doubleD = FindViewById<CheckBox>(Resource.Id.setting_doubleDigit);
-            tripleD = FindViewById<CheckBox>(Resource.Id.setting_tripleDigit);
-            fourthD = FindViewById<CheckBox>(Resource.Id.setting_fourthDigit);
-
-            plus = FindViewById<CheckBox>(Resource.Id.setting_plus);
-            minus = FindViewById<CheckBox>(Resource.Id.setting_minus);
-            multiply = FindViewById<CheckBox>(Resource.Id.setting_multiply);
-            divide = FindViewById<CheckBox>(Resource.Id.setting_divide);
-
-            saveExit = FindViewById<Button>(Resource.Id.settings_saveAndExitButton);
-        }
-
-        private void SetEvents()
-        {
-            saveExit.Click += SaveAndExit_Click;
         }
 
         [Obsolete]

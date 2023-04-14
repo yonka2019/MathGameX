@@ -66,4 +66,19 @@
             android:layout_height="wrap_content"
             android:text="Hard"/>
     </LinearLayout>
+
+    <!--A blank view to place the button on the bottom-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/game_select_backButton"
+        android:textSize="@dimen/sp_medium"
+        android:layout_margin="@dimen/dp_medium"/>
 </LinearLayout>

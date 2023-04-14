@@ -80,6 +80,22 @@ namespace MathGame.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void SetRefs()
+        {
+            lv = FindViewById<ListView>(Resource.Id.music_lvMusic);
+            back = FindViewById<Button>(Resource.Id.music_backButton);
+            musicSB = FindViewById<SeekBar>(Resource.Id.music_seekbar);
+            ambientSB = FindViewById<SeekBar>(Resource.Id.ambient_seekbar);
+        }
+
+        private void SetEvents()
+        {
+            back.Click += Back_Click;
+            musicSB.ProgressChanged += Sb_ProgressChanged;
+            ambientSB.ProgressChanged += AmbientSB_ProgressChanged;
+            lv.OnItemClickListener = this;
+        }
+
         private int GetSongPosition(int songFile)
         {
             return SongList.FindIndex(x => x.FileName == songFile);
@@ -136,22 +152,6 @@ namespace MathGame.Activities
 
                 MediaPlayerAmbient.PlaySound(PackageName, ApplicationContext, Resource.Raw.notification);
             }
-        }
-
-        private void SetRefs()
-        {
-            lv = FindViewById<ListView>(Resource.Id.music_lvMusic);
-            back = FindViewById<Button>(Resource.Id.music_backButton);
-            musicSB = FindViewById<SeekBar>(Resource.Id.music_seekbar);
-            ambientSB = FindViewById<SeekBar>(Resource.Id.ambient_seekbar);
-        }
-
-        private void SetEvents()
-        {
-            back.Click += Back_Click;
-            musicSB.ProgressChanged += Sb_ProgressChanged;
-            ambientSB.ProgressChanged += AmbientSB_ProgressChanged;
-            lv.OnItemClickListener = this;
         }
 
         private void Back_Click(object sender, System.EventArgs e)

@@ -10,7 +10,7 @@ namespace MathGame.Activities
     [Activity(Label = "GameSelectionActivity")]
     public class GameSelectionActivity : Activity
     {
-        private Button infinity, easy, medium, hard;
+        private Button infinity, easy, medium, hard, backToMenu;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,6 +27,29 @@ namespace MathGame.Activities
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void SetRefs()
+        {
+            infinity = FindViewById<Button>(Resource.Id.gSelection_infinity);
+            easy = FindViewById<Button>(Resource.Id.gSelection_easy);
+            medium = FindViewById<Button>(Resource.Id.gSelection_medium);
+            hard = FindViewById<Button>(Resource.Id.gSelection_hard);
+            backToMenu = FindViewById<Button>(Resource.Id.game_select_backButton);
+        }
+
+        private void SetEvents()
+        {
+            infinity.Click += Infinity_Click;
+            easy.Click += Easy_Click;
+            medium.Click += Medium_Click;
+            hard.Click += Hard_Click;
+            backToMenu.Click += BackToMenu_Click;
+        }
+
+        private void BackToMenu_Click(object sender, EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(MainActivity)));
         }
 
         private void Hard_Click(object sender, EventArgs e)
@@ -59,22 +82,6 @@ namespace MathGame.Activities
             gameActivity.PutExtra("mode", 0);
 
             StartActivity(gameActivity);
-        }
-
-        private void SetRefs()
-        {
-            infinity = FindViewById<Button>(Resource.Id.gSelection_infinity);
-            easy = FindViewById<Button>(Resource.Id.gSelection_easy);
-            medium = FindViewById<Button>(Resource.Id.gSelection_medium);
-            hard = FindViewById<Button>(Resource.Id.gSelection_hard);
-        }
-
-        private void SetEvents()
-        {
-            infinity.Click += Infinity_Click;
-            easy.Click += Easy_Click;
-            medium.Click += Medium_Click;
-            hard.Click += Hard_Click;
         }
     }
 }

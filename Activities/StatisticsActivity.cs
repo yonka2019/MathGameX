@@ -40,6 +40,17 @@ namespace MathGame.Activities
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void SetRefs()
+        {
+            backButton = FindViewById<Button>(Resource.Id.stats_backButton);
+            listView = FindViewById<ListView>(Resource.Id.statistics_listview);
+        }
+
+        private void SetEvents()
+        {
+            backButton.Click += BackButton_Click;
+        }
+
         private SimpleAdapter SetAdapter(DataTable dataTable)
         {
             JavaList<IDictionary<string, object>> totalDataList = new JavaList<IDictionary<string, object>>();
@@ -121,17 +132,6 @@ namespace MathGame.Activities
             totalPoints += Convert.ToInt32(stats["Divide"]);
 
             return totalPoints;
-        }
-
-        private void SetRefs()
-        {
-            backButton = FindViewById<Button>(Resource.Id.stats_backButton);
-            listView = FindViewById<ListView>(Resource.Id.statistics_listview);
-        }
-
-        private void SetEvents()
-        {
-            backButton.Click += BackButton_Click;
         }
 
         private void BackButton_Click(object sender, EventArgs e)

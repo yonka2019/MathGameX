@@ -4,7 +4,6 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using MathGame.Models;
@@ -42,6 +41,7 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+            SetTooltips();
 
             // restore collected data from game in order to show it
             correctAnswers = base.Intent.GetIntExtra("stats:correct", 0);
@@ -80,6 +80,34 @@ namespace MathGame.Activities
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void SetRefs()
+        {
+            backToMenu = FindViewById<Button>(Resource.Id.stats_backToMenu);
+            changeChart = FindViewById<Button>(Resource.Id.ChangeChart);
+            screenshotButton = FindViewById<Button>(Resource.Id.cameraButton);
+
+            correctAnswersNumber = FindViewById<TextView>(Resource.Id.stats_correct);
+            wrongAnswersNumber = FindViewById<TextView>(Resource.Id.stats_wrong);
+            totalGameTime = FindViewById<TextView>(Resource.Id.finish_totalTime);
+            averageAnswerTime = FindViewById<TextView>(Resource.Id.finish_averageAnswerTime);
+
+            statsChart = FindViewById<ChartView>(Resource.Id.statsChart);
+        }
+
+        private void SetEvents()
+        {
+            changeChart.Click += ChangeChart_Click;
+            backToMenu.Click += BackToMenu_Click;
+            screenshotButton.Click += ScreenshotButton_Click;
+        }
+
+        private void SetTooltips()
+        {
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Average time to answer per answer");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(totalGameTime, "Total game time");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart type");
         }
 
         private void SetupIntialChart()
@@ -124,28 +152,6 @@ namespace MathGame.Activities
                 bestAverageAnswerTimeSeconds);
             }
         }
-
-        private void SetRefs()
-        {
-            backToMenu = FindViewById<Button>(Resource.Id.stats_backToMenu);
-            changeChart = FindViewById<Button>(Resource.Id.ChangeChart);
-            screenshotButton = FindViewById<Button>(Resource.Id.cameraButton);
-
-            correctAnswersNumber = FindViewById<TextView>(Resource.Id.stats_correct);
-            wrongAnswersNumber = FindViewById<TextView>(Resource.Id.stats_wrong);
-            totalGameTime = FindViewById<TextView>(Resource.Id.finish_totalTime);
-            averageAnswerTime = FindViewById<TextView>(Resource.Id.finish_averageAnswerTime);
-
-            statsChart = FindViewById<ChartView>(Resource.Id.statsChart);
-        }
-
-        private void SetEvents()
-        {
-            changeChart.Click += ChangeChart_Click;
-            backToMenu.Click += BackToMenu_Click;
-            screenshotButton.Click += ScreenshotButton_Click;
-        }
-
 
         private void ScreenshotButton_Click(object sender, EventArgs e)
         {

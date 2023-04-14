@@ -27,6 +27,8 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+            SetTooltips();
+
             RestoreAmbientSound();
             RestoreGameSettings();
 
@@ -45,6 +47,38 @@ namespace MathGame.Activities
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void SetRefs()
+        {
+            Stats = FindViewById<Button>(Resource.Id.main_statsButton);
+            Start = FindViewById<Button>(Resource.Id.main_startGameButton);
+            Settings = FindViewById<Button>(Resource.Id.main_settingsButton);
+
+            SetSong = FindViewById<ImageButton>(Resource.Id.main_setSongButton);
+
+            Login = FindViewById<TextView>(Resource.Id.main_loginButton);
+            Register = FindViewById<TextView>(Resource.Id.main_registerButton);
+            UsernameTV = FindViewById<TextView>(Resource.Id.main_username);
+        }
+
+        private void SetEvents()
+        {
+            Stats.Click += Stats_Click;
+            Start.Click += Start_Click;
+            Settings.Click += Settings_Click;
+
+            SetSong.Click += SetSong_Click;
+
+            Login.Click += Login_Click;
+            Register.Click += Register_Click;
+
+            UsernameTV.Click += UsernameTV_Click;
+        }
+
+        private void SetTooltips()
+        {
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(SetSong, "Song / ambient sounds configuration");
         }
 
         private void RestoreGameSettings()
@@ -113,33 +147,6 @@ namespace MathGame.Activities
             {
                 this.CreateShowDialog("Warning", "You must set up the settings before starting game", "OK", Resource.Drawable.warning64);
             }
-        }
-
-        private void SetRefs()
-        {
-            Stats = FindViewById<Button>(Resource.Id.main_statsButton);
-            Start = FindViewById<Button>(Resource.Id.main_startGameButton);
-            Settings = FindViewById<Button>(Resource.Id.main_settingsButton);
-
-            SetSong = FindViewById<ImageButton>(Resource.Id.main_setSongButton);
-
-            Login = FindViewById<TextView>(Resource.Id.main_loginButton);
-            Register = FindViewById<TextView>(Resource.Id.main_registerButton);
-            UsernameTV = FindViewById<TextView>(Resource.Id.main_username);
-        }
-
-        private void SetEvents()
-        {
-            Stats.Click += Stats_Click;
-            Start.Click += Start_Click;
-            Settings.Click += Settings_Click;
-
-            SetSong.Click += SetSong_Click;
-
-            Login.Click += Login_Click;
-            Register.Click += Register_Click;
-
-            UsernameTV.Click += UsernameTV_Click;
         }
 
         private void UsernameTV_Click(object sender, System.EventArgs e)
