@@ -52,7 +52,7 @@ namespace MathGame.Models
         {
             return mode switch
             {
-                GameMode.Infinity => 60,
+                GameMode.Infinity => 30,
                 GameMode.Easy => 15,
                 GameMode.Medium => 10,
                 GameMode.Hard => 5,

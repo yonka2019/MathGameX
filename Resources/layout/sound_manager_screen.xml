@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="- Select any music below -"
+        android:text="- Select any song below -"
         android:textSize="@dimen/sp_large"
         android:gravity="center"
         android:layout_marginBottom="@dimen/dp_xlarge"

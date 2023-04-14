@@ -107,7 +107,13 @@ namespace MathGame.Activities
         {
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Average time to answer per answer");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(totalGameTime, "Total game time");
-            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart type");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart style");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(correctAnswersNumber, "Total correct answers");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(wrongAnswersNumber, "Total wrong answers");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(totalGameTime, "Total game time");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(screenshotButton, "Take a screenshot of this page");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(statsChart, "Correct answers per arithmetic operator in current finished game");
+
         }
 
         private void SetupIntialChart()
@@ -132,7 +138,7 @@ namespace MathGame.Activities
 
                 double averageAnswerTimeSeconds_DB = Convert.ToDouble(currentStats["AVG_AnswerTime_S"]);
 
-                // The average answer time record takes in a count only if the total answered questions is more or equal than 10 (to avoid fast wrong answer and leave game)
+                // checks if new AATS is better than DB value OR checks if DB value default (0) AND total correct answers more or equals to 10 (to avoid fast wrong answer and leave game)
                 if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 10))
                 {
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_CURRENT;
@@ -144,7 +150,7 @@ namespace MathGame.Activities
 
                 FirebaseManager.SetStatsData(MainActivity.Username,
 
-                // add to CURRENT STATISTICS data the new statistics data
+                // add to CURRENT STATISTICS data the new statistics data and set in firebase
                 Convert.ToInt32(currentStats["Plus"]) + correctAnswersCounter['+'],
                 Convert.ToInt32(currentStats["Minus"]) + correctAnswersCounter['-'],
                 Convert.ToInt32(currentStats["Multiply"]) + correctAnswersCounter['*'],

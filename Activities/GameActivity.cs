@@ -18,7 +18,7 @@ namespace MathGame.Activities
     public class GameActivity : Activity
     {
         // if EASY / MEDIUM / HARD mode selected - there is limited questions number [SHOULD BE UPDATED ALSO IN layout/game_screen.xml [questionProgressBar : max value]
-        private const int QUESTIONS_NUMBER = 10;
+        private const int QUESTIONS_NUMBER = 10;  // NUMBER OF QUESTION IN LEVEL GAME TYPE
         private const int VIBRATION_AMPLITUDE = 65;  // 1 - 255
         private const int VIBRATION_MS = 200;
 
@@ -58,6 +58,8 @@ namespace MathGame.Activities
 
             SetRefs();
             SetEvents();
+            SetTooltips();
+
             SetLowBatteryReceiver();
             SetupTimer();
 
@@ -108,6 +110,16 @@ namespace MathGame.Activities
             leaveButton.Click += LeaveButton_Click;
             negativeAnswerButton.Click += NegativeAnswerButton_Click;
             answerInput.EditorAction += AnswerInput_EditorAction;
+        }
+
+        private void SetTooltips()
+        {
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(negativeAnswerButton, "Negative the answer");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(leaveButton, "Leave game");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(correctAnswers, "Total correct answers");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(wrongAnswers, "Total wrong answers");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(timer, "Time left to answer");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(gameTimerTV, "Total game time");
         }
 
         private void SetupTimer()
