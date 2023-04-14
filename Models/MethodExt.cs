@@ -56,7 +56,7 @@ namespace MathGame.Models
         /// logins user (opens up the main activity and updates session) ; (after user successfully creation // after successfully password check
         /// </summary>
         /// <param name="username"></param>
-        public static void Login(this Context context, string username)
+        public static void AccountLogin(this Context context, string username)
         {
             ISharedPreferences loginSessionSP = context.GetSharedPreferences("LoginSession", FileCreationMode.Private);
             ISharedPreferencesEditor lsEditor = loginSessionSP.Edit();

@@ -110,7 +110,7 @@ namespace MathGame.Activities
 
             if (await PasswordCorrect(username.Text, password.Text, true))  // if password matches => successfully logged in
             {
-                this.Login(username.Text);
+                this.AccountLogin(username.Text);
             }
             else
             {
@@ -179,7 +179,7 @@ namespace MathGame.Activities
 
                 if (await PasswordCorrect(nfc_username, nfc_password, false))  // if password matches => successfully logged in
                 {
-                    this.Login(nfc_username);
+                    this.AccountLogin(nfc_username);
                 }
                 else
                 {

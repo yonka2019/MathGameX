@@ -131,7 +131,7 @@ namespace MathGame.Activities
             {
                 RegisterUser(username.Text, password.Text);
 
-                this.Login(username.Text);
+                this.AccountLogin(username.Text);
             }
             else  // already exists
             {

@@ -72,7 +72,7 @@ namespace MathGame.Activities
 
             else  // session isn't expired
             {
-                this.Login(username);
+                this.AccountLogin(username);
 
                 RunOnUiThread(() =>  // to avoid 'Can't toast on a thread that has not called Looper.prepare()'
                 {
