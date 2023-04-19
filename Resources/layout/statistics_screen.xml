@@ -2,6 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/dp_xxlarge">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/global_32px"
+            android:contentDescription="earth image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Global Statistics"
+           android:textSize="@dimen/sp_xlarge"
+           android:textStyle="bold"
+           android:layout_marginTop="@dimen/dp_xlarge"
+           android:layout_marginBottom="@dimen/dp_xlarge"/>
+    </LinearLayout>
+
+    <!--0dp to make the listview maximized and enable the scroll when he will be fully filled-->
+    <ListView
+        android:id="@+id/statistics_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/dp_xlarge"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/stats_backButton"
+        android:textSize="@dimen/sp_medium"
+        android:layout_margin="@dimen/dp_medium"/>
 </LinearLayout>

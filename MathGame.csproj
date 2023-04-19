@@ -19,7 +19,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -58,24 +58,54 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Java.Interop" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameActivity.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Activities\FinishedGameActivity.cs" />
+    <Compile Include="Activities\GameSelectionActivity.cs" />
+    <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\PreActivity.cs" />
+    <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Activities\UserInfoActivity.cs" />
+    <Compile Include="Adapters\StatsAdapter.cs" />
+    <Compile Include="Enums\AnimationType.cs" />
+    <Compile Include="Enums\ChartTypes.cs" />
+    <Compile Include="Models\FirebaseManager.cs" />
+    <Compile Include="Enums\GameMode.cs" />
+    <Compile Include="Models\MathQuestions\AdditionQuestion.cs" />
+    <Compile Include="Models\MathQuestions\BaseQuestion.cs" />
+    <Compile Include="Models\MathQuestions\DivisionQuestion.cs" />
+    <Compile Include="Models\MathQuestions\MultiplicationQuestion.cs" />
+    <Compile Include="Models\MathQuestions\SubstractionQuestion.cs" />
+    <Compile Include="Models\MediaPlayerAmbient.cs" />
+    <Compile Include="Models\MethodExt.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Adapters\SongAdapter.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Activities\GameActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\SoundManagerActivity.cs" />
+    <Compile Include="Receivers\LowBatteryReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsActivity.cs" />
-    <Compile Include="SettingsManager.cs" />
-    <Compile Include="StatisticsActivity.cs" />
+    <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Models\SettingsManager.cs" />
+    <Compile Include="Activities\StatisticsActivity.cs" />
+    <Compile Include="Services\MusicService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\calculator_animation.json" />
+    <AndroidAsset Include="Assets\calculator_animation_pre.json" />
+    <None Include=".editorconfig" />
+    <AndroidAsset Include="Assets\google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -84,35 +114,69 @@
     <AndroidResource Include="Resources\layout\main_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\raw\another_one_bites_the_dust.mp3" />
+    <AndroidResource Include="Resources\raw\my_song.mp3" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microcharts">
-      <Version>0.9.5.9</Version>
+    <PackageReference Include="Com.Airbnb.Android.Lottie">
+      <Version>4.2.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Microcharts.Android">
+      <Version>1.0.0-preview1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Core.Utils">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.CustomTabs">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Design">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Media.Compat">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.UI">
+      <Version>1.0.0.16</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core">
+      <Version>2.5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Media">
+      <Version>1.6.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Firestore">
+      <Version>124.4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
+    <PackageReference Include="ZhangHai.Android.MaterialProgressBar">
+      <Version>1.4.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\values.xml" />
@@ -131,7 +195,210 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\statistics_screen.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\border.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\sound_manager_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\music_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\musical_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\login_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\register_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\male_user_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_monochrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_monochrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_monochrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_monochrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_monochrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\splash_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\game_selection.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hourglass_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\close_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\done_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logout_33px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\correct_answer.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\wrong_answer.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\three_ticks.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\finished_game.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\notification.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bar_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\donut_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pie_chart_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\radar_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\pre_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\user_info_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\wifi_off_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\gridview_border.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\statistics_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nfc_tag_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\done_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nearly_empty_battery_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\lock_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\person_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\confetti_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\first_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\time_span_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\time_machine_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\camera_33px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\camera_click_sound.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\Wanderland.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\Silent_Nights.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\Glossy_heart.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\Give_And_Take.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add_user_male_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\account_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\global_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\settings_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\circled_user_male_skin_type_7_37px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\game_controller_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\final_game.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties assets_4google-services_1json__JsonSchema="https://cdn.jsdelivr.net/gh/roadrunner-server/roadrunner@latest/schemas/config/2.0.schema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">

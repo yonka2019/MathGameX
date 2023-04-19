@@ -5,14 +5,29 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/dp_xxlarge">
 
-    <!--Main Title-->
-    <TextView 
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_main_title"
-        android:layout_gravity="center"
-        android:padding="@dimen/dp_large"
-        android:textSize="@dimen/sp_xxlarge"/>
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/settings_32px"
+            android:contentDescription="settings image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Settings"
+           android:textSize="@dimen/sp_xlarge"
+           android:textStyle="bold"
+           android:layout_marginTop="@dimen/dp_xlarge"
+           android:layout_marginBottom="@dimen/dp_xlarge"/>
+    </LinearLayout>
+
 
     <TableLayout
         android:layout_width="match_parent"
@@ -31,7 +46,7 @@
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"
-                android:id="@+id/setting_single_digit"/>
+                android:id="@+id/setting_singleDigit"/>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -53,7 +68,7 @@
                 android:text="@string/settings_double_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
-                android:id="@+id/setting_double_digit"
+                android:id="@+id/setting_doubleDigit"
                 android:textSize="@dimen/sp_large"/>
 
             <CheckBox
@@ -76,7 +91,7 @@
                 android:text="@string/settings_triple_digit"
                 android:layout_column="1"
                 android:padding="@dimen/dp_small"
-                android:id="@+id/setting_triple_digit"
+                android:id="@+id/setting_tripleDigit"
                 android:textSize="@dimen/sp_large"/>
 
             <CheckBox
@@ -98,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/settings_fourth_digit"
                 android:layout_column="1"
-                android:id="@+id/setting_fourth_digit"
+                android:id="@+id/setting_fourthDigit"
                 android:padding="@dimen/dp_small"
                 android:textSize="@dimen/sp_large"/>
 
@@ -115,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_save_exit"
-            android:id="@+id/SaveExitButton"
+            android:id="@+id/settings_saveAndExitButton"
             android:textSize="@dimen/sp_medium"
             android:layout_marginTop="@dimen/dp_medium"/>
     </TableLayout>

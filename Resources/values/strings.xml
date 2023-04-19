@@ -5,7 +5,7 @@
 	<!--Main screen-->
 	<string name="main_main_title">Math Game</string>
 
-	<string name="main_stats">Stats</string>
+	<string name="main_stats">Global Statistics</string>
 	<string name="main_start_game">Start game</string>
 	<string name="main_settings">Settings</string>
 	

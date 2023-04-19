@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_3xlarge"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_user_male_32px"
+            android:contentDescription="register image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Sign Up"
+           android:textSize="@dimen/sp_xlarge"
+           android:textStyle="bold"
+           android:layout_marginTop="@dimen/dp_xlarge"
+           android:layout_marginBottom="@dimen/dp_xlarge"/>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_3xlarge"
+        app:startIconDrawable="@drawable/person_24px"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_usernametil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:hint="Username"
+            android:textSize="@dimen/sp_large"
+            android:id="@+id/register_userTB"
+            android:imeOptions="actionNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="true"
+        android:layout_width="match_parent"
+        app:startIconDrawable="@drawable/lock_24px"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_passtil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:imeOptions="actionDone"
+            android:id="@+id/register_passTB"
+            android:textSize="@dimen/sp_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/lock_24px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_confpasstil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"
+            android:id="@+id/register_confPassTB"
+            android:hint="Confirm password"
+            android:imeOptions="actionDone"
+            android:textSize="@dimen/sp_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    
+    <Button
+        android:text="Register"
+        android:layout_marginTop="@dimen/dp_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_registerButton"/>
+
+    <!--Login form reference-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_35xlarge"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_small"
+        android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? "
+        android:layout_marginTop="@dimen/dp_small"
+        android:textSize="@dimen/sp_large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="@dimen/dp_small"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_large"
+        android:id="@+id/register_gotoLogin"/>
+        </LinearLayout>
+</LinearLayout>

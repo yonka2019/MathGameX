@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_3xlarge"
+    android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/account_32px"
+            android:contentDescription="profile image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Login"
+           android:textSize="@dimen/sp_xlarge"
+           android:textStyle="bold"
+           android:layout_marginTop="@dimen/dp_xlarge"
+           android:layout_marginBottom="@dimen/dp_xlarge"/>
+    </LinearLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_3xlarge"
+        app:startIconDrawable="@drawable/person_24px"
+        android:id="@+id/login_usernametil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:hint="Username"
+            android:id="@+id/login_userTB"
+            android:textSize="@dimen/sp_large"
+            android:imeOptions="actionNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="true"
+        android:layout_width="match_parent"
+        app:startIconDrawable="@drawable/lock_24px"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_passtil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/login_passTB"
+            android:imeOptions="actionDone"
+            android:textSize="@dimen/sp_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    
+    <Button
+        android:layout_marginTop="@dimen/dp_large"
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_loginButton"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_35xlarge"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_small"
+        android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? "
+        android:layout_marginTop="@dimen/dp_small"
+        android:textSize="@dimen/sp_large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:layout_marginTop="@dimen/dp_small"
+        android:textSize="@dimen/sp_large"
+        android:textStyle="bold"
+        android:id="@+id/login_gotoRegister"/>
+
+    </LinearLayout>
+
+    <!--Register form reference-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_35xlarge"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="just an image of NFC (non-clickable)"
+            android:src="@drawable/nfc_tag_50px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NFC tag login supported"
+            android:layout_marginTop="@dimen/dp_medium"
+            android:textSize="@dimen/sp_large"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/light_gray"/>
+        </LinearLayout>
+</LinearLayout>

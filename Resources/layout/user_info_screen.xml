@@ -1,0 +1,150 @@
+﻿<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/info_playerName"
+        android:layout_marginTop="@dimen/dp_xxlarge"
+        android:layout_gravity="center_horizontal"
+        android:text="Player Name"
+        android:textSize="@dimen/sp_xxlarge"
+        android:textStyle="bold" />
+        
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="⎯⎯⎯⎯⎯⎯⎯⎯"
+        android:textSize="@dimen/sp_xlarge"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+       
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Since: "
+            android:textSize="@dimen/sp_xlarge"/>
+            
+        <TextView
+            android:id="@+id/info_createdAt"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="00.00.00 00:00"
+            android:textSize="@dimen/sp_xlarge"/>
+    </LinearLayout>
+
+    <!--Average answer time (in seconds) per ONE question-->
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time_machine_30px"
+            android:contentDescription="one digit image (non-clickable)"
+            android:layout_marginRight="@dimen/dp_small"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/info_averageAnswerTime"
+            android:textSize="@dimen/sp_large"
+            android:layout_height="wrap_content"
+            android:text="0 seconds"/>
+    </LinearLayout>
+
+    <!--Chart layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_xxlarge"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Total correct answers -"
+            android:gravity="center"
+            android:textSize="@dimen/sp_large"
+            android:textStyle="bold"/>
+
+        <Microcharts.Droid.ChartView
+            android:layout_marginTop="@dimen/dp_xxlarge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_mxlarge"
+            android:id="@+id/info_statsChart"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_4xlarge"
+            android:layout_gravity="center"
+            android:id="@+id/info_changeChart"
+            android:drawableBottom="@drawable/pie_chart_35px"/>
+    </LinearLayout>
+
+    <!-- Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_35xlarge">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_xxlarge"
+            android:layout_gravity="center"
+            android:contentDescription="just an image of NFC (non-clickable)"
+            android:src="@drawable/nfc_tag_50px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place NFC tag to save login data"
+            android:layout_marginTop="@dimen/dp_medium"
+            android:textSize="@dimen/sp_large"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/light_gray"/>
+
+        <!--will remove only if you the owner (user) of the card-->
+        <CheckBox
+            android:layout_marginTop="@dimen/dp_small"
+            android:id="@+id/cbClearTag"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Clear data from tag"
+            android:textColor="@color/light_gray"/>
+
+        <Button
+            android:id="@+id/info_backToMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to menu"
+            android:textSize="@dimen/sp_large"
+            android:layout_margin="@dimen/dp_xlarge"/>
+
+        <Button
+            android:id="@+id/info_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOG OUT"
+            android:textSize="@dimen/sp_medium"
+            android:layout_margin="@dimen/dp_xlarge"/>
+    </LinearLayout>
+</LinearLayout>

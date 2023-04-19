@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding = "utf-8"?> 
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android" 
+    android:orientation = "vertical" 
+    android:layout_width = "match_parent" 
+    android:layout_height = "match_parent" 
+    android:minWidth = "25px" 
+    android:minHeight = "25px"
+    android:paddingTop="@dimen/dp_4xlarge"> 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_controller_32px"
+            android:contentDescription="profile image (non-clickable)"
+            android:paddingRight="@dimen/dp_medium"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Game Selection"
+           android:textSize="@dimen/sp_xlarge"
+           android:textStyle="bold"
+           android:layout_marginTop="@dimen/dp_xlarge"
+           android:layout_marginBottom="@dimen/dp_xlarge"/>
+    </LinearLayout>
+
+    <Button 
+        android:id="@+id/gSelection_infinity"
+        android:layout_width="match_parent" 
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content" 
+        android:text="Inifnity Game"/> 
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_medium"
+        android:layout_marginBottom="@dimen/dp_medium">
+
+        <Button
+            android:id="@+id/gSelection_easy"
+            android:layout_width="@dimen/dp_mxlarge"
+            android:layout_height="wrap_content"
+            android:text="Easy"
+            android:layout_marginBottom="@dimen/dp_medium"/>
+
+        <Button
+            android:id="@+id/gSelection_medium"
+            android:layout_width="@dimen/dp_2mlarge"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_medium"
+            android:text="Medium"/>
+
+        <Button
+            android:id="@+id/gSelection_hard"
+            android:layout_width="@dimen/dp_3mlarge"
+            android:layout_marginBottom="@dimen/dp_medium"
+            android:layout_height="wrap_content"
+            android:text="Hard"/>
+    </LinearLayout>
+
+    <!--A blank view to place the button on the bottom-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/game_select_backButton"
+        android:textSize="@dimen/sp_medium"
+        android:layout_margin="@dimen/dp_medium"/>
+</LinearLayout>

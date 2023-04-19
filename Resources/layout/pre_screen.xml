@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   android:orientation="vertical"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_marginTop="@dimen/dp_xxlarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="calculator_animation_pre.json"
+        app:lottie_loop="true"
+        app:lottie_speed="0.90" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="@dimen/dp_xlarge">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Welcome to "
+           android:textSize="@dimen/sp_xlarge"
+           android:id="@+id/pre_welcome1"
+           android:layout_gravity="center_horizontal"/>
+
+        <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Math Game"
+           android:textSize="@dimen/sp_xlarge"
+           android:id="@+id/pre_welcome2"
+           android:textStyle="bold"
+           android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+   <Button
+       android:id="@+id/pre_login_button"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Login"
+       android:textSize="@dimen/sp_medium"
+       android:layout_margin="@dimen/dp_xlarge"/>
+
+   <Button
+       android:id="@+id/pre_register_button"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Register"
+       android:textSize="@dimen/sp_medium"
+       android:layout_margin="@dimen/dp_xlarge"/>
+
+    <Button
+       android:id="@+id/pre_anonymously_button"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="play anonymously"
+       android:textSize="@dimen/sp_medium"
+       android:layout_margin="@dimen/dp_xlarge"/>
+
+</LinearLayout>

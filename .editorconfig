@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS0672: Member overrides obsolete member
+dotnet_diagnostic.CS0672.severity = suggestion
+
+# CS0618: Type or member is obsolete
+dotnet_diagnostic.CS0618.severity = suggestion

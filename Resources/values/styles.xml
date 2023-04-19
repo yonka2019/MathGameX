@@ -1,7 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
 	<style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
     </style>
-
+		
+	<style name="AppTheme.Splash" parent="Theme.Design.Light.NoActionBar">  
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBar">true</item>
+		
+  </style>
 </resources>
