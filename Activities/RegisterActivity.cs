@@ -116,13 +116,13 @@ namespace MathGame.Activities
 
             if (password.Text != confirmPassword.Text)
             {
-                confpasswordtil.Error = "Not the same";
+                confpasswordtil.Error = "Passwords not same";
                 return;
             }
 
             if (!IsStrongPassword(password.Text))  // check if password strong enough
             {
-                passwordtil.Error = "Weak password";
+                passwordtil.Error = "Weak password (minimum 6 character & atleast one uppercase & atleast one lowercase & one digit)";
                 return;
             }
 
@@ -135,7 +135,7 @@ namespace MathGame.Activities
             }
             else  // already exists
             {
-                usernametil.Error = "Already Exists";
+                usernametil.Error = "User Already Exists";
             }
         }
 
