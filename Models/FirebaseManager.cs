@@ -1,19 +1,25 @@
 ﻿using Android.Content;
+using Android.Content.Res;
 using Android.Gms.Extensions;
 using Firebase;
 using Firebase.Firestore;
 using Java.Util;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace MathGame.Models
 {
     public static class FirebaseManager
     {
-        private const string SETTINGS_PROJECT_ID = "mathgame-x";
-        private const string SETTINGS_APPLICATION_ID = "1:909793803468:android:7052c15697ed01fae55669";
-        private const string SETTINGS_API_KEY = "AIzaSyDqJoZcLu-IVCkp-_ULJLIHAnNFiluL0cs";
-        private const string SETTINGS_STORAGE_BUCKET = "mathgame-x.appspot.com";
+        private const string SETTINGS_FILE = "google-services.json";
+
+        // from settings file which taken from firebase project settings
+        private static string SETTINGS_PROJECT_ID;
+        private static string SETTINGS_APPLICATION_ID;
+        private static string SETTINGS_API_KEY;
+        private static string SETTINGS_STORAGE_BUCKET;
 
 
         private const string MAIN_COLLECTION = "Users";
@@ -53,6 +59,30 @@ namespace MathGame.Models
          */
 
         /// <summary>
+        /// Extracts settings data from the given settings file which must be stored under the Assets/ folder
+        /// </summary>
+        /// <param name="context">current context to access Assets object</param>
+        private static void InitSettings(Context context)
+        {
+            // Get a reference to the AssetManager
+            AssetManager assets = context.Assets;
+
+            // Open an input stream for the JSON file in the Assets folder
+            using StreamReader sr = new StreamReader(assets.Open(SETTINGS_FILE));
+            // Read the contents of the file
+            string contents = sr.ReadToEnd();
+
+            // Parse the JSON data into a JObject
+            JObject json = JObject.Parse(contents);
+
+            // Access setteings in the JObject
+            SETTINGS_PROJECT_ID = (string)json["project_info"]["project_id"];
+            SETTINGS_APPLICATION_ID = (string)json["client"][0]["client_info"]["mobilesdk_app_id"];
+            SETTINGS_API_KEY = (string)json["client"][0]["api_key"][0]["current_key"];
+            SETTINGS_STORAGE_BUCKET = (string)json["project_info"]["storage_bucket"];
+        }
+
+        /// <summary>
         /// Initialize the database (should be only one time at the first launching (at SplashActivity.cs)
         /// </summary>
         /// <param name="context">current context</param>
@@ -61,6 +91,8 @@ namespace MathGame.Models
             FirebaseApp app = FirebaseApp.InitializeApp(context);
             if (app == null)
             {
+                InitSettings(context);
+
                 FirebaseOptions options = new FirebaseOptions.Builder()
                     .SetProjectId(SETTINGS_PROJECT_ID)
                     .SetApplicationId(SETTINGS_APPLICATION_ID)
