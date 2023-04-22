@@ -17,7 +17,7 @@
         android:textStyle="bold"
         android:padding="@dimen/dp_large"
         android:textColor="@color/light_blue"
-        android:textSize="@dimen/sp_xxlarge"/>
+        android:textSize="@dimen/sp_ularge"/>
 
     <!--Profile, login, register-->
     <LinearLayout
