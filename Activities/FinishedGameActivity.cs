@@ -315,5 +315,10 @@ namespace MathGame.Activities
                     Color = SKColor.Parse("#fAC857")
                 }};
         }
+
+        public override void OnBackPressed()
+        {
+            // prevent user to get back to game after finishing
+        }
     }
 }

@@ -333,7 +333,7 @@ namespace MathGame.Activities
 
         public override void OnBackPressed()
         {
-            leaveButton.PerformClick();
+            leaveButton.PerformClick();  // on back press - simulate leaving game
         }
 
         protected override void OnStart()

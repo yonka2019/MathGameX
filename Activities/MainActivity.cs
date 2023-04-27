@@ -171,5 +171,10 @@ namespace MathGame.Activities
 
             base.OnDestroy();
         }
+
+        public override void OnBackPressed()
+        {
+            // prevent user to get back to splash (sessioned)/login/register after he done
+        }
     }
 }
