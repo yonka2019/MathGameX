@@ -185,7 +185,7 @@ namespace MathGame.Models
         /// <param name="data">data to be uploaded</param>
         /// <param name="userDocument">user document</param>
         /// <param name="document">user sub-document (login/stats), if empty it's refers to global document</param>
-        private static void SetData(HashMap data, string userDocument, string document = "")
+        private static async void SetData(HashMap data, string userDocument, string document = "")
         {
             try
             {
@@ -196,7 +196,7 @@ namespace MathGame.Models
                 else
                     documentRef = baseReference.Document(userDocument).Collection(DATA_COLLECTION).Document(document);
 
-                documentRef.Set(data);
+                await documentRef.Set(data);
             }
             catch { }
         }
