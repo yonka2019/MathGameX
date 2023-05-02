@@ -13,6 +13,7 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MathGame.Activities
 {
@@ -33,7 +34,7 @@ namespace MathGame.Activities
 
         private const int LABEL_FONT_SIZE = 40;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -58,7 +59,7 @@ namespace MathGame.Activities
             correctAnswersCounter['*'] = base.Intent.GetIntExtra("stats:*", 0);
             correctAnswersCounter['/'] = base.Intent.GetIntExtra("stats:/", 0);
 
-            SaveDataToDB();
+            await SaveDataToDB();
 
             SetupChartData();
             SetupIntialChart();
@@ -129,7 +130,7 @@ namespace MathGame.Activities
             currentChartType = ChartTypes.Donut;
         }
 
-        private async void SaveDataToDB()
+        private async Task SaveDataToDB()
         {
             if (MainActivity.Username != "")  // save data only if the player not in anonymous 
             {
@@ -148,7 +149,7 @@ namespace MathGame.Activities
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_DB;
 
 
-                FirebaseManager.SetStatsData(MainActivity.Username,
+                await FirebaseManager.SetStatsData(MainActivity.Username,
 
                 // add to CURRENT STATISTICS data the new statistics data and set in firebase
                 Convert.ToInt32(currentStats["Plus"]) + correctAnswersCounter['+'],

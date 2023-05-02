@@ -46,11 +46,11 @@ namespace MathGame.Activities
             base.OnResume();
             SetContentView(Resource.Layout.splash_screen);
 
-            Task startupWork = new Task(() => { SimulateStartupAsync(); });
+            Task startupWork = new Task(async () => { await SimulateStartupAsync(); });
             startupWork.Start();
         }
 
-        private async void SimulateStartupAsync()
+        private async Task SimulateStartupAsync()
         {
             await Task.Delay(1000);
 

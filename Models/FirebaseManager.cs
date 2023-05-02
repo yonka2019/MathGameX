@@ -146,16 +146,16 @@ namespace MathGame.Models
             return await GetDataAsync(username);
         }
 
-        public static void SetLoginData(string username, string password)
+        public static async Task SetLoginData(string username, string password)
         {
             HashMap newLoginData = new HashMap();
 
             newLoginData.Put("Password", password.GetMD5());  // hash (via MD5) the password
 
-            SetData(newLoginData, username, LOGIN_DOCUMENT);
+            await SetData(newLoginData, username, LOGIN_DOCUMENT);
         }
 
-        public static void SetStatsData(string username, int plus, int minus, int multiply, int divide, double averageAnswerTimeSeconds)
+        public static async Task SetStatsData(string username, int plus, int minus, int multiply, int divide, double averageAnswerTimeSeconds)
         {
             HashMap newStatisticsData = new HashMap();
 
@@ -165,16 +165,16 @@ namespace MathGame.Models
             newStatisticsData.Put("Divide", divide);
             newStatisticsData.Put("AVG_AnswerTime_S", averageAnswerTimeSeconds);
 
-            SetData(newStatisticsData, username, STATISTICS_DOCUMENT);
+            await SetData(newStatisticsData, username, STATISTICS_DOCUMENT);
         }
 
-        public static void SetGlobalData(string username)
+        public static async Task SetGlobalData(string username)
         {
             HashMap globalData = new HashMap();
 
             globalData.Put("CreatedAt", new Timestamp(new Date()));
 
-            SetData(globalData, username);
+            await SetData(globalData, username);
         }
 
         #region Firebase interaction Functions
@@ -185,7 +185,7 @@ namespace MathGame.Models
         /// <param name="data">data to be uploaded</param>
         /// <param name="userDocument">user document</param>
         /// <param name="document">user sub-document (login/stats), if empty it's refers to global document</param>
-        private static async void SetData(HashMap data, string userDocument, string document = "")
+        private static async Task SetData(HashMap data, string userDocument, string document = "")
         {
             try
             {

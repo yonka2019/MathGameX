@@ -93,11 +93,11 @@ namespace MathGame.Activities
             return await FirebaseManager.GetGlobalDataAsync(username) != null;  // check if user already exist
         }
 
-        private void RegisterUser(string username, string password)
+        private async void RegisterUser(string username, string password)
         {
-            FirebaseManager.SetGlobalData(username);
-            FirebaseManager.SetLoginData(username, password);
-            FirebaseManager.SetStatsData(username, 0, 0, 0, 0, 0);  // fill zeros to stats
+            await FirebaseManager.SetGlobalData(username);
+            await FirebaseManager.SetLoginData(username, password);
+            await FirebaseManager.SetStatsData(username, 0, 0, 0, 0, 0);  // fill zeros to stats
         }
 
         private async void Register_Click(object sender, EventArgs e)
