@@ -126,6 +126,7 @@ namespace MathGame.Activities
                 return;
             }
 
+            ProgressDialog signUpDialog = this.CreateProgressDialog("Signing up..");
 
             if (!await UserAlreadyExists(username.Text))  // not exist -> create user and auto login
             {
@@ -137,6 +138,7 @@ namespace MathGame.Activities
             {
                 usernametil.Error = "User Already Exists";
             }
+            signUpDialog.Dismiss();
         }
 
         private void GotoLogin_Click(object sender, EventArgs e)

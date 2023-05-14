@@ -1,4 +1,5 @@
 ﻿using Android.Animation;
+using Android.App;
 using Android.Content;
 using MathGame.Activities;
 using System.Security.Cryptography;
@@ -50,6 +51,21 @@ namespace MathGame.Models
             Android.App.AlertDialog dialog = builder.Create();
 
             dialog.Show();
+        }
+
+        /// <summary>
+        /// Shortcuter to show progress dialog in THIS context
+        /// </summary>
+        /// <returns>ProgressDialog control back to user in order to dismiss it when needed</returns>
+        public static ProgressDialog CreateProgressDialog(this Android.Content.Context context, string message)
+        {
+            ProgressDialog progressDialog = new ProgressDialog(context);
+            progressDialog.SetCancelable(false);
+            progressDialog.SetMessage(message);
+            progressDialog.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progressDialog.Show();
+
+            return progressDialog;
         }
 
         /// <summary>

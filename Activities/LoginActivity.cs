@@ -108,6 +108,7 @@ namespace MathGame.Activities
                 return;
             }
 
+            ProgressDialog loginDialog = this.CreateProgressDialog("Logging in..");
             if (await PasswordCorrect(username.Text, password.Text, true))  // if password matches => successfully logged in
             {
                 this.AccountLogin(username.Text);
@@ -116,6 +117,7 @@ namespace MathGame.Activities
             {
                 passwordtil.Error = "Wrong username or password";
             }
+            loginDialog.Dismiss();
         }
 
         private void GotoRegister_Click(object sender, EventArgs e)
