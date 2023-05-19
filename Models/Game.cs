@@ -56,7 +56,7 @@ namespace MathGame.Models
                 GameMode.Easy => 15,
                 GameMode.Medium => 10,
                 GameMode.Hard => 5,
-                _ => 0,
+                _ => 30,  // default - count as infinity mode (shouldn't get here)
             };
         }
 
