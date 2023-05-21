@@ -114,7 +114,6 @@ namespace MathGame.Activities
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(totalGameTime, "Total game time");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(screenshotButton, "Take a screenshot of this page");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(statsChart, "Correct answers per arithmetic operator in current finished game");
-
         }
 
         private void SetupIntialChart()

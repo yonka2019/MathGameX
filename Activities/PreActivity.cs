@@ -18,7 +18,6 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             SetContentView(Resource.Layout.pre_screen);
 
@@ -29,10 +28,13 @@ namespace MathGame.Activities
             welcomeText2.Animate(AnimationType.TranslationX, 500, 500f, 0f);
 
             // if there is no internet connection allow only play anonymously (because can not connect to the database)
-            if (!base.Intent.GetBooleanExtra("InternetConnection", true))
+            if (Intent != null)
             {
-                login.Enabled = false;
-                register.Enabled = false;
+                if (!base.Intent.GetBooleanExtra("InternetConnection", true))
+                {
+                    login.Enabled = false;
+                    register.Enabled = false;
+                }
             }
         }
 

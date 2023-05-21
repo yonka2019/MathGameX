@@ -10,7 +10,6 @@ namespace MathGame.Adapters
 {
     internal class StatsAdapter : SimpleAdapter
     {
-
         private readonly int[] mTo;
         private readonly string[] mFrom;
         private readonly LayoutInflater mInflater;

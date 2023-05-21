@@ -1,6 +1,7 @@
 ﻿using Android.Animation;
 using Android.App;
 using Android.Content;
+using Android.Widget;
 using MathGame.Activities;
 using System.Security.Cryptography;
 using System.Text;
@@ -72,7 +73,7 @@ namespace MathGame.Models
         /// logins user (opens up the main activity and updates session) ; (after user successfully creation // after successfully password check
         /// </summary>
         /// <param name="username"></param>
-        public static void AccountLogin(this Context context, string username)
+        public static void AccountSuccessLogin(this Context context, string username)
         {
             ISharedPreferences loginSessionSP = context.GetSharedPreferences("LoginSession", FileCreationMode.Private);
             ISharedPreferencesEditor lsEditor = loginSessionSP.Edit();
@@ -84,7 +85,6 @@ namespace MathGame.Models
 
             MainActivity.Username = username;
             context.StartActivity(new Intent(context, typeof(MainActivity)));
-
         }
 
         /// <summary>

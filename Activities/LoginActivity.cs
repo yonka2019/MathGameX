@@ -111,7 +111,8 @@ namespace MathGame.Activities
             ProgressDialog loginDialog = this.CreateProgressDialog("Logging in..");
             if (await PasswordCorrect(username.Text, password.Text, true))  // if password matches => successfully logged in
             {
-                this.AccountLogin(username.Text);
+                this.AccountSuccessLogin(username.Text);
+                Toast.MakeText(this, "Welcome back, " + username.Text, ToastLength.Short).Show();
             }
             else
             {
@@ -179,14 +180,17 @@ namespace MathGame.Activities
                 username.Text = nfc_username;
                 password.Text = nfc_password;
 
+                ProgressDialog loginDialog = this.CreateProgressDialog("Logging in..");
                 if (await PasswordCorrect(nfc_username, nfc_password, false))  // if password matches => successfully logged in
                 {
-                    this.AccountLogin(nfc_username);
+                    this.AccountSuccessLogin(nfc_username);
+                    Toast.MakeText(this, "Welcome back, " + username.Text, ToastLength.Short).Show();
                 }
                 else
                 {
                     passwordtil.Error = "Wrong username or password";
                 }
+                loginDialog.Dismiss();
             }
         }
 

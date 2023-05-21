@@ -112,7 +112,6 @@ namespace MathGame.Activities
 
             Intent preActivity = new Intent(this, typeof(PreActivity));
             StartActivity(preActivity);
-
             Toast.MakeText(this, "Logged out", ToastLength.Short).Show();
         }
 

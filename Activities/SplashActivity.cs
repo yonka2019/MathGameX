@@ -72,11 +72,11 @@ namespace MathGame.Activities
 
             else  // session isn't expired
             {
-                this.AccountLogin(username);
+                this.AccountSuccessLogin(username);
 
                 RunOnUiThread(() =>  // to avoid 'Can't toast on a thread that has not called Looper.prepare()'
                 {
-                    Toast.MakeText(this, "Session restored", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Session restored. Welcome back, " + username, ToastLength.Short).Show();
                 });
             }
         }

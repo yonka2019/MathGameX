@@ -132,7 +132,9 @@ namespace MathGame.Activities
             {
                 RegisterUser(username.Text, password.Text);
 
-                this.AccountLogin(username.Text);
+                this.AccountSuccessLogin(username.Text);
+
+                Toast.MakeText(this, "Welcome " + username.Text, ToastLength.Short).Show();
             }
             else  // already exists
             {

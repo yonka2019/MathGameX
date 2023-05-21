@@ -1,6 +1,4 @@
-﻿using Kotlin.Contracts;
-
-namespace MathGame.Models.MathQuestions
+﻿namespace MathGame.Models.MathQuestions
 {
     internal class AdditionQuestion : BaseQuestion
     {

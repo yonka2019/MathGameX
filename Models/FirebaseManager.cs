@@ -117,7 +117,6 @@ namespace MathGame.Models
         /// <summary>
         /// returns all users which appears in the DB (all user documents)
         /// </summary>
-        /// <returns></returns>
         public static async Task<List<string>> GetUsernames()
         {
             List<string> usersList = new List<string>();

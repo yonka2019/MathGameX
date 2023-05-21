@@ -145,7 +145,7 @@ namespace MathGame.Activities
             }
             else
             {
-                this.CreateShowDialog("Warning", "You must set up the settings before starting game", "OK", Resource.Drawable.warning64);
+                this.CreateShowDialog("Warning", "You must set up the game settings before starting game", "OK", Resource.Drawable.warning64);
             }
         }
 
