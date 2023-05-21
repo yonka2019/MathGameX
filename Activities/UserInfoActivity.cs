@@ -104,15 +104,21 @@ namespace MathGame.Activities
             return dateFormat.Format(date);
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        private async void Logout_Click(object sender, EventArgs e)
         {
+            ProgressDialog loginDialog = this.CreateProgressDialog("Logging out..");
+
+            await System.Threading.Tasks.Task.Delay(1000);
+
             MainActivity.Username = "";  // remove username
 
             GetSharedPreferences("LoginSession", FileCreationMode.Private).Edit().Clear().Commit();  // removes current session (even if expired)
 
             Intent preActivity = new Intent(this, typeof(PreActivity));
             StartActivity(preActivity);
+
             Toast.MakeText(this, "Logged out", ToastLength.Short).Show();
+            loginDialog.Dismiss();
         }
 
         private void SetupChartData(Dictionary<string, object> userStatisticsData)

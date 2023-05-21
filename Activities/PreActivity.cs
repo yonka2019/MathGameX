@@ -18,7 +18,7 @@ namespace MathGame.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.pre_screen);
 
             SetRefs();
