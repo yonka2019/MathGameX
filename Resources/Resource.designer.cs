@@ -14,7 +14,7 @@ namespace MathGame
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.0.93")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.0.99")]
 	public partial class Resource
 	{
 		
@@ -10895,13 +10895,13 @@ namespace MathGame
 			public const int design_text_input_start_icon = 2131427373;
 			
 			// aapt resource value: 0x7F0B002E
-			public const int finished_game = 2131427374;
+			public const int finished_game_screen = 2131427374;
 			
 			// aapt resource value: 0x7F0B002F
 			public const int game_screen = 2131427375;
 			
 			// aapt resource value: 0x7F0B0030
-			public const int game_selection = 2131427376;
+			public const int game_selection_screen = 2131427376;
 			
 			// aapt resource value: 0x7F0B0031
 			public const int login_screen = 2131427377;

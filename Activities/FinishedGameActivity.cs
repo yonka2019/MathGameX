@@ -38,7 +38,7 @@ namespace MathGame.Activities
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.finished_game);
+            SetContentView(Resource.Layout.finished_game_screen);
 
             SetRefs();
             SetEvents();

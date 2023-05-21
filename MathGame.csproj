@@ -260,7 +260,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\game_selection.xml" />
+    <AndroidResource Include="Resources\layout\game_selection_screen.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\hourglass_35px.png" />
@@ -284,7 +284,7 @@
     <AndroidResource Include="Resources\raw\three_ticks.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\finished_game.xml">
+    <AndroidResource Include="Resources\layout\finished_game_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
