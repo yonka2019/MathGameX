@@ -394,6 +394,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\raw\final_game.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itunes_32px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

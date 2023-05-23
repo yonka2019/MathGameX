@@ -70,7 +70,7 @@
     <!--Chart layout-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_xxlarge"
+        android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -83,7 +83,7 @@
             android:textStyle="bold"/>
 
         <Microcharts.Droid.ChartView
-            android:layout_marginTop="@dimen/dp_xxlarge"
+            android:layout_marginTop="@dimen/dp_3xlarge"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_mxlarge"
             android:id="@+id/info_statsChart"/>

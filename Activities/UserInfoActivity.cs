@@ -87,7 +87,7 @@ namespace MathGame.Activities
 
         private void SetTooltips()
         {
-            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Best average time to answer per answer (from all games)");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Best average time to answer per exercise (from all games)");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart style");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(statsChart, "Correct answers per arithmetic operator in all player games");
         }
@@ -193,7 +193,8 @@ namespace MathGame.Activities
                 {
                     Entries = statisticsEntries,
                     LabelTextSize = LABEL_FONT_SIZE,
-                    LabelOrientation = Microcharts.Orientation.Horizontal
+                    LabelOrientation = Microcharts.Orientation.Horizontal,
+                    ValueLabelOrientation = Microcharts.Orientation.Horizontal
                 };
 
                 statsChart.Chart = barChart;

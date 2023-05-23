@@ -106,7 +106,7 @@ namespace MathGame.Activities
 
         private void SetTooltips()
         {
-            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Average time to answer per answer");
+            Android.Support.V7.Widget.TooltipCompat.SetTooltipText(averageAnswerTime, "Average time to answer per exercise");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(totalGameTime, "Total game time");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(changeChart, "Change chart style");
             Android.Support.V7.Widget.TooltipCompat.SetTooltipText(correctAnswersNumber, "Total correct answers");
@@ -142,7 +142,7 @@ namespace MathGame.Activities
                 if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 10))
                 {
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_CURRENT;
-                    this.CreateShowDialog("You beat your own record", "You have beat your own record!", "OK", Resource.Drawable.confetti_64px);
+                    this.CreateShowDialog("You beat your own record", "The Best average answer time per exercise!", "OK", Resource.Drawable.confetti_64px);
                 }
                 else
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_DB;
@@ -246,7 +246,8 @@ namespace MathGame.Activities
                 {
                     Entries = statisticsEntries,
                     LabelTextSize = LABEL_FONT_SIZE,
-                    LabelOrientation = Microcharts.Orientation.Horizontal
+                    LabelOrientation = Microcharts.Orientation.Horizontal,
+                    ValueLabelOrientation = Microcharts.Orientation.Horizontal
                 };
 
                 statsChart.Chart = barChart;

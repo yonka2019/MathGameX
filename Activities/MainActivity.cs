@@ -13,7 +13,7 @@ namespace MathGame.Activities
         Icon = "@mipmap/ic_launcher")]
     public class MainActivity : AppCompatActivity
     {
-        public static string Username { set; get; }
+        public static string Username { set; get; }  // if Username empty that means he in anonymous mode (Non saving data to DB)
 
         private Button Stats, Start, Settings;
         private TextView Login, Register, UsernameTV;

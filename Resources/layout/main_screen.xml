@@ -8,16 +8,32 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/dp_large">
 
-    <!--Main Title-->
-    <TextView 
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_main_title"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:padding="@dimen/dp_large"
-        android:textColor="@color/light_blue"
-        android:textSize="@dimen/sp_ularge"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/dp_large">
+        <!--Main Title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Math "
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/light_blue"
+            android:textSize="@dimen/sp_uxlarge"/>
+
+        <!--Main Title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/light_purple"
+            android:textSize="@dimen/sp_uxlarge"/>
+    </LinearLayout>
 
     <!--Profile, login, register-->
     <LinearLayout
@@ -67,7 +83,7 @@
 
      </LinearLayout>
 
-    <!--Menu Buttons--> <!--If user not logged in, he cant play-->
+    <!--Menu Buttons-->
     <LinearLayout
         android:layout_marginTop="@dimen/dp_xlarge"
         android:layout_width="match_parent"
