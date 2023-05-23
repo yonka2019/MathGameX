@@ -142,7 +142,7 @@ namespace MathGame.Activities
                 if (((averageAnswerTimeSeconds_CURRENT < averageAnswerTimeSeconds_DB) || (averageAnswerTimeSeconds_DB == 0)) && (correctAnswers + wrongAnswers >= 10))
                 {
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_CURRENT;
-                    this.CreateShowDialog("You beat your own record", "The Best average answer time per exercise!", "OK", Resource.Drawable.confetti_64px);
+                    this.CreateShowDialog("You beat your own record", "The best average answer time per exercise!", "OK", Resource.Drawable.confetti_64px);
                 }
                 else
                     bestAverageAnswerTimeSeconds = averageAnswerTimeSeconds_DB;
