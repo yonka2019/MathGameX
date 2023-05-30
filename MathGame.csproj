@@ -96,8 +96,8 @@
     <Compile Include="Receivers\LowBatteryReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Activities\SettingsActivity.cs" />
-    <Compile Include="Models\SettingsManager.cs" />
+    <Compile Include="Activities\GameSettingsActivity.cs" />
+    <Compile Include="Models\GameSettingsManager.cs" />
     <Compile Include="Activities\StatisticsActivity.cs" />
     <Compile Include="Services\MusicService.cs" />
   </ItemGroup>
@@ -186,7 +186,7 @@
     <AndroidResource Include="Resources\drawable\warning64.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\settings_screen.xml">
+    <AndroidResource Include="Resources\layout\game_settings_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

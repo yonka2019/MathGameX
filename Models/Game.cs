@@ -41,7 +41,7 @@ namespace MathGame.Models
 
         private void SetOperatorsSettings()
         {
-            foreach (KeyValuePair<char, bool> op in SettingsManager.Settings["operators"])
+            foreach (KeyValuePair<char, bool> op in GameSettingsManager.Settings["operators"])
             {
                 if (op.Value)  // add all allowed (according the settings) question types (-, + ..)
                     QuestionTypes.Add(GetQuestionByOperator(op.Key));

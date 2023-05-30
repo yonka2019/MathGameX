@@ -2,9 +2,9 @@
 
 namespace MathGame.Models
 {
-    public static class SettingsManager
+    public static class GameSettingsManager
     {
-        static SettingsManager()  // initialize dictionaries
+        static GameSettingsManager()  // initialize dictionaries
         {
             Settings["operators"] = new Dictionary<char, bool> {
                 { '+', false }, { '-', false }, { '*', false }, { '/', false } };
