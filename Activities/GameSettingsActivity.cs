@@ -9,7 +9,7 @@ using System;
 namespace MathGame.Activities
 {
     [Activity(Label = "SettingsActivity")]
-    public class SettingsActivity : Activity
+    public class GameSettingsActivity : Activity
     {
         private CheckBox oneD, doubleD, tripleD, fourthD,
             plus, minus, multiply, divide;
@@ -21,7 +21,7 @@ namespace MathGame.Activities
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.settings_screen);
+            SetContentView(Resource.Layout.game_settings_screen);
 
             SetRefs();
             SetEvents();
@@ -60,15 +60,15 @@ namespace MathGame.Activities
 
         private void RestoreSettingsView()
         {
-            plus.Checked = SettingsManager.Settings["operators"]['+'];
-            minus.Checked = SettingsManager.Settings["operators"]['-'];
-            multiply.Checked = SettingsManager.Settings["operators"]['*'];
-            divide.Checked = SettingsManager.Settings["operators"]['/'];
+            plus.Checked = GameSettingsManager.Settings["operators"]['+'];
+            minus.Checked = GameSettingsManager.Settings["operators"]['-'];
+            multiply.Checked = GameSettingsManager.Settings["operators"]['*'];
+            divide.Checked = GameSettingsManager.Settings["operators"]['/'];
 
-            oneD.Checked = SettingsManager.Settings["digits"]['1'];
-            doubleD.Checked = SettingsManager.Settings["digits"]['2'];
-            tripleD.Checked = SettingsManager.Settings["digits"]['3'];
-            fourthD.Checked = SettingsManager.Settings["digits"]['4'];
+            oneD.Checked = GameSettingsManager.Settings["digits"]['1'];
+            doubleD.Checked = GameSettingsManager.Settings["digits"]['2'];
+            tripleD.Checked = GameSettingsManager.Settings["digits"]['3'];
+            fourthD.Checked = GameSettingsManager.Settings["digits"]['4'];
         }
 
         private void SaveAndExit_Click(object sender, EventArgs e)
@@ -78,16 +78,16 @@ namespace MathGame.Activities
             // save all settings into the dictionary
 
             // operators settings [local]
-            SettingsManager.Settings["operators"]['+'] = plus.Checked;
-            SettingsManager.Settings["operators"]['-'] = minus.Checked;
-            SettingsManager.Settings["operators"]['*'] = multiply.Checked;
-            SettingsManager.Settings["operators"]['/'] = divide.Checked;
+            GameSettingsManager.Settings["operators"]['+'] = plus.Checked;
+            GameSettingsManager.Settings["operators"]['-'] = minus.Checked;
+            GameSettingsManager.Settings["operators"]['*'] = multiply.Checked;
+            GameSettingsManager.Settings["operators"]['/'] = divide.Checked;
 
             // digits settings [local]
-            SettingsManager.Settings["digits"]['1'] = oneD.Checked;
-            SettingsManager.Settings["digits"]['2'] = doubleD.Checked;
-            SettingsManager.Settings["digits"]['3'] = tripleD.Checked;
-            SettingsManager.Settings["digits"]['4'] = fourthD.Checked;
+            GameSettingsManager.Settings["digits"]['1'] = oneD.Checked;
+            GameSettingsManager.Settings["digits"]['2'] = doubleD.Checked;
+            GameSettingsManager.Settings["digits"]['3'] = tripleD.Checked;
+            GameSettingsManager.Settings["digits"]['4'] = fourthD.Checked;
 
             // operators settings [SP]
             editor.PutBoolean("o:+", plus.Checked);

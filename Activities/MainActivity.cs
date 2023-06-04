@@ -85,15 +85,15 @@ namespace MathGame.Activities
         {
             ISharedPreferences settingsSp = GetSharedPreferences("Settings", FileCreationMode.Private);
 
-            SettingsManager.Settings["operators"]['+'] = settingsSp.GetBoolean("o:+", false);
-            SettingsManager.Settings["operators"]['-'] = settingsSp.GetBoolean("o:-", false);
-            SettingsManager.Settings["operators"]['*'] = settingsSp.GetBoolean("o:*", false);
-            SettingsManager.Settings["operators"]['/'] = settingsSp.GetBoolean("o:/", false);
+            GameSettingsManager.Settings["operators"]['+'] = settingsSp.GetBoolean("o:+", false);
+            GameSettingsManager.Settings["operators"]['-'] = settingsSp.GetBoolean("o:-", false);
+            GameSettingsManager.Settings["operators"]['*'] = settingsSp.GetBoolean("o:*", false);
+            GameSettingsManager.Settings["operators"]['/'] = settingsSp.GetBoolean("o:/", false);
 
-            SettingsManager.Settings["digits"]['1'] = settingsSp.GetBoolean("d:1", false);
-            SettingsManager.Settings["digits"]['2'] = settingsSp.GetBoolean("d:2", false);
-            SettingsManager.Settings["digits"]['3'] = settingsSp.GetBoolean("d:3", false);
-            SettingsManager.Settings["digits"]['4'] = settingsSp.GetBoolean("d:4", false);
+            GameSettingsManager.Settings["digits"]['1'] = settingsSp.GetBoolean("d:1", false);
+            GameSettingsManager.Settings["digits"]['2'] = settingsSp.GetBoolean("d:2", false);
+            GameSettingsManager.Settings["digits"]['3'] = settingsSp.GetBoolean("d:3", false);
+            GameSettingsManager.Settings["digits"]['4'] = settingsSp.GetBoolean("d:4", false);
         }
 
         private void RestoreAmbientSound()
@@ -129,7 +129,7 @@ namespace MathGame.Activities
 
         private void Settings_Click(object sender, System.EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(SettingsActivity)));
+            StartActivity(new Intent(this, typeof(GameSettingsActivity)));
         }
 
         private void SetSong_Click(object sender, System.EventArgs e)
@@ -139,7 +139,7 @@ namespace MathGame.Activities
 
         private void Start_Click(object sender, System.EventArgs e)
         {
-            if (SettingsManager.ReadyToPlay)
+            if (GameSettingsManager.ReadyToPlay)
             {
                 StartActivity(new Intent(this, typeof(GameSelectionActivity)));
             }

@@ -7,7 +7,7 @@
 
 	<string name="main_stats">Global Statistics</string>
 	<string name="main_start_game">Start game</string>
-	<string name="main_settings">Settings</string>
+	<string name="main_settings">Game Settings</string>
 	
 	<!--Settings screen-->
 	<string name="settings_main_title">Settings</string>

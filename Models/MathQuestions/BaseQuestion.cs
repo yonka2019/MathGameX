@@ -52,16 +52,16 @@ namespace MathGame.Models.MathQuestions
 
         private void SetDigitSettings()
         {
-            if (SettingsManager.Settings["digits"]['1'])  // one
+            if (GameSettingsManager.Settings["digits"]['1'])  // one
                 DigitsPreferences.Add((0, 9));
 
-            if (SettingsManager.Settings["digits"]['2'])  // double
+            if (GameSettingsManager.Settings["digits"]['2'])  // double
                 DigitsPreferences.Add((10, 99));
 
-            if (SettingsManager.Settings["digits"]['3'])  // triple
+            if (GameSettingsManager.Settings["digits"]['3'])  // triple
                 DigitsPreferences.Add((100, 999));
 
-            if (SettingsManager.Settings["digits"]['4'])  // fourth
+            if (GameSettingsManager.Settings["digits"]['4'])  // fourth
                 DigitsPreferences.Add((1000, 9999));
         }
     }
