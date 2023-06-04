@@ -136,5 +136,13 @@
             android:id="@+id/main_setSongButton"
             android:src="@drawable/musical_32px"
             android:contentDescription="Set song button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/sp_xlarge"
+            android:textStyle="bold"
+            android:text="By Yonka"/>
     </LinearLayout>
 </LinearLayout>
