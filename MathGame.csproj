@@ -397,6 +397,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\itunes_32px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Screenshots\sc1.jpg" />
+    <Content Include="Screenshots\sc2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
