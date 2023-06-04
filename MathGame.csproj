@@ -400,8 +400,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\camera_33px.png" />
-    <Content Include="Screenshots\sc1.jpg" />
-    <Content Include="Screenshots\sc2.jpg" />
+    <Content Include="Screenshots\main_screen.jpg" />
+    <Content Include="Screenshots\auth_screen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
