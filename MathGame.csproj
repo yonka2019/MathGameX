@@ -51,11 +51,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Java.Interop" />
@@ -356,9 +360,6 @@
     <AndroidResource Include="Resources\drawable\time_machine_30px.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\camera_33px.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\raw\camera_click_sound.mp3" />
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +399,7 @@
     <AndroidResource Include="Resources\drawable\itunes_32px.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\camera_33px.png" />
     <Content Include="Screenshots\sc1.jpg" />
     <Content Include="Screenshots\sc2.jpg" />
   </ItemGroup>

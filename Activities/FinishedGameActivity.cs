@@ -39,6 +39,7 @@ namespace MathGame.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.finished_game_screen);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             SetRefs();
             SetEvents();
@@ -101,7 +102,7 @@ namespace MathGame.Activities
         {
             changeChart.Click += ChangeChart_Click;
             backToMenu.Click += BackToMenu_Click;
-            screenshotButton.Click += ScreenshotButton_Click;
+            screenshotButton.Click += CameraButton_Click;
         }
 
         private void SetTooltips()
@@ -159,7 +160,7 @@ namespace MathGame.Activities
             }
         }
 
-        private void ScreenshotButton_Click(object sender, EventArgs e)
+        private void CameraButton_Click(object sender, EventArgs e)
         {
             bool succeed = TakeSaveScreenshot();
 

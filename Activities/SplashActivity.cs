@@ -17,6 +17,7 @@ namespace MathGame.Activities
             Icon = "@mipmap/ic_launcher")]
     public class SplashActivity : Activity
     {
+        private const int SESSION_MINUTES = 15;
         public static bool InternetConnection { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -45,6 +46,7 @@ namespace MathGame.Activities
         {
             base.OnResume();
             SetContentView(Resource.Layout.splash_screen);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             Task startupWork = new Task(async () => { await SimulateStartupAsync(); });
             startupWork.Start();
@@ -99,7 +101,7 @@ namespace MathGame.Activities
         private bool SessionExpired(System.DateTime lastLogin)
         {
             TimeSpan timeDifference = System.DateTime.Now - lastLogin;
-            return timeDifference.TotalMinutes > 15;  // if total minutes is higher than 15 -> session expired
+            return timeDifference.TotalMinutes > SESSION_MINUTES;  // if total minutes is higher than 15 -> session expired
         }
     }
 }

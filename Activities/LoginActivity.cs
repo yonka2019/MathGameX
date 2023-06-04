@@ -28,6 +28,7 @@ namespace MathGame.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.login_screen);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 

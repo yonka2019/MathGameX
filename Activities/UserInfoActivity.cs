@@ -37,6 +37,7 @@ namespace MathGame.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.user_info_screen);
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             SetRefs();
             SetEvents();
