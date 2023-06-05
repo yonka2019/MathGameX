@@ -1,6 +1,6 @@
 # MathGame
-[School 12 Grade] Final Project
-Math Game, which includes a remote database (firebase) with a authentication mechanism, score tables, background music, nfc login method
+An application, which is written on C# Xamarin.Android. 
+A math game, which is combines a lot of technologies such as NFC, Firebase, and more.
 
 ## Preview
 ### • Authentication screen
